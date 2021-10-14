@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.32\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\MM_Practica_01.X.production.sym \
   --cmf=dist/default/production\MM_Practica_01.X.production.cmf -z \
-  -Q18F45K50 -oC:\Users\diego\AppData\Local\Temp\xcAs9ik.4 \
+  -Q18F45K50 -oC:\Users\diego\AppData\Local\Temp\xcAs89s.4 \
   --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/MM_Practica_01.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=060h-07FFh -pstack=STACK \
@@ -24,7 +24,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\diego\AppData\Local\Temp\xcAs9ik.o \
+  C:\Users\diego\AppData\Local\Temp\xcAs89s.o \
   dist/default/production\MM_Practica_01.X.production.o 
 
 Object code version is 3.11
@@ -34,7 +34,7 @@ Machine type is 18F45K50
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\diego\AppData\Local\Temp\xcAs9ik.o
+C:\Users\diego\AppData\Local\Temp\xcAs89s.o
                 idloc                            200000   200000        8        0       5
                 config                           300000   300000        E        0       4
                 init                                  0        0        4        0       0
@@ -130,9 +130,9 @@ UNUSED ADDRESS RANGES
 
                                   Symbol Table
 
-_ANSELD                  (abs)        000F5E
-_LATDbits                (abs)        000F8C
-_TRISD                   (abs)        000F95
+_ANSELA                  (abs)        000F5B
+_LATAbits                (abs)        000F89
+_TRISA                   (abs)        000F92
 __HRAM                   (abs)        000000
 __Habs1                  abs1         000000
 __Hbank0                 bank0        000000

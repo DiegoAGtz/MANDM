@@ -1,26 +1,26 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"5248 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 5248: extern volatile unsigned char TRISD __attribute__((address(0xF95)));
-[v _TRISD `Vuc ~T0 @X0 0 e@3989 ]
-"361
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 361: extern volatile unsigned char ANSELD __attribute__((address(0xF5E)));
-[v _ANSELD `Vuc ~T0 @X0 0 e@3934 ]
-"4111
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 4111:     struct {
-[s S173 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S173 . LATD0 LATD1 LATD2 LATD3 LATD4 LATD5 LATD6 LATD7 ]
-"4121
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 4121:     struct {
-[s S174 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S174 . LD0 LD1 LD2 LD3 LD4 LD5 LD6 LD7 ]
-"4110
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 4110: typedef union {
-[u S172 `S173 1 `S174 1 ]
-[n S172 . . . ]
-"4132
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 4132: extern volatile LATDbits_t LATDbits __attribute__((address(0xF8C)));
-[v _LATDbits `VS172 ~T0 @X0 0 e@3980 ]
+"4626 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 4626: extern volatile unsigned char TRISA __attribute__((address(0xF92)));
+[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
+"232
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 232: extern volatile unsigned char ANSELA __attribute__((address(0xF5B)));
+[v _ANSELA `Vuc ~T0 @X0 0 e@3931 ]
+"3785
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 3785:     struct {
+[s S164 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S164 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 LATA6 LATA7 ]
+"3795
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 3795:     struct {
+[s S165 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S165 . LA0 LA1 LA2 LA3 LA4 LA5 LA6 LA7 ]
+"3784
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 3784: typedef union {
+[u S163 `S164 1 `S165 1 ]
+[n S163 . . . ]
+"3806
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 3806: extern volatile LATAbits_t LATAbits __attribute__((address(0xF89)));
+[v _LATAbits `VS163 ~T0 @X0 0 e@3977 ]
 [v F4805 `(v ~T0 @X0 1 tf1`ul ]
 "203 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
 [v __delay `JF4805 ~T0 @X0 0 e ]
@@ -666,12 +666,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [e :U _main ]
 [f ]
-"18
-[; ;main.c: 18:     TRISD=0;
-[e = _TRISD -> -> 0 `i `uc ]
-"19
-[; ;main.c: 19:     ANSELD=0;
-[e = _ANSELD -> -> 0 `i `uc ]
+"20
+[; ;main.c: 20:     TRISA = 0;
+[e = _TRISA -> -> 0 `i `uc ]
+"21
+[; ;main.c: 21:     ANSELA = 0;
+[e = _ANSELA -> -> 0 `i `uc ]
 "23
 [; ;main.c: 23:     char contador = 0xFF;
 [v _contador `uc ~T0 @X0 1 a ]
@@ -682,9 +682,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "25
 [; ;main.c: 25:     {
 {
-"26
-[; ;main.c: 26:         LATDbits.LD1 ^= 1;
-[e =^ . . _LATDbits 1 1 -> -> 1 `i `Vuc ]
+"27
+[; ;main.c: 27:         LATAbits.LA1 ^= 1;
+[e =^ . . _LATAbits 1 1 -> -> 1 `i `Vuc ]
 "29
 [; ;main.c: 29:         if(--contador < 0) {
 [e $ ! < -> =- _contador -> -> 1 `i `uc `i -> 0 `i 640  ]

@@ -8022,16 +8022,16 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 
 void main(void) {
 
-    TRISD=0;
-    ANSELD=0;
 
 
+    TRISA = 0;
+    ANSELA = 0;
 
     char contador = 0xFF;
     while(1)
     {
-        LATDbits.LD1 ^= 1;
 
+        LATAbits.LA1 ^= 1;
 
         if(--contador < 0) {
             contador = 0xFF;

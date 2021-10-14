@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
-                                                                                               Thu Oct 14 16:42:29 2021
+                                                                                               Thu Oct 14 17:41:18 2021
 
 Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1 
      1                           	processor	18F45K50
@@ -58,9 +58,9 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
     44                           ; Code-generator required, PIC18F45K50 Definitions
     45                           ; 
     46                           ; SFR Addresses
-    47  0000                     _ANSELD	set	3934
-    48  0000                     _LATDbits	set	3980
-    49  0000                     _TRISD	set	3989
+    47  0000                     _ANSELA	set	3931
+    48  0000                     _LATAbits	set	3977
+    49  0000                     _TRISA	set	3986
     50                           
     51                           ; #config settings
     52                           
@@ -128,22 +128,22 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
    114  007FD8                     _main:
    115                           	callstack 31
    116  007FD8                     
-   117                           ;main.c: 18:     TRISD=0;
+   117                           ;main.c: 20:     TRISA = 0;
    118  007FD8  0E00               	movlw	0
-   119  007FDA  6E95               	movwf	149,c	;volatile
+   119  007FDA  6E92               	movwf	146,c	;volatile
    120                           
-   121                           ;main.c: 19:     ANSELD=0;
+   121                           ;main.c: 21:     ANSELA = 0;
    122  007FDC  0E00               	movlw	0
    123  007FDE  010F               	movlb	15	; () banked
-   124  007FE0  6F5E               	movwf	94,b	;volatile
+   124  007FE0  6F5B               	movwf	91,b	;volatile
    125  007FE2                     
    126                           ; BSR set to: 15
    127                           ;main.c: 23:     char contador = 0xFF;
    128  007FE2  6802               	setf	main@contador^0,c
    129  007FE4                     l697:
    130                           
-   131                           ;main.c: 25:     {;main.c: 26:         LATDbits.LD1 ^= 1;
-   132  007FE4  728C               	btg	140,1,c	;volatile
+   131                           ;main.c: 25:     {;main.c: 27:         LATAbits.LA1 ^= 1;
+   132  007FE4  7289               	btg	137,1,c	;volatile
    133  007FE6                     
    134                           ;main.c: 29:         if(--contador < 0) {
    135  007FE6  0602               	decf	main@contador^0,f,c
@@ -503,17 +503,17 @@ SFR                  0      0       0     200        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
-Symbol Table                                                                                   Thu Oct 14 16:42:29 2021
+Symbol Table                                                                                   Thu Oct 14 17:41:18 2021
 
                      u17 7FEE                      l703 7FE8                      l693 7FD8  
                     l695 7FE2                      l697 7FE4                      l699 7FE6  
                     wreg 000FE8                     _main 7FD8                     start 0000  
            ___param_bank 000000             main@contador 0002                    ?_main 0001  
-                  _TRISD 000F95          __initialization 7FD2             __end_of_main 8000  
-                 ??_main 0001            __activetblptr 000000                   _ANSELD 000F5E  
+                  _TRISA 000F92          __initialization 7FD2             __end_of_main 8000  
+                 ??_main 0001            __activetblptr 000000                   _ANSELA 000F5B  
                  isa$std 000001               __accesstop 0060  __end_of__initialization 7FD2  
           ___rparam_used 000001           __pcstackCOMRAM 0001                  __Hparam 0000  
                 __Lparam 0000                  __pcinit 7FD2                  __ramtop 0800  
                 __ptext0 7FD8     end_of_initialization 7FD2      start_initialization 7FD2  
-               _LATDbits 000F8C                 __Hrparam 0000                 __Lrparam 0000  
+               _LATAbits 000F89                 __Hrparam 0000                 __Lrparam 0000  
           __size_of_main 0028                 isa$xinst 000000  

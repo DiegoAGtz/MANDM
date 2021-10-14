@@ -8,7 +8,7 @@ __Lintentry 0 0 ABS 0
 _main 7FD8 0 CODE 0
 ___sp 0 0 STACK 2
 start 0 0 CODE 0
-_TRISD F95 0 ABS 0
+_TRISA F92 0 ABS 0
 __Hirdata 0 0 CODE 0
 __Lirdata 0 0 CODE 0
 __HRAM 0 0 ABS 0
@@ -32,10 +32,10 @@ __Hnvrram 0 0 COMRAM 1
 __Lnvrram 0 0 COMRAM 1
 __Heeprom_data 0 0 EEDATA 0
 __Leeprom_data 0 0 EEDATA 0
-_LATDbits F8C 0 ABS 0
+_LATAbits F89 0 ABS 0
 __Hintsave_regs 0 0 BIGRAM 1
 __Lintsave_regs 0 0 BIGRAM 1
-_ANSELD F5E 0 ABS 0
+_ANSELA F5B 0 ABS 0
 __Hbigbss 0 0 BIGRAM 1
 __Lbigbss 0 0 BIGRAM 1
 __Hintret 0 0 ABS 0
@@ -164,7 +164,7 @@ cinit 7FD2 7FD7 CODE 7FD2 0
 %locals
 dist/default/production\MM_Practica_01.X.production.o
 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
-C:\Users\diego\AppData\Local\Temp\xcAs9ik.s
+C:\Users\diego\AppData\Local\Temp\xcAs89s.s
 547 7FD2 0 CODE 0
 549 7FD2 0 CODE 0
 552 7FD2 0 CODE 0
@@ -173,9 +173,9 @@ C:\Users\diego\AppData\Local\Temp\xcAs9ik.s
 561 7FD4 0 CODE 0
 main.c
 16 7FD8 0 CODE 0
-18 7FD8 0 CODE 0
-19 7FDC 0 CODE 0
+20 7FD8 0 CODE 0
+21 7FDC 0 CODE 0
 23 7FE2 0 CODE 0
-26 7FE4 0 CODE 0
+27 7FE4 0 CODE 0
 29 7FE6 0 CODE 0
 32 7FE8 0 CODE 0

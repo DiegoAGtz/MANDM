@@ -15,16 +15,16 @@
 #define _XTAL_FREQ 1000000 // Frecuencia por default 
 void main(void) { 
     
-    TRISD=0;     // Original
-    ANSELD=0;    // Original
-    //TRISA = 0;   // Ejercicio 1 y 2
-    //ANSELA = 0;  // Ejercicio 1 y 2
+    // TRISD=0;     // Original
+    //NSELD=0;    // Original
+    TRISA = 0;   // Ejercicio 1 y 2
+    ANSELA = 0;  // Ejercicio 1 y 2
 
     char contador = 0xFF;
     while(1) 
     { 
-        LATDbits.LD1 ^= 1;   // Original
-        // LATAbits.LA1 ^= 1;   // Ejercicio 1
+        //LATDbits.LD1 ^= 1;   // Original
+        LATAbits.LA1 ^= 1;   // Ejercicio 1
         //LATA = contador;
         if(--contador < 0) {
             contador = 0xFF;
