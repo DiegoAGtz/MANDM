@@ -17,7 +17,7 @@ idloc IDLOC 5 200000 200000 8 1
 text0 CODE 0 7FD8 7FD8 28 1
 cstackCOMRAM COMRAM 1 1 1 2 1
 config CONFIG 4 300000 300000 E 1
-$C:\Users\diego\AppData\Local\Temp\xcAs89s.o
+$C:\Users\diego\AppData\Local\Temp\xcAsac8.o
 idloc IDLOC 5 200000 200000 8 1
 init CODE 0 0 0 4 1
 config CONFIG 4 300000 300000 E 1
@@ -66,12 +66,12 @@ $dist/default/production\MM_Practica_01.X.production.o
 7FE4 text0 CODE >27:C:\Users\diego\MPLABXProjects\MM_Practica_01.X\main.c
 7FE6 text0 CODE >29:C:\Users\diego\MPLABXProjects\MM_Practica_01.X\main.c
 7FE8 text0 CODE >32:C:\Users\diego\MPLABXProjects\MM_Practica_01.X\main.c
-7FD2 cinit CODE >547:C:\Users\diego\AppData\Local\Temp\xcAs89s.s
-7FD2 cinit CODE >549:C:\Users\diego\AppData\Local\Temp\xcAs89s.s
-7FD2 cinit CODE >552:C:\Users\diego\AppData\Local\Temp\xcAs89s.s
-7FD2 cinit CODE >558:C:\Users\diego\AppData\Local\Temp\xcAs89s.s
-7FD2 cinit CODE >560:C:\Users\diego\AppData\Local\Temp\xcAs89s.s
-7FD4 cinit CODE >561:C:\Users\diego\AppData\Local\Temp\xcAs89s.s
+7FD2 cinit CODE >547:C:\Users\diego\AppData\Local\Temp\xcAsac8.s
+7FD2 cinit CODE >549:C:\Users\diego\AppData\Local\Temp\xcAsac8.s
+7FD2 cinit CODE >552:C:\Users\diego\AppData\Local\Temp\xcAsac8.s
+7FD2 cinit CODE >558:C:\Users\diego\AppData\Local\Temp\xcAsac8.s
+7FD2 cinit CODE >560:C:\Users\diego\AppData\Local\Temp\xcAsac8.s
+7FD4 cinit CODE >561:C:\Users\diego\AppData\Local\Temp\xcAsac8.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -90,26 +90,26 @@ __Hspace_1 3 0 ABS 0 - dist/default/production\MM_Practica_01.X.production.o
 __Hspace_2 0 0 ABS 0 - dist/default/production\MM_Practica_01.X.production.o
 __Hspace_4 60000E 0 ABS 0 - dist/default/production\MM_Practica_01.X.production.o
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production\MM_Practica_01.X.production.o
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\diego\AppData\Local\Temp\xcAs89s.o
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\diego\AppData\Local\Temp\xcAsac8.o
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\MM_Practica_01.X.production.o
 __Lsmallconst 0 0 SMALLCONST 0 smallconst dist/default/production\MM_Practica_01.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\diego\AppData\Local\Temp\xcAs89s.o
+___sp 0 0 STACK 2 stack C:\Users\diego\AppData\Local\Temp\xcAsac8.o
 _main 7FD8 0 CODE 0 text0 dist/default/production\MM_Practica_01.X.production.o
-start 0 0 CODE 0 init C:\Users\diego\AppData\Local\Temp\xcAs89s.o
+start 0 0 CODE 0 init C:\Users\diego\AppData\Local\Temp\xcAsac8.o
 __size_of_main 0 0 ABS 0 - dist/default/production\MM_Practica_01.X.production.o
 main@contador 2 0 COMRAM 1 cstackCOMRAM dist/default/production\MM_Practica_01.X.production.o
 __Hpowerup 0 0 CODE 0 powerup dist/default/production\MM_Practica_01.X.production.o
-__accesstop 60 0 ABS 0 - C:\Users\diego\AppData\Local\Temp\xcAs89s.o
-intlevel0 0 0 CODE 0 text C:\Users\diego\AppData\Local\Temp\xcAs89s.o
-intlevel1 0 0 CODE 0 text C:\Users\diego\AppData\Local\Temp\xcAs89s.o
-intlevel2 0 0 CODE 0 text C:\Users\diego\AppData\Local\Temp\xcAs89s.o
-intlevel3 0 0 CODE 0 text C:\Users\diego\AppData\Local\Temp\xcAs89s.o
+__accesstop 60 0 ABS 0 - C:\Users\diego\AppData\Local\Temp\xcAsac8.o
+intlevel0 0 0 CODE 0 text C:\Users\diego\AppData\Local\Temp\xcAsac8.o
+intlevel1 0 0 CODE 0 text C:\Users\diego\AppData\Local\Temp\xcAsac8.o
+intlevel2 0 0 CODE 0 text C:\Users\diego\AppData\Local\Temp\xcAsac8.o
+intlevel3 0 0 CODE 0 text C:\Users\diego\AppData\Local\Temp\xcAsac8.o
 __LnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\MM_Practica_01.X.production.o
 __Hifardata 0 0 CODE 0 ifardata dist/default/production\MM_Practica_01.X.production.o
 __Hclrtext 0 0 ABS 0 clrtext dist/default/production\MM_Practica_01.X.production.o
 _ANSELA F5B 0 ABS 0 - dist/default/production\MM_Practica_01.X.production.o
-___inthi_sp 0 0 STACK 2 stack C:\Users\diego\AppData\Local\Temp\xcAs89s.o
-___intlo_sp 0 0 STACK 2 stack C:\Users\diego\AppData\Local\Temp\xcAs89s.o
+___inthi_sp 0 0 STACK 2 stack C:\Users\diego\AppData\Local\Temp\xcAsac8.o
+___intlo_sp 0 0 STACK 2 stack C:\Users\diego\AppData\Local\Temp\xcAsac8.o
 __Hintcode_body 0 0 ABS 0 intcode_body dist/default/production\MM_Practica_01.X.production.o
 __Lintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production\MM_Practica_01.X.production.o
 __Hmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production\MM_Practica_01.X.production.o
@@ -118,7 +118,7 @@ __Lintcodelo 0 0 CODE 0 intcodelo dist/default/production\MM_Practica_01.X.produ
 start_initialization 7FD2 0 CODE 0 cinit dist/default/production\MM_Practica_01.X.production.o
 __HnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\MM_Practica_01.X.production.o
 ___rparam_used 1 0 ABS 0 - dist/default/production\MM_Practica_01.X.production.o
-isa$xinst 0 0 ABS 0 - C:\Users\diego\AppData\Local\Temp\xcAs89s.o
+isa$xinst 0 0 ABS 0 - C:\Users\diego\AppData\Local\Temp\xcAsac8.o
 __Hbank0 0 0 ABS 0 bank0 dist/default/production\MM_Practica_01.X.production.o
 __Hbank1 0 0 ABS 0 bank1 dist/default/production\MM_Practica_01.X.production.o
 __Hbank2 0 0 ABS 0 bank2 dist/default/production\MM_Practica_01.X.production.o
@@ -138,7 +138,7 @@ __Hstack 0 0 STACK 2 stack dist/default/production\MM_Practica_01.X.production.o
 __Htext0 0 0 ABS 0 text0 dist/default/production\MM_Practica_01.X.production.o
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\MM_Practica_01.X.production.o
 __Hbigram 0 0 ABS 0 bigram dist/default/production\MM_Practica_01.X.production.o
-__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\diego\AppData\Local\Temp\xcAs89s.o
+__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\diego\AppData\Local\Temp\xcAsac8.o
 __Hcomram 0 0 ABS 0 comram dist/default/production\MM_Practica_01.X.production.o
 __Hconfig 30000E 0 CONFIG 4 config dist/default/production\MM_Practica_01.X.production.o
 __Lbank0 0 0 ABS 0 bank0 dist/default/production\MM_Practica_01.X.production.o
@@ -196,9 +196,9 @@ __Lconfig 0 0 CONFIG 4 config dist/default/production\MM_Practica_01.X.productio
 _LATAbits F89 0 ABS 0 - dist/default/production\MM_Practica_01.X.production.o
 __Lfarbss 0 0 FARRAM 0 farbss dist/default/production\MM_Practica_01.X.production.o
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production\MM_Practica_01.X.production.o
-isa$std 1 0 ABS 0 - C:\Users\diego\AppData\Local\Temp\xcAs89s.o
-stackhi 7FF 0 ABS 0 - C:\Users\diego\AppData\Local\Temp\xcAs89s.o
-stacklo 60 0 ABS 0 - C:\Users\diego\AppData\Local\Temp\xcAs89s.o
+isa$std 1 0 ABS 0 - C:\Users\diego\AppData\Local\Temp\xcAsac8.o
+stackhi 7FF 0 ABS 0 - C:\Users\diego\AppData\Local\Temp\xcAsac8.o
+stacklo 60 0 ABS 0 - C:\Users\diego\AppData\Local\Temp\xcAsac8.o
 __Lintcode 0 0 CODE 0 intcode dist/default/production\MM_Practica_01.X.production.o
 __Lintret 0 0 ABS 0 intret dist/default/production\MM_Practica_01.X.production.o
 __Lirdata 0 0 CODE 0 irdata dist/default/production\MM_Practica_01.X.production.o
@@ -216,7 +216,7 @@ __Lrparam 0 0 COMRAM 1 rparam dist/default/production\MM_Practica_01.X.productio
 __pcinit 7FD2 0 CODE 0 cinit dist/default/production\MM_Practica_01.X.production.o
 __ptext0 7FD8 0 CODE 0 text0 dist/default/production\MM_Practica_01.X.production.o
 __Lstruct 0 0 COMRAM 1 struct dist/default/production\MM_Practica_01.X.production.o
-__ramtop 800 0 RAM 0 ramtop C:\Users\diego\AppData\Local\Temp\xcAs89s.o
+__ramtop 800 0 RAM 0 ramtop C:\Users\diego\AppData\Local\Temp\xcAsac8.o
 __Lpowerup 0 0 CODE 0 powerup dist/default/production\MM_Practica_01.X.production.o
 __Leeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\MM_Practica_01.X.production.o
 __Lreset_vec 0 0 CODE 0 reset_vec dist/default/production\MM_Practica_01.X.production.o
