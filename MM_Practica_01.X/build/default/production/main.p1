@@ -1,14 +1,26 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"4626 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 4626: extern volatile unsigned char TRISA __attribute__((address(0xF92)));
-[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
-"232
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 232: extern volatile unsigned char ANSELA __attribute__((address(0xF5B)));
-[v _ANSELA `Vuc ~T0 @X0 0 e@3931 ]
-"3779
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 3779: extern volatile unsigned char LATA __attribute__((address(0xF89)));
-[v _LATA `Vuc ~T0 @X0 0 e@3977 ]
+"5248 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 5248: extern volatile unsigned char TRISD __attribute__((address(0xF95)));
+[v _TRISD `Vuc ~T0 @X0 0 e@3989 ]
+"361
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 361: extern volatile unsigned char ANSELD __attribute__((address(0xF5E)));
+[v _ANSELD `Vuc ~T0 @X0 0 e@3934 ]
+"4111
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 4111:     struct {
+[s S173 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S173 . LATD0 LATD1 LATD2 LATD3 LATD4 LATD5 LATD6 LATD7 ]
+"4121
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 4121:     struct {
+[s S174 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S174 . LD0 LD1 LD2 LD3 LD4 LD5 LD6 LD7 ]
+"4110
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 4110: typedef union {
+[u S172 `S173 1 `S174 1 ]
+[n S172 . . . ]
+"4132
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 4132: extern volatile LATDbits_t LATDbits __attribute__((address(0xF8C)));
+[v _LATDbits `VS172 ~T0 @X0 0 e@3980 ]
 [v F4805 `(v ~T0 @X0 1 tf1`ul ]
 "203 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
 [v __delay `JF4805 ~T0 @X0 0 e ]
@@ -654,12 +666,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [e :U _main ]
 [f ]
-"20
-[; ;main.c: 20:     TRISA = 0;
-[e = _TRISA -> -> 0 `i `uc ]
-"21
-[; ;main.c: 21:     ANSELA = 0;
-[e = _ANSELA -> -> 0 `i `uc ]
+"18
+[; ;main.c: 18:     TRISD=0;
+[e = _TRISD -> -> 0 `i `uc ]
+"19
+[; ;main.c: 19:     ANSELD=0;
+[e = _ANSELD -> -> 0 `i `uc ]
 "23
 [; ;main.c: 23:     char contador = 0xFF;
 [v _contador `uc ~T0 @X0 1 a ]
@@ -670,39 +682,33 @@ Version 4.0 HI-TECH Software Intermediate Code
 "25
 [; ;main.c: 25:     {
 {
-"28
-[; ;main.c: 28:         LATA = contador;
-[e = _LATA -> _contador `uc ]
+"26
+[; ;main.c: 26:         LATDbits.LD1 ^= 1;
+[e =^ . . _LATDbits 1 1 -> -> 1 `i `Vuc ]
 "29
-[; ;main.c: 29:         _delay((unsigned long)((500)*(1000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"30
-[; ;main.c: 30:         _delay((unsigned long)((500)*(1000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"31
-[; ;main.c: 31:         contador--;
-[e -- _contador -> -> 1 `i `uc ]
-"32
-[; ;main.c: 32:         if(contador == 0) {
-[e $ ! == -> _contador `i -> 0 `i 640  ]
+[; ;main.c: 29:         if(--contador < 0) {
+[e $ ! < -> =- _contador -> -> 1 `i `uc `i -> 0 `i 640  ]
 {
-"33
-[; ;main.c: 33:             contador = 0xFF;
+"30
+[; ;main.c: 30:             contador = 0xFF;
 [e = _contador -> -> 255 `i `uc ]
-"34
-[; ;main.c: 34:         }
+"31
+[; ;main.c: 31:         }
 }
 [e :U 640 ]
-"35
-[; ;main.c: 35:     }
+"32
+[; ;main.c: 32:         _delay((unsigned long)((500)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"34
+[; ;main.c: 34:     }
 }
 [e :U 637 ]
 [e $U 638  ]
 [e :U 639 ]
-"36
-[; ;main.c: 36:     return;
+"35
+[; ;main.c: 35:     return;
 [e $UE 636  ]
-"37
-[; ;main.c: 37: }
+"36
+[; ;main.c: 36: }
 [e :UE 636 ]
 }
