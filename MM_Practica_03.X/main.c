@@ -14,108 +14,54 @@
 #include <xc.h> 
 #define _XTAL_FREQ 1000000 // Frecuencia por default
 
-/* void __interrupt(high_priority) myHiIsr(void) 
-{ 
-    char A = 10; 
-    while(A) 
-    { 
-        PORTD = 0xFF; 
-        __delay_ms(400); 
+void __interrupt(high_priority) myHiIsr(void);
+void __interrupt(low_priority) myLoIsr(void);
+void configuracion(void);
 
-        PORTD = 0x00; 
-        __delay_ms(400); 
-        A -= 1; 
-    } 
-
-    INTCONbits.INT0IF=0;
-}
-
-void __interrupt(low_priority) myLoIsr(void) 
-{ 
-    char A = 10; 
-    while(A) 
-    { 
-        PORTD = A;
-        __delay_ms(500); 
-
-        A -= 1; 
-    }
-    INTCON3bits.INT1F=0; 
-} ORIGINAL*/
-
-void parpadeo(void) 
-{ 
-    char A = 10; 
-    while(A) 
-    { 
-        PORTD = 0xFF; 
-        __delay_ms(400); 
-
-        PORTD = 0x00; 
-        __delay_ms(400); 
-        A -= 1; 
-    } 
-}
-
-void contador(void) 
-{ 
-    char A = 10; 
-    while(A) 
-    { 
-        PORTD = A;
-        __delay_ms(500); 
-
-        A -= 1; 
-    }
-}
-
-void __interrupt(high_priority) prioridadAlta(void) 
-{
-    if(INTCONbits.INT0IF) {
-        parpadeo();
-        INTCONbits.INT0IF=0;
-    } else {
-        contador();
-        INTCON3bits.INT1F=0; 
-    }
-}
-
-void __interrupt(low_priority) myLoIsr(void) 
-{ 
-    char A = 15; 
-    while(A) 
-    { 
-        PORTD = A;
-        __delay_ms(500); 
-
-        A -= 1; 
-    }
-    INTCON3bits.INT2F=0; 
-}
-
-void Configuracion(void) 
-{ 
-    TRISA=0; 
-    TRISB=0xFF; 
-    TRISD=0; 
-    ANSELA=0; 
-    ANSELB=0; 
-    ANSELD=0; 
-    LATA = 0; 
-    LATD = 0; 
-    INTCON=0xD0; // Habilita interrupcion externa RBO 
-    // INTCON3=0x08; // Habilita interrupción externa RB1, baja prioridad  ORIGINAL
-    // INTCON3 = 0x48;     // Ejercicio 1
-    INTCON3 = 0x58;     // Ejercicio 2
-    RCONbits.IPEN = 1; // Habilita niveles de interrupción 
-} 
-
-void main(void) { 
-    Configuracion(); 
-    while(1) 
-    { 
+void main(void) {
+    configuracion();
+    while (1) {
         PORTA ^= 1; // Parpadea LED RA0 
-        __delay_ms(500); 
-    } 
-    return; 
+        __delay_ms(500);
+    }
+    return;
+}
+
+void __interrupt(high_priority) myHiIsr(void) {
+    char A = 10;
+    while (A) {
+        PORTD = 0x55; // Encienden los pares
+        __delay_ms(400);
+
+        PORTD = 0xAA; // Encienden los impares
+        __delay_ms(400);
+        A -= 1;
+    }
+
+    INTCONbits.INT0IF = 0;
+}
+
+void __interrupt(low_priority) myLoIsr(void) {
+    char A = 10;
+    while (A) {
+        PORTD = A;
+        __delay_ms(500);
+
+        A -= 1;
+    }
+    INTCON3bits.INT1F = 0;
+}
+
+void configuracion(void) {
+    TRISA = 0;
+    TRISB = 0xFF;
+    TRISD = 0;
+    ANSELA = 0;
+    ANSELB = 0;
+    ANSELD = 0;
+    LATA = 0;
+    LATD = 0;
+    INTCON = 0xD0; // Habilita interrupcion externa RBO 
+    INTCON3 = 0x08; // Habilita interrupción externa RB1, baja prioridad
+    RCONbits.IPEN = 1; // Habilita niveles de interrupción 
 }

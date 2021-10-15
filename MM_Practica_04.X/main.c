@@ -15,46 +15,45 @@
 #include <xc.h>
 #include <pic18f45k50.h> 
 
-// #define _XTAL_FREQ 1000000  // Frecuencia por defaul ORIGINAL
-#define _XTAL_FREQ 4000000  // 4MHz
+#define _XTAL_FREQ 1000000
 
-char Value; 
-void __interrupt(high_priority) myHiIsr(void) 
-{ 
+char Value;
+
+void __interrupt(high_priority) myHiIsr(void);
+void configuracion(void);
+
+void main(void) {
+    const char Dis7seg[10] = {0x7E, 0x30, 0x6D, 0x79, 0x33, 0x5B, 0x5F, 0x70, 0x7F, 0x73};
+    configuracion();
+
+    while (1) {
+        PORTD = Dis7seg[Value]; // Parpadea LED RA0 
+        __delay_ms(50);
+    }
+    return;
+}
+
+void __interrupt(high_priority) myHiIsr(void) {
     Value += 1;
-    if (Value > 9) 
-    { 
-        Value = 0; 
-    } 
-    INTCONbits.TMR0IF=0;
+    if (Value > 9) {
+        Value = 0;
+    }
+    TMR0H = 3037 >> 8;
+    TMR0L = 62499;
     PIR1bits.TMR1IF = 0;
 }
 
-void Configuracion(void) 
-{ 
-    TRISA=0xFF; 
-    TRISD=0; 
-    ANSELA=0; 
-    ANSELD=0; 
-    // LATA = 0; 
-    //INTCON=0xA0; // Habilita interrupcion por TMR0 
-    INTCON = 0x80;  // Ejercicio Tarea
-    RCONbits.IPEN = 1; // Habilita niveles de interrupción 
-    //T0CON=0x83; // Habilita TMR0 con razón 1:16 ORIGINAL
-    //T0CON = 0x81;   // Habilita TMR0 con razón 1:4, 1.2 seg
-    T0CON = 0xE0;   // Ejercicio 1
-    T1CON = 0x21;   // Ejercicio de Tarea   FOSC/4 y 1:4
-    PIE1 = 0x01;    // Ejercicio de Tarea
-} 
-
-void main(void) { 
-    const char Dis7seg[10] = {0x7E, 0x30, 0x6D, 0x79, 0x33, 0x5B, 0x5F, 0x70, 0x7F, 0x73}; 
-    Configuracion(); 
-
-    while(1) 
-    { 
-        PORTD = Dis7seg[Value]; // Parpadea LED RA0 
-        __delay_ms(50); 
-    } 
-    return; 
-} 
+void configuracion(void) {
+    TRISA = 0;
+    TRISD = 0;
+    ANSELA = 0;
+    ANSELD = 0;
+    LATA = 0;
+    INTCON = 0x80; // Ejercicio Tarea
+    RCONbits.IPEN = 1; // Habilita niveles de interrupción
+    T1CON = 0x21; // Usamos Fosc, un preescaler de 4 y leemos y escribimos usando
+    // dos registros de 8bits.
+    PIE1 = 0x01; // Habilitamos la interrupción para TMR1
+    TMR0H = 3037 >> 8; // Bits más significativos
+    TMR0L = 62499; // Bits menos significativos
+}

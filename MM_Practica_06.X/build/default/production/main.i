@@ -8023,23 +8023,30 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 
 
 
-void Configuracion(void);
-int Conversion(void);
+
+
+void configuracion(void);
+int conversion(void);
+float mapeo(int valor, float minEntrada, float maxEntrada, float minSalida, float maxSalida);
 
 void main(void) {
     char Datos = 0;
-    Configuracion();
+    float valor;
+    configuracion();
     while (1) {
-        CCPR1L = Conversion() / 4;
+
+        valor = mapeo(conversion(), 0, 1023, 31.25, 62.5);
+
+        CCPR1L = (int) valor / 4;
         Datos = ADRESL << 4;
         Datos = Datos & 0x30;
         CCP1CON = CCP1CON | Datos;
-        _delay((unsigned long)((100)*(1000000/4000.0)));
+        _delay((unsigned long)((100)*(500000/4000.0)));
     }
     return;
 }
 
-void Configuracion(void) {
+void configuracion(void) {
     OSCCON = 0x23;
     TRISC = 0;
     ANSELC = 0;
@@ -8049,11 +8056,15 @@ void Configuracion(void) {
     T2CON = 0x06;
     CCP1CON = 0x0C;
     CCPR1L = 0x0B;
-    PR2 = 0xFF;
+    PR2 = 0xA0;
 }
 
-int Conversion(void) {
+int conversion(void) {
     ADCON0bits.GO = 1;
     while (ADCON0bits.GO);
     return ADRESL + ADRESH * 256;
+}
+
+float mapeo(int valor, float minEntrada, float maxEntrada, float minSalida, float maxSalida) {
+    return (valor - minEntrada)*(maxSalida - minSalida) / (maxEntrada - minEntrada) + minSalida;
 }

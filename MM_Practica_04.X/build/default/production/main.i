@@ -8025,42 +8025,42 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 
 
 char Value;
-void __attribute__((picinterrupt(("high_priority")))) myHiIsr(void)
-{
-    Value += 1;
-    if (Value > 9)
-    {
-        Value = 0;
-    }
-    INTCONbits.TMR0IF=0;
-    PIR1bits.TMR1IF = 0;
-}
 
-void Configuracion(void)
-{
-    TRISA=0xFF;
-    TRISD=0;
-    ANSELA=0;
-    ANSELD=0;
-
-
-    INTCON = 0x80;
-    RCONbits.IPEN = 1;
-
-
-    T0CON = 0xE0;
-    T1CON = 0x21;
-    PIE1 = 0x01;
-}
+void __attribute__((picinterrupt(("high_priority")))) myHiIsr(void);
+void configuracion(void);
 
 void main(void) {
     const char Dis7seg[10] = {0x7E, 0x30, 0x6D, 0x79, 0x33, 0x5B, 0x5F, 0x70, 0x7F, 0x73};
-    Configuracion();
+    configuracion();
 
-    while(1)
-    {
+    while (1) {
         PORTD = Dis7seg[Value];
-        _delay((unsigned long)((50)*(4000000/4000.0)));
+        _delay((unsigned long)((50)*(1000000/4000.0)));
     }
     return;
+}
+
+void __attribute__((picinterrupt(("high_priority")))) myHiIsr(void) {
+    Value += 1;
+    if (Value > 9) {
+        Value = 0;
+    }
+    TMR0H = 3037 >> 8;
+    TMR0L = 62499;
+    PIR1bits.TMR1IF = 0;
+}
+
+void configuracion(void) {
+    TRISA = 0;
+    TRISD = 0;
+    ANSELA = 0;
+    ANSELD = 0;
+    LATA = 0;
+    INTCON = 0x80;
+    RCONbits.IPEN = 1;
+    T1CON = 0x21;
+
+    PIE1 = 0x01;
+    TMR0H = 3037 >> 8;
+    TMR0L = 62499;
 }

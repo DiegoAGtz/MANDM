@@ -27,37 +27,18 @@
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "91 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\Umul64.c
 [v ___omul __omul `(uo  1 e 8 0 ]
-"16 C:\Users\diego\MPLABXProjects\MM_Practica_01.X\main.c
+"17 C:\Users\diego\MPLABXProjects\MM_Practica_01.X\main.c
 [v _main main `(v  1 e 1 0 ]
 "232 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
 [v _ANSELA ANSELA `VEuc  1 e 1 @3931 ]
-[s S26 . 1 `uc 1 LATA0 1 0 :1:0 
-`uc 1 LATA1 1 0 :1:1 
-`uc 1 LATA2 1 0 :1:2 
-`uc 1 LATA3 1 0 :1:3 
-`uc 1 LATA4 1 0 :1:4 
-`uc 1 LATA5 1 0 :1:5 
-`uc 1 LATA6 1 0 :1:6 
-`uc 1 LATA7 1 0 :1:7 
-]
-"3806
-[s S35 . 1 `uc 1 LA0 1 0 :1:0 
-`uc 1 LA1 1 0 :1:1 
-`uc 1 LA2 1 0 :1:2 
-`uc 1 LA3 1 0 :1:3 
-`uc 1 LA4 1 0 :1:4 
-`uc 1 LA5 1 0 :1:5 
-`uc 1 LA6 1 0 :1:6 
-`uc 1 LA7 1 0 :1:7 
-]
-[u S44 . 1 `S26 1 . 1 0 `S35 1 . 1 0 ]
-[v _LATAbits LATAbits `VES44  1 e 1 @3977 ]
+"3779
+[v _LATA LATA `VEuc  1 e 1 @3977 ]
 "4626
 [v _TRISA TRISA `VEuc  1 e 1 @3986 ]
-"16 C:\Users\diego\MPLABXProjects\MM_Practica_01.X\main.c
+"17 C:\Users\diego\MPLABXProjects\MM_Practica_01.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"23
+"21
 [v main@contador contador `uc  1 a 1 1 ]
-"36
+"31
 } 0

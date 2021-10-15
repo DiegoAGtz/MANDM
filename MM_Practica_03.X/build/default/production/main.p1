@@ -1,14 +1,21 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"3305 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 3305: extern volatile unsigned char PORTD __attribute__((address(0xF83)));
-[v _PORTD `Vuc ~T0 @X0 0 e@3971 ]
+[p mainexit ]
+"19 main.c
+[; ;main.c: 19: void configuracion(void);
+[v _configuracion `(v ~T0 @X0 0 ef ]
+"2901 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 2901: extern volatile unsigned char PORTA __attribute__((address(0xF80)));
+[v _PORTA `Vuc ~T0 @X0 0 e@3968 ]
 [v F4805 `(v ~T0 @X0 1 tf1`ul ]
 "203 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
 [v __delay `JF4805 ~T0 @X0 0 e ]
 [p i __delay ]
 [t ~ __interrupt . k ]
-[t T1 __interrupt high_priority ]
-"13231 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
+[t T3 __interrupt high_priority ]
+"3305 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 3305: extern volatile unsigned char PORTD __attribute__((address(0xF83)));
+[v _PORTD `Vuc ~T0 @X0 0 e@3971 ]
+"13231
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 13231:     struct {
 [s S612 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S612 . IOCIF INT0IF TMR0IF IOCIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
@@ -27,6 +34,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13257
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 13257: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
 [v _INTCONbits `VS611 ~T0 @X0 0 e@4082 ]
+[t T4 __interrupt low_priority ]
 "13062
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 13062:     struct {
 [s S605 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -42,7 +50,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13083
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 13083: extern volatile INTCON3bits_t INTCON3bits __attribute__((address(0xFF0)));
 [v _INTCON3bits `VS604 ~T0 @X0 0 e@4080 ]
-[t T2 __interrupt low_priority ]
 "4626
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 4626: extern volatile unsigned char TRISA __attribute__((address(0xF92)));
 [v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
@@ -108,10 +115,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "12176
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 12176: extern volatile RCONbits_t RCONbits __attribute__((address(0xFD0)));
 [v _RCONbits `VS540 ~T0 @X0 0 e@4048 ]
-[p mainexit ]
-"2901
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 2901: extern volatile unsigned char PORTA __attribute__((address(0xF80)));
-[v _PORTA `Vuc ~T0 @X0 0 e@3968 ]
 "8 main.c
 [p x FOSC  =  INTOSCIO  ]
 "9
@@ -746,252 +749,165 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13651
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 13651: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"46 main.c
-[; ;main.c: 46: void parpadeo(void)
-[v _parpadeo `(v ~T0 @X0 1 ef ]
-"47
-[; ;main.c: 47: {
-{
-[e :U _parpadeo ]
-[f ]
-"48
-[; ;main.c: 48:     char A = 10;
-[v _A `uc ~T0 @X0 1 a ]
-[e = _A -> -> 10 `i `uc ]
-"49
-[; ;main.c: 49:     while(A)
-[e $U 637  ]
-[e :U 638 ]
-"50
-[; ;main.c: 50:     {
-{
-"51
-[; ;main.c: 51:         PORTD = 0xFF;
-[e = _PORTD -> -> 255 `i `uc ]
-"52
-[; ;main.c: 52:         _delay((unsigned long)((400)*(1000000/4000.0)));
-[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"54
-[; ;main.c: 54:         PORTD = 0x00;
-[e = _PORTD -> -> 0 `i `uc ]
-"55
-[; ;main.c: 55:         _delay((unsigned long)((400)*(1000000/4000.0)));
-[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"56
-[; ;main.c: 56:         A -= 1;
-[e =- _A -> -> 1 `i `uc ]
-"57
-[; ;main.c: 57:     }
-}
-[e :U 637 ]
-"49
-[; ;main.c: 49:     while(A)
-[e $ != -> _A `i -> 0 `i 638  ]
-[e :U 639 ]
-"58
-[; ;main.c: 58: }
-[e :UE 636 ]
-}
-"60
-[; ;main.c: 60: void contador(void)
-[v _contador `(v ~T0 @X0 1 ef ]
-"61
-[; ;main.c: 61: {
-{
-[e :U _contador ]
-[f ]
-"62
-[; ;main.c: 62:     char A = 10;
-[v _A `uc ~T0 @X0 1 a ]
-[e = _A -> -> 10 `i `uc ]
-"63
-[; ;main.c: 63:     while(A)
-[e $U 641  ]
-[e :U 642 ]
-"64
-[; ;main.c: 64:     {
-{
-"65
-[; ;main.c: 65:         PORTD = A;
-[e = _PORTD -> _A `uc ]
-"66
-[; ;main.c: 66:         _delay((unsigned long)((500)*(1000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"68
-[; ;main.c: 68:         A -= 1;
-[e =- _A -> -> 1 `i `uc ]
-"69
-[; ;main.c: 69:     }
-}
-[e :U 641 ]
-"63
-[; ;main.c: 63:     while(A)
-[e $ != -> _A `i -> 0 `i 642  ]
-[e :U 643 ]
-"70
-[; ;main.c: 70: }
-[e :UE 640 ]
-}
-[v $root$_prioridadAlta `(v ~T0 @X0 0 e ]
-"72
-[; ;main.c: 72: void __attribute__((picinterrupt(("high_priority")))) prioridadAlta(void)
-[v _prioridadAlta `(v ~T1 @X0 1 ef ]
-"73
-[; ;main.c: 73: {
-{
-[e :U _prioridadAlta ]
-[f ]
-"74
-[; ;main.c: 74:     if(INTCONbits.INT0IF) {
-[e $ ! != -> . . _INTCONbits 0 1 `i -> 0 `i 645  ]
-{
-"75
-[; ;main.c: 75:         parpadeo();
-[e ( _parpadeo ..  ]
-"76
-[; ;main.c: 76:         INTCONbits.INT0IF=0;
-[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
-"77
-[; ;main.c: 77:     } else {
-}
-[e $U 646  ]
-[e :U 645 ]
-{
-"78
-[; ;main.c: 78:         contador();
-[e ( _contador ..  ]
-"79
-[; ;main.c: 79:         INTCON3bits.INT1F=0;
-[e = . . _INTCON3bits 1 0 -> -> 0 `i `uc ]
-"80
-[; ;main.c: 80:     }
-}
-[e :U 646 ]
-"81
-[; ;main.c: 81: }
-[e :UE 644 ]
-}
-[v $root$_myLoIsr `(v ~T0 @X0 0 e ]
-"83
-[; ;main.c: 83: void __attribute__((picinterrupt(("low_priority")))) myLoIsr(void)
-[v _myLoIsr `(v ~T2 @X0 1 ef ]
-"84
-[; ;main.c: 84: {
-{
-[e :U _myLoIsr ]
-[f ]
-"85
-[; ;main.c: 85:     char A = 15;
-[v _A `uc ~T0 @X0 1 a ]
-[e = _A -> -> 15 `i `uc ]
-"86
-[; ;main.c: 86:     while(A)
-[e $U 648  ]
-[e :U 649 ]
-"87
-[; ;main.c: 87:     {
-{
-"88
-[; ;main.c: 88:         PORTD = A;
-[e = _PORTD -> _A `uc ]
-"89
-[; ;main.c: 89:         _delay((unsigned long)((500)*(1000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"91
-[; ;main.c: 91:         A -= 1;
-[e =- _A -> -> 1 `i `uc ]
-"92
-[; ;main.c: 92:     }
-}
-[e :U 648 ]
-"86
-[; ;main.c: 86:     while(A)
-[e $ != -> _A `i -> 0 `i 649  ]
-[e :U 650 ]
-"93
-[; ;main.c: 93:     INTCON3bits.INT2F=0;
-[e = . . _INTCON3bits 1 1 -> -> 0 `i `uc ]
-"94
-[; ;main.c: 94: }
-[e :UE 647 ]
-}
-"96
-[; ;main.c: 96: void Configuracion(void)
-[v _Configuracion `(v ~T0 @X0 1 ef ]
-"97
-[; ;main.c: 97: {
-{
-[e :U _Configuracion ]
-[f ]
-"98
-[; ;main.c: 98:     TRISA=0;
-[e = _TRISA -> -> 0 `i `uc ]
-"99
-[; ;main.c: 99:     TRISB=0xFF;
-[e = _TRISB -> -> 255 `i `uc ]
-"100
-[; ;main.c: 100:     TRISD=0;
-[e = _TRISD -> -> 0 `i `uc ]
-"101
-[; ;main.c: 101:     ANSELA=0;
-[e = _ANSELA -> -> 0 `i `uc ]
-"102
-[; ;main.c: 102:     ANSELB=0;
-[e = _ANSELB -> -> 0 `i `uc ]
-"103
-[; ;main.c: 103:     ANSELD=0;
-[e = _ANSELD -> -> 0 `i `uc ]
-"104
-[; ;main.c: 104:     LATA = 0;
-[e = _LATA -> -> 0 `i `uc ]
-"105
-[; ;main.c: 105:     LATD = 0;
-[e = _LATD -> -> 0 `i `uc ]
-"106
-[; ;main.c: 106:     INTCON=0xD0;
-[e = _INTCON -> -> 208 `i `uc ]
-"109
-[; ;main.c: 109:     INTCON3 = 0x58;
-[e = _INTCON3 -> -> 88 `i `uc ]
-"110
-[; ;main.c: 110:     RCONbits.IPEN = 1;
-[e = . . _RCONbits 5 7 -> -> 1 `i `uc ]
-"111
-[; ;main.c: 111: }
-[e :UE 651 ]
-}
 [v $root$_main `(v ~T0 @X0 0 e ]
-"113
-[; ;main.c: 113: void main(void) {
+"21 main.c
+[; ;main.c: 21: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"114
-[; ;main.c: 114:     Configuracion();
-[e ( _Configuracion ..  ]
-"115
-[; ;main.c: 115:     while(1)
-[e :U 654 ]
-"116
-[; ;main.c: 116:     {
+"22
+[; ;main.c: 22:     configuracion();
+[e ( _configuracion ..  ]
+"23
+[; ;main.c: 23:     while (1) {
+[e :U 638 ]
 {
-"117
-[; ;main.c: 117:         PORTA ^= 1;
+"24
+[; ;main.c: 24:         PORTA ^= 1;
 [e =^ _PORTA -> -> 1 `i `Vuc ]
-"118
-[; ;main.c: 118:         _delay((unsigned long)((500)*(1000000/4000.0)));
+"25
+[; ;main.c: 25:         _delay((unsigned long)((500)*(1000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"119
-[; ;main.c: 119:     }
+"26
+[; ;main.c: 26:     }
 }
-[e :U 653 ]
-[e $U 654  ]
-[e :U 655 ]
-"120
-[; ;main.c: 120:     return;
-[e $UE 652  ]
-"121
-[; ;main.c: 121: }
-[e :UE 652 ]
+[e :U 637 ]
+[e $U 638  ]
+[e :U 639 ]
+"27
+[; ;main.c: 27:     return;
+[e $UE 636  ]
+"28
+[; ;main.c: 28: }
+[e :UE 636 ]
+}
+[v $root$_myHiIsr `(v ~T0 @X0 0 e ]
+"30
+[; ;main.c: 30: void __attribute__((picinterrupt(("high_priority")))) myHiIsr(void) {
+[v _myHiIsr `(v ~T3 @X0 1 ef ]
+{
+[e :U _myHiIsr ]
+[f ]
+"31
+[; ;main.c: 31:     char A = 10;
+[v _A `uc ~T0 @X0 1 a ]
+[e = _A -> -> 10 `i `uc ]
+"32
+[; ;main.c: 32:     while (A) {
+[e $U 641  ]
+[e :U 642 ]
+{
+"33
+[; ;main.c: 33:         PORTD = 0x55;
+[e = _PORTD -> -> 85 `i `uc ]
+"34
+[; ;main.c: 34:         _delay((unsigned long)((400)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"36
+[; ;main.c: 36:         PORTD = 0xAA;
+[e = _PORTD -> -> 170 `i `uc ]
+"37
+[; ;main.c: 37:         _delay((unsigned long)((400)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"38
+[; ;main.c: 38:         A -= 1;
+[e =- _A -> -> 1 `i `uc ]
+"39
+[; ;main.c: 39:     }
+}
+[e :U 641 ]
+"32
+[; ;main.c: 32:     while (A) {
+[e $ != -> _A `i -> 0 `i 642  ]
+[e :U 643 ]
+"41
+[; ;main.c: 41:     INTCONbits.INT0IF = 0;
+[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
+"42
+[; ;main.c: 42: }
+[e :UE 640 ]
+}
+[v $root$_myLoIsr `(v ~T0 @X0 0 e ]
+"44
+[; ;main.c: 44: void __attribute__((picinterrupt(("low_priority")))) myLoIsr(void) {
+[v _myLoIsr `(v ~T4 @X0 1 ef ]
+{
+[e :U _myLoIsr ]
+[f ]
+"45
+[; ;main.c: 45:     char A = 10;
+[v _A `uc ~T0 @X0 1 a ]
+[e = _A -> -> 10 `i `uc ]
+"46
+[; ;main.c: 46:     while (A) {
+[e $U 645  ]
+[e :U 646 ]
+{
+"47
+[; ;main.c: 47:         PORTD = A;
+[e = _PORTD -> _A `uc ]
+"48
+[; ;main.c: 48:         _delay((unsigned long)((500)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"50
+[; ;main.c: 50:         A -= 1;
+[e =- _A -> -> 1 `i `uc ]
+"51
+[; ;main.c: 51:     }
+}
+[e :U 645 ]
+"46
+[; ;main.c: 46:     while (A) {
+[e $ != -> _A `i -> 0 `i 646  ]
+[e :U 647 ]
+"52
+[; ;main.c: 52:     INTCON3bits.INT1F = 0;
+[e = . . _INTCON3bits 1 0 -> -> 0 `i `uc ]
+"53
+[; ;main.c: 53: }
+[e :UE 644 ]
+}
+"55
+[; ;main.c: 55: void configuracion(void) {
+[v _configuracion `(v ~T0 @X0 1 ef ]
+{
+[e :U _configuracion ]
+[f ]
+"56
+[; ;main.c: 56:     TRISA = 0;
+[e = _TRISA -> -> 0 `i `uc ]
+"57
+[; ;main.c: 57:     TRISB = 0xFF;
+[e = _TRISB -> -> 255 `i `uc ]
+"58
+[; ;main.c: 58:     TRISD = 0;
+[e = _TRISD -> -> 0 `i `uc ]
+"59
+[; ;main.c: 59:     ANSELA = 0;
+[e = _ANSELA -> -> 0 `i `uc ]
+"60
+[; ;main.c: 60:     ANSELB = 0;
+[e = _ANSELB -> -> 0 `i `uc ]
+"61
+[; ;main.c: 61:     ANSELD = 0;
+[e = _ANSELD -> -> 0 `i `uc ]
+"62
+[; ;main.c: 62:     LATA = 0;
+[e = _LATA -> -> 0 `i `uc ]
+"63
+[; ;main.c: 63:     LATD = 0;
+[e = _LATD -> -> 0 `i `uc ]
+"64
+[; ;main.c: 64:     INTCON = 0xD0;
+[e = _INTCON -> -> 208 `i `uc ]
+"65
+[; ;main.c: 65:     INTCON3 = 0x08;
+[e = _INTCON3 -> -> 8 `i `uc ]
+"66
+[; ;main.c: 66:     RCONbits.IPEN = 1;
+[e = . . _RCONbits 5 7 -> -> 1 `i `uc ]
+"67
+[; ;main.c: 67: }
+[e :UE 648 ]
 }

@@ -40,14 +40,14 @@ void Configuracion(void) {
     TRISA = 0; // Ejercicio 4
     ANSELA = 0;
     LATA = 0;
-    
+
     TRISD = 0;
     ANSELD = 0;
     LATD = 0;
     INTCON = 0xA0; // Habilita interrupcion por TMR0 
     RCONbits.IPEN = 1; // Habilita niveles de interrupción 
     T0CON = 0x83; // Habilita TMR0 con razón 1:16 
-    PIE2bits.EEIE = 1;  // Ejercicio 3
+    PIE2bits.EEIE = 1; // Ejercicio 3
 
     EECON1bits.EEPGD = 0; //Selecciona memoria de datos 
     EECON1bits.CFGS = 0; // Selecciona memoria EEPROM 
@@ -62,7 +62,7 @@ void __interrupt(high_priority) myHiIsr(void) {
         }
         EscribeEEprom(0, Value);
         INTCONbits.TMR0IF = 0;
-    } else if (PIR2bits.EEIF) {     // Ejercicio 4
+    } else if (PIR2bits.EEIF) { // Ejercicio 4
         LATA ^= 1;
         PIR2bits.EEIF = 0;
     }

@@ -1,25 +1,23 @@
 Version 4.0 HI-TECH Software Intermediate Code
+[p mainexit ]
+"23 main.c
+[; ;main.c: 23: void configuracion(void);
+[v _configuracion `(v ~T0 @X0 0 ef ]
+"3305 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 3305: extern volatile unsigned char PORTD __attribute__((address(0xF83)));
+[v _PORTD `Vuc ~T0 @X0 0 e@3971 ]
+[v F4805 `(v ~T0 @X0 1 tf1`ul ]
+"203 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
+[v __delay `JF4805 ~T0 @X0 0 e ]
+[p i __delay ]
 [t ~ __interrupt . k ]
-[t T1 __interrupt high_priority ]
-"13231 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 13231:     struct {
-[s S612 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S612 . IOCIF INT0IF TMR0IF IOCIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
-"13241
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 13241:     struct {
-[s S613 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S613 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
-"13251
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 13251:     struct {
-[s S614 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S614 . . GIEL GIEH ]
-"13230
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 13230: typedef union {
-[u S611 `S612 1 `S613 1 `S614 1 ]
-[n S611 . . . . ]
-"13257
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 13257: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
-[v _INTCONbits `VS611 ~T0 @X0 0 e@4082 ]
+[t T2 __interrupt high_priority ]
+"12536 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 12536: extern volatile unsigned char TMR0H __attribute__((address(0xFD7)));
+[v _TMR0H `Vuc ~T0 @X0 0 e@4055 ]
+"12516
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 12516: extern volatile unsigned char TMR0L __attribute__((address(0xFD6)));
+[v _TMR0L `Vuc ~T0 @X0 0 e@4054 ]
 "6295
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 6295:     struct {
 [s S255 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -51,6 +49,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "361
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 361: extern volatile unsigned char ANSELD __attribute__((address(0xF5E)));
 [v _ANSELD `Vuc ~T0 @X0 0 e@3934 ]
+"3779
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 3779: extern volatile unsigned char LATA __attribute__((address(0xF89)));
+[v _LATA `Vuc ~T0 @X0 0 e@3977 ]
 "13225
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 13225: extern volatile unsigned char INTCON __attribute__((address(0xFF2)));
 [v _INTCON `Vuc ~T0 @X0 0 e@4082 ]
@@ -89,23 +90,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "12176
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 12176: extern volatile RCONbits_t RCONbits __attribute__((address(0xFD0)));
 [v _RCONbits `VS540 ~T0 @X0 0 e@4048 ]
-"12439
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 12439: extern volatile unsigned char T0CON __attribute__((address(0xFD5)));
-[v _T0CON `Vuc ~T0 @X0 0 e@4053 ]
 "11957
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 11957: extern volatile unsigned char T1CON __attribute__((address(0xFCD)));
 [v _T1CON `Vuc ~T0 @X0 0 e@4045 ]
 "6190
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 6190: extern volatile unsigned char PIE1 __attribute__((address(0xF9D)));
 [v _PIE1 `Vuc ~T0 @X0 0 e@3997 ]
-[p mainexit ]
-"3305
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 3305: extern volatile unsigned char PORTD __attribute__((address(0xF83)));
-[v _PORTD `Vuc ~T0 @X0 0 e@3971 ]
-[v F4805 `(v ~T0 @X0 1 tf1`ul ]
-"203 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
-[v __delay `JF4805 ~T0 @X0 0 e ]
-[p i __delay ]
 "9 main.c
 [p x FOSC  =  INTOSCIO  ]
 "10
@@ -743,83 +733,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "20 main.c
 [; ;main.c: 20: char Value;
 [v _Value `uc ~T0 @X0 1 e ]
-[v $root$_myHiIsr `(v ~T0 @X0 0 e ]
-"21
-[; ;main.c: 21: void __attribute__((picinterrupt(("high_priority")))) myHiIsr(void)
-[v _myHiIsr `(v ~T1 @X0 1 ef ]
-"22
-[; ;main.c: 22: {
-{
-[e :U _myHiIsr ]
-[f ]
-"23
-[; ;main.c: 23:     Value += 1;
-[e =+ _Value -> -> 1 `i `uc ]
-"24
-[; ;main.c: 24:     if (Value > 9)
-[e $ ! > -> _Value `i -> 9 `i 637  ]
-"25
-[; ;main.c: 25:     {
-{
-"26
-[; ;main.c: 26:         Value = 0;
-[e = _Value -> -> 0 `i `uc ]
-"27
-[; ;main.c: 27:     }
-}
-[e :U 637 ]
-"28
-[; ;main.c: 28:     INTCONbits.TMR0IF=0;
-[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-"29
-[; ;main.c: 29:     PIR1bits.TMR1IF = 0;
-[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
-"30
-[; ;main.c: 30: }
-[e :UE 636 ]
-}
-"32
-[; ;main.c: 32: void Configuracion(void)
-[v _Configuracion `(v ~T0 @X0 1 ef ]
-"33
-[; ;main.c: 33: {
-{
-[e :U _Configuracion ]
-[f ]
-"34
-[; ;main.c: 34:     TRISA=0xFF;
-[e = _TRISA -> -> 255 `i `uc ]
-"35
-[; ;main.c: 35:     TRISD=0;
-[e = _TRISD -> -> 0 `i `uc ]
-"36
-[; ;main.c: 36:     ANSELA=0;
-[e = _ANSELA -> -> 0 `i `uc ]
-"37
-[; ;main.c: 37:     ANSELD=0;
-[e = _ANSELD -> -> 0 `i `uc ]
-"40
-[; ;main.c: 40:     INTCON = 0x80;
-[e = _INTCON -> -> 128 `i `uc ]
-"41
-[; ;main.c: 41:     RCONbits.IPEN = 1;
-[e = . . _RCONbits 5 7 -> -> 1 `i `uc ]
-"44
-[; ;main.c: 44:     T0CON = 0xE0;
-[e = _T0CON -> -> 224 `i `uc ]
-"45
-[; ;main.c: 45:     T1CON = 0x21;
-[e = _T1CON -> -> 33 `i `uc ]
-"46
-[; ;main.c: 46:     PIE1 = 0x01;
-[e = _PIE1 -> -> 1 `i `uc ]
-"47
-[; ;main.c: 47: }
-[e :UE 638 ]
-}
 [v $root$_main `(v ~T0 @X0 0 e ]
-"49
-[; ;main.c: 49: void main(void) {
+"25
+[; ;main.c: 25: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
@@ -827,8 +743,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v F4817 `Cuc ~T0 @X0 -> 10 `i s ]
 [i F4817
 :U ..
-"50
-[; ;main.c: 50:     const char Dis7seg[10] = {0x7E, 0x30, 0x6D, 0x79, 0x33, 0x5B, 0x5F, 0x70, 0x7F, 0x73};
+"26
+[; ;main.c: 26:     const char Dis7seg[10] = {0x7E, 0x30, 0x6D, 0x79, 0x33, 0x5B, 0x5F, 0x70, 0x7F, 0x73};
 -> -> 126 `i `uc
 -> -> 48 `i `uc
 -> -> 109 `i `uc
@@ -843,31 +759,106 @@ Version 4.0 HI-TECH Software Intermediate Code
 ]
 [v _Dis7seg `Cuc ~T0 @X0 -> 10 `i a ]
 [e = _Dis7seg F4817 ]
-"51
-[; ;main.c: 51:     Configuracion();
-[e ( _Configuracion ..  ]
-"53
-[; ;main.c: 53:     while(1)
-[e :U 641 ]
-"54
-[; ;main.c: 54:     {
+"27
+[; ;main.c: 27:     configuracion();
+[e ( _configuracion ..  ]
+"29
+[; ;main.c: 29:     while (1) {
+[e :U 638 ]
 {
-"55
-[; ;main.c: 55:         PORTD = Dis7seg[Value];
+"30
+[; ;main.c: 30:         PORTD = Dis7seg[Value];
 [e = _PORTD -> *U + &U _Dis7seg * -> _Value `ux -> -> # *U &U _Dis7seg `ui `ux `uc ]
-"56
-[; ;main.c: 56:         _delay((unsigned long)((50)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"57
-[; ;main.c: 57:     }
+"31
+[; ;main.c: 31:         _delay((unsigned long)((50)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"32
+[; ;main.c: 32:     }
 }
-[e :U 640 ]
-[e $U 641  ]
-[e :U 642 ]
+[e :U 637 ]
+[e $U 638  ]
+[e :U 639 ]
+"33
+[; ;main.c: 33:     return;
+[e $UE 636  ]
+"34
+[; ;main.c: 34: }
+[e :UE 636 ]
+}
+[v $root$_myHiIsr `(v ~T0 @X0 0 e ]
+"36
+[; ;main.c: 36: void __attribute__((picinterrupt(("high_priority")))) myHiIsr(void) {
+[v _myHiIsr `(v ~T2 @X0 1 ef ]
+{
+[e :U _myHiIsr ]
+[f ]
+"37
+[; ;main.c: 37:     Value += 1;
+[e =+ _Value -> -> 1 `i `uc ]
+"38
+[; ;main.c: 38:     if (Value > 9) {
+[e $ ! > -> _Value `i -> 9 `i 641  ]
+{
+"39
+[; ;main.c: 39:         Value = 0;
+[e = _Value -> -> 0 `i `uc ]
+"40
+[; ;main.c: 40:     }
+}
+[e :U 641 ]
+"41
+[; ;main.c: 41:     TMR0H = 3037 >> 8;
+[e = _TMR0H -> >> -> 3037 `i -> 8 `i `uc ]
+"42
+[; ;main.c: 42:     TMR0L = 62499;
+[e = _TMR0L -> -> 62499 `l `uc ]
+"43
+[; ;main.c: 43:     PIR1bits.TMR1IF = 0;
+[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
+"44
+[; ;main.c: 44: }
+[e :UE 640 ]
+}
+"46
+[; ;main.c: 46: void configuracion(void) {
+[v _configuracion `(v ~T0 @X0 1 ef ]
+{
+[e :U _configuracion ]
+[f ]
+"47
+[; ;main.c: 47:     TRISA = 0;
+[e = _TRISA -> -> 0 `i `uc ]
+"48
+[; ;main.c: 48:     TRISD = 0;
+[e = _TRISD -> -> 0 `i `uc ]
+"49
+[; ;main.c: 49:     ANSELA = 0;
+[e = _ANSELA -> -> 0 `i `uc ]
+"50
+[; ;main.c: 50:     ANSELD = 0;
+[e = _ANSELD -> -> 0 `i `uc ]
+"51
+[; ;main.c: 51:     LATA = 0;
+[e = _LATA -> -> 0 `i `uc ]
+"52
+[; ;main.c: 52:     INTCON = 0x80;
+[e = _INTCON -> -> 128 `i `uc ]
+"53
+[; ;main.c: 53:     RCONbits.IPEN = 1;
+[e = . . _RCONbits 5 7 -> -> 1 `i `uc ]
+"54
+[; ;main.c: 54:     T1CON = 0x21;
+[e = _T1CON -> -> 33 `i `uc ]
+"56
+[; ;main.c: 56:     PIE1 = 0x01;
+[e = _PIE1 -> -> 1 `i `uc ]
+"57
+[; ;main.c: 57:     TMR0H = 3037 >> 8;
+[e = _TMR0H -> >> -> 3037 `i -> 8 `i `uc ]
 "58
-[; ;main.c: 58:     return;
-[e $UE 639  ]
+[; ;main.c: 58:     TMR0L = 62499;
+[e = _TMR0L -> -> 62499 `l `uc ]
 "59
 [; ;main.c: 59: }
-[e :UE 639 ]
+[e :UE 642 ]
 }

@@ -6,34 +6,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 "232
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 232: extern volatile unsigned char ANSELA __attribute__((address(0xF5B)));
 [v _ANSELA `Vuc ~T0 @X0 0 e@3931 ]
-"3785
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 3785:     struct {
-[s S164 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S164 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 LATA6 LATA7 ]
-"3795
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 3795:     struct {
-[s S165 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S165 . LA0 LA1 LA2 LA3 LA4 LA5 LA6 LA7 ]
-"3784
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 3784: typedef union {
-[u S163 `S164 1 `S165 1 ]
-[n S163 . . . ]
-"3806
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 3806: extern volatile LATAbits_t LATAbits __attribute__((address(0xF89)));
-[v _LATAbits `VS163 ~T0 @X0 0 e@3977 ]
+"3779
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 3779: extern volatile unsigned char LATA __attribute__((address(0xF89)));
+[v _LATA `Vuc ~T0 @X0 0 e@3977 ]
 [v F4805 `(v ~T0 @X0 1 tf1`ul ]
 "203 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
 [v __delay `JF4805 ~T0 @X0 0 e ]
 [p i __delay ]
-"8 main.c
+"7 main.c
 [p x FOSC  =  INTOSCIO  ]
-"9
+"8
 [p x WDTEN  =  OFF  ]
-"10
+"9
 [p x MCLRE  =  ON  ]
-"11
+"10
 [p x LVP  =  OFF  ]
-"12
+"11
 [p x ICPRT  =  OFF  ]
 "54 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 54: __asm("SRCON1 equ 0F57h");
@@ -660,55 +648,56 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 13651: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
 [v $root$_main `(v ~T0 @X0 0 e ]
-"16 main.c
-[; ;main.c: 16: void main(void) {
+"17 main.c
+[; ;main.c: 17: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"20
-[; ;main.c: 20:     TRISA = 0;
+"18
+[; ;main.c: 18:     TRISA = 0;
 [e = _TRISA -> -> 0 `i `uc ]
-"21
-[; ;main.c: 21:     ANSELA = 0;
+"19
+[; ;main.c: 19:     ANSELA = 0;
 [e = _ANSELA -> -> 0 `i `uc ]
-"23
-[; ;main.c: 23:     char contador = 0xFF;
+"21
+[; ;main.c: 21:     char contador = 0xFF;
 [v _contador `uc ~T0 @X0 1 a ]
 [e = _contador -> -> 255 `i `uc ]
-"24
-[; ;main.c: 24:     while(1)
+"22
+[; ;main.c: 22:     while (1) {
 [e :U 638 ]
-"25
-[; ;main.c: 25:     {
 {
-"27
-[; ;main.c: 27:         LATAbits.LA1 ^= 1;
-[e =^ . . _LATAbits 1 1 -> -> 1 `i `Vuc ]
-"29
-[; ;main.c: 29:         if(--contador < 0) {
+"23
+[; ;main.c: 23:         LATA = contador;
+[e = _LATA -> _contador `uc ]
+"24
+[; ;main.c: 24:         if (--contador < 0) {
 [e $ ! < -> =- _contador -> -> 1 `i `uc `i -> 0 `i 640  ]
 {
-"30
-[; ;main.c: 30:             contador = 0xFF;
+"25
+[; ;main.c: 25:             contador = 0xFF;
 [e = _contador -> -> 255 `i `uc ]
-"31
-[; ;main.c: 31:         }
+"26
+[; ;main.c: 26:         }
 }
 [e :U 640 ]
-"32
-[; ;main.c: 32:         _delay((unsigned long)((500)*(1000000/4000.0)));
+"27
+[; ;main.c: 27:         _delay((unsigned long)((500)*(1000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"34
-[; ;main.c: 34:     }
+"28
+[; ;main.c: 28:         _delay((unsigned long)((500)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"29
+[; ;main.c: 29:     }
 }
 [e :U 637 ]
 [e $U 638  ]
 [e :U 639 ]
-"35
-[; ;main.c: 35:     return;
+"30
+[; ;main.c: 30:     return;
 [e $UE 636  ]
-"36
-[; ;main.c: 36: }
+"31
+[; ;main.c: 31: }
 [e :UE 636 ]
 }

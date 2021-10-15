@@ -1,15 +1,18 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"19 main.c
-[; ;main.c: 19: void Configuracion(void);
-[v _Configuracion `(v ~T0 @X0 0 ef ]
+"21 main.c
+[; ;main.c: 21: void configuracion(void);
+[v _configuracion `(v ~T0 @X0 0 ef ]
+"23
+[; ;main.c: 23: float mapeo(int valor, float minEntrada, float maxEntrada, float minSalida, float maxSalida);
+[v _mapeo `(f ~T0 @X0 0 ef5`i`f`f`f`f ]
+"22
+[; ;main.c: 22: int conversion(void);
+[v _conversion `(i ~T0 @X0 0 ef ]
 "9596 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 9596: extern volatile unsigned char CCPR1L __attribute__((address(0xFBE)));
 [v _CCPR1L `Vuc ~T0 @X0 0 e@4030 ]
-"20 main.c
-[; ;main.c: 20: int Conversion(void);
-[v _Conversion `(i ~T0 @X0 0 ef ]
-"9870 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
+"9870
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 9870: extern volatile unsigned char ADRESL __attribute__((address(0xFC3)));
 [v _ADRESL `Vuc ~T0 @X0 0 e@4035 ]
 "9397
@@ -720,112 +723,137 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 13651: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
 [v $root$_main `(v ~T0 @X0 0 e ]
-"22 main.c
-[; ;main.c: 22: void main(void) {
+"25 main.c
+[; ;main.c: 25: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"23
-[; ;main.c: 23:     char Datos = 0;
+"26
+[; ;main.c: 26:     char Datos = 0;
 [v _Datos `uc ~T0 @X0 1 a ]
 [e = _Datos -> -> 0 `i `uc ]
-"24
-[; ;main.c: 24:     Configuracion();
-[e ( _Configuracion ..  ]
-"25
-[; ;main.c: 25:     while (1) {
+"27
+[; ;main.c: 27:     float valor;
+[v _valor `f ~T0 @X0 1 a ]
+"28
+[; ;main.c: 28:     configuracion();
+[e ( _configuracion ..  ]
+"29
+[; ;main.c: 29:     while (1) {
 [e :U 638 ]
 {
-"26
-[; ;main.c: 26:         CCPR1L = Conversion() / 4;
-[e = _CCPR1L -> / ( _Conversion ..  -> 4 `i `uc ]
-"27
-[; ;main.c: 27:         Datos = ADRESL << 4;
-[e = _Datos -> << -> _ADRESL `i -> 4 `i `uc ]
-"28
-[; ;main.c: 28:         Datos = Datos & 0x30;
-[e = _Datos -> & -> _Datos `i -> 48 `i `uc ]
-"29
-[; ;main.c: 29:         CCP1CON = CCP1CON | Datos;
-[e = _CCP1CON -> | -> _CCP1CON `i -> _Datos `i `uc ]
-"30
-[; ;main.c: 30:         _delay((unsigned long)((100)*(1000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
 "31
-[; ;main.c: 31:     }
+[; ;main.c: 31:         valor = mapeo(conversion(), 0, 1023, 31.25, 62.5);
+[e = _valor ( _mapeo (4 , , , , ( _conversion ..  -> -> 0 `i `f -> -> 1023 `i `f -> .31.25 `f -> .62.5 `f ]
+"33
+[; ;main.c: 33:         CCPR1L = (int) valor / 4;
+[e = _CCPR1L -> / -> _valor `i -> 4 `i `uc ]
+"34
+[; ;main.c: 34:         Datos = ADRESL << 4;
+[e = _Datos -> << -> _ADRESL `i -> 4 `i `uc ]
+"35
+[; ;main.c: 35:         Datos = Datos & 0x30;
+[e = _Datos -> & -> _Datos `i -> 48 `i `uc ]
+"36
+[; ;main.c: 36:         CCP1CON = CCP1CON | Datos;
+[e = _CCP1CON -> | -> _CCP1CON `i -> _Datos `i `uc ]
+"37
+[; ;main.c: 37:         _delay((unsigned long)((100)*(500000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 500000 `l `d .4000.0 `ul ]
+"38
+[; ;main.c: 38:     }
 }
 [e :U 637 ]
 [e $U 638  ]
 [e :U 639 ]
-"32
-[; ;main.c: 32:     return;
+"39
+[; ;main.c: 39:     return;
 [e $UE 636  ]
-"33
-[; ;main.c: 33: }
+"40
+[; ;main.c: 40: }
 [e :UE 636 ]
 }
-"35
-[; ;main.c: 35: void Configuracion(void) {
-[v _Configuracion `(v ~T0 @X0 1 ef ]
-{
-[e :U _Configuracion ]
-[f ]
-"36
-[; ;main.c: 36:     OSCCON = 0x23;
-[e = _OSCCON -> -> 35 `i `uc ]
-"37
-[; ;main.c: 37:     TRISC = 0;
-[e = _TRISC -> -> 0 `i `uc ]
-"38
-[; ;main.c: 38:     ANSELC = 0;
-[e = _ANSELC -> -> 0 `i `uc ]
-"39
-[; ;main.c: 39:     ADCON0 = 0x01;
-[e = _ADCON0 -> -> 1 `i `uc ]
-"40
-[; ;main.c: 40:     ADCON1 = 0x00;
-[e = _ADCON1 -> -> 0 `i `uc ]
-"41
-[; ;main.c: 41:     ADCON2 = 0x90;
-[e = _ADCON2 -> -> 144 `i `uc ]
 "42
-[; ;main.c: 42:     T2CON = 0x06;
-[e = _T2CON -> -> 6 `i `uc ]
+[; ;main.c: 42: void configuracion(void) {
+[v _configuracion `(v ~T0 @X0 1 ef ]
+{
+[e :U _configuracion ]
+[f ]
 "43
-[; ;main.c: 43:     CCP1CON = 0x0C;
-[e = _CCP1CON -> -> 12 `i `uc ]
+[; ;main.c: 43:     OSCCON = 0x23;
+[e = _OSCCON -> -> 35 `i `uc ]
 "44
-[; ;main.c: 44:     CCPR1L = 0x0B;
-[e = _CCPR1L -> -> 11 `i `uc ]
+[; ;main.c: 44:     TRISC = 0;
+[e = _TRISC -> -> 0 `i `uc ]
 "45
-[; ;main.c: 45:     PR2 = 0xFF;
-[e = _PR2 -> -> 255 `i `uc ]
+[; ;main.c: 45:     ANSELC = 0;
+[e = _ANSELC -> -> 0 `i `uc ]
 "46
-[; ;main.c: 46: }
+[; ;main.c: 46:     ADCON0 = 0x01;
+[e = _ADCON0 -> -> 1 `i `uc ]
+"47
+[; ;main.c: 47:     ADCON1 = 0x00;
+[e = _ADCON1 -> -> 0 `i `uc ]
+"48
+[; ;main.c: 48:     ADCON2 = 0x90;
+[e = _ADCON2 -> -> 144 `i `uc ]
+"49
+[; ;main.c: 49:     T2CON = 0x06;
+[e = _T2CON -> -> 6 `i `uc ]
+"50
+[; ;main.c: 50:     CCP1CON = 0x0C;
+[e = _CCP1CON -> -> 12 `i `uc ]
+"51
+[; ;main.c: 51:     CCPR1L = 0x0B;
+[e = _CCPR1L -> -> 11 `i `uc ]
+"52
+[; ;main.c: 52:     PR2 = 0xA0;
+[e = _PR2 -> -> 160 `i `uc ]
+"53
+[; ;main.c: 53: }
 [e :UE 640 ]
 }
-"48
-[; ;main.c: 48: int Conversion(void) {
-[v _Conversion `(i ~T0 @X0 1 ef ]
+"55
+[; ;main.c: 55: int conversion(void) {
+[v _conversion `(i ~T0 @X0 1 ef ]
 {
-[e :U _Conversion ]
+[e :U _conversion ]
 [f ]
-"49
-[; ;main.c: 49:     ADCON0bits.GO = 1;
+"56
+[; ;main.c: 56:     ADCON0bits.GO = 1;
 [e = . . _ADCON0bits 3 1 -> -> 1 `i `uc ]
-"50
-[; ;main.c: 50:     while (ADCON0bits.GO);
+"57
+[; ;main.c: 57:     while (ADCON0bits.GO);
 [e $U 642  ]
 [e :U 643 ]
 [e :U 642 ]
 [e $ != -> . . _ADCON0bits 3 1 `i -> 0 `i 643  ]
 [e :U 644 ]
-"51
-[; ;main.c: 51:     return ADRESL + ADRESH * 256;
+"58
+[; ;main.c: 58:     return ADRESL + ADRESH * 256;
 [e ) + -> _ADRESL `i * -> _ADRESH `i -> 256 `i ]
 [e $UE 641  ]
-"52
-[; ;main.c: 52: }
+"59
+[; ;main.c: 59: }
 [e :UE 641 ]
+}
+"61
+[; ;main.c: 61: float mapeo(int valor, float minEntrada, float maxEntrada, float minSalida, float maxSalida) {
+[v _mapeo `(f ~T0 @X0 1 ef5`i`f`f`f`f ]
+{
+[e :U _mapeo ]
+[v _valor `i ~T0 @X0 1 r1 ]
+[v _minEntrada `f ~T0 @X0 1 r2 ]
+[v _maxEntrada `f ~T0 @X0 1 r3 ]
+[v _minSalida `f ~T0 @X0 1 r4 ]
+[v _maxSalida `f ~T0 @X0 1 r5 ]
+[f ]
+"62
+[; ;main.c: 62:     return (valor - minEntrada)*(maxSalida - minSalida) / (maxEntrada - minEntrada) + minSalida;
+[e ) + / * - -> _valor `f _minEntrada - _maxSalida _minSalida - _maxEntrada _minEntrada _minSalida ]
+[e $UE 645  ]
+"63
+[; ;main.c: 63: }
+[e :UE 645 ]
 }

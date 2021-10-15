@@ -13,7 +13,6 @@
 
 
 
-
 #pragma config FOSC = INTOSCIO
 #pragma config WDTEN = OFF
 #pragma config MCLRE = ON
@@ -8017,27 +8016,23 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 2 3
-# 14 "main.c" 2
+# 13 "main.c" 2
+
+
 
 
 void main(void) {
-
-
-
     TRISA = 0;
     ANSELA = 0;
 
     char contador = 0xFF;
-    while(1)
-    {
-
-        LATAbits.LA1 ^= 1;
-
-        if(--contador < 0) {
+    while (1) {
+        LATA = contador;
+        if (--contador < 0) {
             contador = 0xFF;
         }
         _delay((unsigned long)((500)*(1000000/4000.0)));
-
+        _delay((unsigned long)((500)*(1000000/4000.0)));
     }
     return;
 }

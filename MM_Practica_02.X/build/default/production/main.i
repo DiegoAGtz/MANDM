@@ -8021,44 +8021,32 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 
 
 
-void Configuracion(void)
-{
-    TRISD=0;
-    ANSELD=0;
-
-    TRISA = 0;
-    ANSELA = 0;
-
-    TRISB = 0x02;
-    ANSELB = 0x02;
-
-
-    ADCON0 = 0x29;
-    ADCON1=0x00;
-
-    ADCON2 = 0x97;
-}
-
-int Conversion(void)
-{
-    ADCON0bits.GO = 1;
-
-    while (ADCON0bits.GO);
-
-    return ADRESL + ADRESH*256;
-}
+void configuracion(void);
+int conversion(void);
 
 void main(void) {
-    Configuracion();
+    configuracion();
     int conv;
-
-    while(1)
-    {
-        conv = Conversion();
-        PORTD = conv/4;
-        PORTA = conv;
-        PORTB = conv/8*2 | (conv/4 & 0b00000010) / 2;
+    while (1) {
+        conv = conversion();
+        PORTB = (conv / 8 * 2) | ((conv / 4 & 0b00000010) / 2);
+# 38 "main.c"
         _delay((unsigned long)((100)*(1000000/4000.0)));
     }
     return;
+}
+
+void configuracion(void) {
+    TRISB = 0x02;
+    ANSELB = 0x02;
+
+    ADCON0 = 0x29;
+    ADCON1 = 0x00;
+    ADCON2 = 0x97;
+}
+
+int conversion(void) {
+    ADCON0bits.GO = 1;
+    while (ADCON0bits.GO);
+    return ADRESL + ADRESH * 256;
 }

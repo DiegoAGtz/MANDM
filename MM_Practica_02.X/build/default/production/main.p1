@@ -1,17 +1,19 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"5248 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 5248: extern volatile unsigned char TRISD __attribute__((address(0xF95)));
-[v _TRISD `Vuc ~T0 @X0 0 e@3989 ]
-"361
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 361: extern volatile unsigned char ANSELD __attribute__((address(0xF5E)));
-[v _ANSELD `Vuc ~T0 @X0 0 e@3934 ]
-"4626
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 4626: extern volatile unsigned char TRISA __attribute__((address(0xF92)));
-[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
-"232
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 232: extern volatile unsigned char ANSELA __attribute__((address(0xF5B)));
-[v _ANSELA `Vuc ~T0 @X0 0 e@3931 ]
-"4848
+[p mainexit ]
+"17 main.c
+[; ;main.c: 17: void configuracion(void);
+[v _configuracion `(v ~T0 @X0 0 ef ]
+"18
+[; ;main.c: 18: int conversion(void);
+[v _conversion `(i ~T0 @X0 0 ef ]
+"3053 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 3053: extern volatile unsigned char PORTB __attribute__((address(0xF81)));
+[v _PORTB `Vuc ~T0 @X0 0 e@3969 ]
+[v F4805 `(v ~T0 @X0 1 tf1`ul ]
+"203 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
+[v __delay `JF4805 ~T0 @X0 0 e ]
+[p i __delay ]
+"4848 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 4848: extern volatile unsigned char TRISB __attribute__((address(0xF93)));
 [v _TRISB `Vuc ~T0 @X0 0 e@3987 ]
 "277
@@ -71,20 +73,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "9877
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 9877: extern volatile unsigned char ADRESH __attribute__((address(0xFC4)));
 [v _ADRESH `Vuc ~T0 @X0 0 e@4036 ]
-[p mainexit ]
-"3305
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 3305: extern volatile unsigned char PORTD __attribute__((address(0xF83)));
-[v _PORTD `Vuc ~T0 @X0 0 e@3971 ]
-"2901
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 2901: extern volatile unsigned char PORTA __attribute__((address(0xF80)));
-[v _PORTA `Vuc ~T0 @X0 0 e@3968 ]
-"3053
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 3053: extern volatile unsigned char PORTB __attribute__((address(0xF81)));
-[v _PORTB `Vuc ~T0 @X0 0 e@3969 ]
-[v F4805 `(v ~T0 @X0 1 tf1`ul ]
-"203 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
-[v __delay `JF4805 ~T0 @X0 0 e ]
-[p i __delay ]
 "8 main.c
 [p x FOSC  =  INTOSCIO  ]
 "9
@@ -719,115 +707,91 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13651
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 13651: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"17 main.c
-[; ;main.c: 17: void Configuracion(void)
-[v _Configuracion `(v ~T0 @X0 1 ef ]
-"18
-[; ;main.c: 18: {
-{
-[e :U _Configuracion ]
-[f ]
-"19
-[; ;main.c: 19:     TRISD=0;
-[e = _TRISD -> -> 0 `i `uc ]
-"20
-[; ;main.c: 20:     ANSELD=0;
-[e = _ANSELD -> -> 0 `i `uc ]
-"22
-[; ;main.c: 22:     TRISA = 0;
-[e = _TRISA -> -> 0 `i `uc ]
-"23
-[; ;main.c: 23:     ANSELA = 0;
-[e = _ANSELA -> -> 0 `i `uc ]
-"25
-[; ;main.c: 25:     TRISB = 0x02;
-[e = _TRISB -> -> 2 `i `uc ]
-"26
-[; ;main.c: 26:     ANSELB = 0x02;
-[e = _ANSELB -> -> 2 `i `uc ]
-"29
-[; ;main.c: 29:     ADCON0 = 0x29;
-[e = _ADCON0 -> -> 41 `i `uc ]
-"30
-[; ;main.c: 30:     ADCON1=0x00;
-[e = _ADCON1 -> -> 0 `i `uc ]
-"32
-[; ;main.c: 32:     ADCON2 = 0x97;
-[e = _ADCON2 -> -> 151 `i `uc ]
-"33
-[; ;main.c: 33: }
-[e :UE 636 ]
-}
-"35
-[; ;main.c: 35: int Conversion(void)
-[v _Conversion `(i ~T0 @X0 1 ef ]
-"36
-[; ;main.c: 36: {
-{
-[e :U _Conversion ]
-[f ]
-"37
-[; ;main.c: 37:     ADCON0bits.GO = 1;
-[e = . . _ADCON0bits 3 1 -> -> 1 `i `uc ]
-"39
-[; ;main.c: 39:     while (ADCON0bits.GO);
-[e $U 638  ]
-[e :U 639 ]
-[e :U 638 ]
-[e $ != -> . . _ADCON0bits 3 1 `i -> 0 `i 639  ]
-[e :U 640 ]
-"41
-[; ;main.c: 41:     return ADRESL + ADRESH*256;
-[e ) + -> _ADRESL `i * -> _ADRESH `i -> 256 `i ]
-[e $UE 637  ]
-"42
-[; ;main.c: 42: }
-[e :UE 637 ]
-}
 [v $root$_main `(v ~T0 @X0 0 e ]
-"44
-[; ;main.c: 44: void main(void) {
+"20 main.c
+[; ;main.c: 20: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"45
-[; ;main.c: 45:     Configuracion();
-[e ( _Configuracion ..  ]
-"46
-[; ;main.c: 46:     int conv;
+"21
+[; ;main.c: 21:     configuracion();
+[e ( _configuracion ..  ]
+"22
+[; ;main.c: 22:     int conv;
 [v _conv `i ~T0 @X0 1 a ]
-"48
-[; ;main.c: 48:     while(1)
-[e :U 643 ]
-"49
-[; ;main.c: 49:     {
+"23
+[; ;main.c: 23:     while (1) {
+[e :U 638 ]
 {
-"50
-[; ;main.c: 50:         conv = Conversion();
-[e = _conv ( _Conversion ..  ]
-"51
-[; ;main.c: 51:         PORTD = conv/4;
-[e = _PORTD -> / _conv -> 4 `i `uc ]
-"52
-[; ;main.c: 52:         PORTA = conv;
-[e = _PORTA -> _conv `uc ]
-"53
-[; ;main.c: 53:         PORTB = conv/8*2 | (conv/4 & 0b00000010) / 2;
+"24
+[; ;main.c: 24:         conv = conversion();
+[e = _conv ( _conversion ..  ]
+"25
+[; ;main.c: 25:         PORTB = (conv / 8 * 2) | ((conv / 4 & 0b00000010) / 2);
 [e = _PORTB -> | * / _conv -> 8 `i -> 2 `i / & / _conv -> 4 `i -> 2 `i -> 2 `i `uc ]
-"54
-[; ;main.c: 54:         _delay((unsigned long)((100)*(1000000/4000.0)));
+"38
+[; ;main.c: 38:         _delay((unsigned long)((100)*(1000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"55
-[; ;main.c: 55:     }
+"39
+[; ;main.c: 39:     }
 }
+[e :U 637 ]
+[e $U 638  ]
+[e :U 639 ]
+"40
+[; ;main.c: 40:     return;
+[e $UE 636  ]
+"41
+[; ;main.c: 41: }
+[e :UE 636 ]
+}
+"43
+[; ;main.c: 43: void configuracion(void) {
+[v _configuracion `(v ~T0 @X0 1 ef ]
+{
+[e :U _configuracion ]
+[f ]
+"44
+[; ;main.c: 44:     TRISB = 0x02;
+[e = _TRISB -> -> 2 `i `uc ]
+"45
+[; ;main.c: 45:     ANSELB = 0x02;
+[e = _ANSELB -> -> 2 `i `uc ]
+"47
+[; ;main.c: 47:     ADCON0 = 0x29;
+[e = _ADCON0 -> -> 41 `i `uc ]
+"48
+[; ;main.c: 48:     ADCON1 = 0x00;
+[e = _ADCON1 -> -> 0 `i `uc ]
+"49
+[; ;main.c: 49:     ADCON2 = 0x97;
+[e = _ADCON2 -> -> 151 `i `uc ]
+"50
+[; ;main.c: 50: }
+[e :UE 640 ]
+}
+"52
+[; ;main.c: 52: int conversion(void) {
+[v _conversion `(i ~T0 @X0 1 ef ]
+{
+[e :U _conversion ]
+[f ]
+"53
+[; ;main.c: 53:     ADCON0bits.GO = 1;
+[e = . . _ADCON0bits 3 1 -> -> 1 `i `uc ]
+"54
+[; ;main.c: 54:     while (ADCON0bits.GO);
+[e $U 642  ]
+[e :U 643 ]
 [e :U 642 ]
-[e $U 643  ]
+[e $ != -> . . _ADCON0bits 3 1 `i -> 0 `i 643  ]
 [e :U 644 ]
-"56
-[; ;main.c: 56:     return;
+"55
+[; ;main.c: 55:     return ADRESL + ADRESH * 256;
+[e ) + -> _ADRESL `i * -> _ADRESH `i -> 256 `i ]
 [e $UE 641  ]
-"57
-[; ;main.c: 57: }
+"56
+[; ;main.c: 56: }
 [e :UE 641 ]
 }

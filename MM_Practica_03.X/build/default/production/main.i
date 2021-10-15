@@ -8018,80 +8018,57 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 2 3
 # 14 "main.c" 2
-# 46 "main.c"
-void parpadeo(void)
-{
-    char A = 10;
-    while(A)
-    {
-        PORTD = 0xFF;
-        _delay((unsigned long)((400)*(1000000/4000.0)));
-
-        PORTD = 0x00;
-        _delay((unsigned long)((400)*(1000000/4000.0)));
-        A -= 1;
-    }
-}
-
-void contador(void)
-{
-    char A = 10;
-    while(A)
-    {
-        PORTD = A;
-        _delay((unsigned long)((500)*(1000000/4000.0)));
-
-        A -= 1;
-    }
-}
-
-void __attribute__((picinterrupt(("high_priority")))) prioridadAlta(void)
-{
-    if(INTCONbits.INT0IF) {
-        parpadeo();
-        INTCONbits.INT0IF=0;
-    } else {
-        contador();
-        INTCON3bits.INT1F=0;
-    }
-}
-
-void __attribute__((picinterrupt(("low_priority")))) myLoIsr(void)
-{
-    char A = 15;
-    while(A)
-    {
-        PORTD = A;
-        _delay((unsigned long)((500)*(1000000/4000.0)));
-
-        A -= 1;
-    }
-    INTCON3bits.INT2F=0;
-}
-
-void Configuracion(void)
-{
-    TRISA=0;
-    TRISB=0xFF;
-    TRISD=0;
-    ANSELA=0;
-    ANSELB=0;
-    ANSELD=0;
-    LATA = 0;
-    LATD = 0;
-    INTCON=0xD0;
 
 
-    INTCON3 = 0x58;
-    RCONbits.IPEN = 1;
-}
+
+void __attribute__((picinterrupt(("high_priority")))) myHiIsr(void);
+void __attribute__((picinterrupt(("low_priority")))) myLoIsr(void);
+void configuracion(void);
 
 void main(void) {
-    Configuracion();
-    while(1)
-    {
+    configuracion();
+    while (1) {
         PORTA ^= 1;
         _delay((unsigned long)((500)*(1000000/4000.0)));
     }
     return;
+}
+
+void __attribute__((picinterrupt(("high_priority")))) myHiIsr(void) {
+    char A = 10;
+    while (A) {
+        PORTD = 0x55;
+        _delay((unsigned long)((400)*(1000000/4000.0)));
+
+        PORTD = 0xAA;
+        _delay((unsigned long)((400)*(1000000/4000.0)));
+        A -= 1;
+    }
+
+    INTCONbits.INT0IF = 0;
+}
+
+void __attribute__((picinterrupt(("low_priority")))) myLoIsr(void) {
+    char A = 10;
+    while (A) {
+        PORTD = A;
+        _delay((unsigned long)((500)*(1000000/4000.0)));
+
+        A -= 1;
+    }
+    INTCON3bits.INT1F = 0;
+}
+
+void configuracion(void) {
+    TRISA = 0;
+    TRISB = 0xFF;
+    TRISD = 0;
+    ANSELA = 0;
+    ANSELB = 0;
+    ANSELD = 0;
+    LATA = 0;
+    LATD = 0;
+    INTCON = 0xD0;
+    INTCON3 = 0x08;
+    RCONbits.IPEN = 1;
 }
