@@ -8054,7 +8054,9 @@ void Configuracion(void) {
     INTCON = 0xA0;
     RCONbits.IPEN = 1;
     T0CON = 0x83;
+
     PIE2bits.EEIE = 1;
+    IPR2bits.EEIP = 1;
 
     EECON1bits.EEPGD = 0;
     EECON1bits.CFGS = 0;

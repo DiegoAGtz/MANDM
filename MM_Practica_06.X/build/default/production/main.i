@@ -8056,7 +8056,7 @@ void configuracion(void) {
     T2CON = 0x06;
     CCP1CON = 0x0C;
     CCPR1L = 0x0B;
-    PR2 = 0xA0;
+    PR2 = 0x9D;
 }
 
 int conversion(void) {

@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.32\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\MM_Practica_05.X.production.sym \
   --cmf=dist/default/production\MM_Practica_05.X.production.cmf -z \
-  -Q18F45K50 -oC:\Users\diego\AppData\Local\Temp\xcAs9uk.4 \
+  -Q18F45K50 -oC:\Users\diego\AppData\Local\Temp\xcAs1r4.4 \
   --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/MM_Practica_05.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=060h-07FFh -pstack=STACK \
@@ -24,7 +24,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\diego\AppData\Local\Temp\xcAs9uk.o \
+  C:\Users\diego\AppData\Local\Temp\xcAs1r4.o \
   dist/default/production\MM_Practica_05.X.production.o 
 
 Object code version is 3.11
@@ -34,7 +34,7 @@ Machine type is 18F45K50
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\diego\AppData\Local\Temp\xcAs9uk.o
+C:\Users\diego\AppData\Local\Temp\xcAs1r4.o
                 idloc                            200000   200000        8        0       5
                 config                           300000   300000        E        0       4
                 init                                 56       56        4        4       0
@@ -45,12 +45,12 @@ dist/default/production\MM_Practica_05.X.production.o
                 config                           300000   300000        E        0       4
                 temp                                 10       10        1        1       1
                 smallconst                          800      800        C      400       0
-                text4                               880      880       28      406       0
-                text2                               854      854       2C      406       0
-                text1                               8A8      8A8       1A      406       0
+                text4                               882      882       28      406       0
+                text2                               854      854       2E      406       0
+                text1                               8AA      8AA       1A      406       0
                 text0                               80C      80C       48      406       0
                 cstackCOMRAM                          1        1        E        1       1
-                cinit                               8C2      8C2       12      406       0
+                cinit                               8C4      8C4       12      406       0
                 nvCOMRAM                              F        F        1        1       1
 
 TOTAL           Name                               Link     Load   Length     Space
@@ -60,11 +60,11 @@ TOTAL           Name                               Link     Load   Length     Sp
                 intcode                               8        8       4E         0
                 init                                 56       56        4         0
                 reset_vec                             0        0        4         0
-                text4                               880      880       28         0
-                text2                               854      854       2C         0
-                text1                               8A8      8A8       1A         0
+                text4                               882      882       28         0
+                text2                               854      854       2E         0
+                text1                               8AA      8AA       1A         0
                 text0                               80C      80C       48         0
-                cinit                               8C2      8C2       12         0
+                cinit                               8C4      8C4       12         0
 
         CLASS   CONST          
 
@@ -120,7 +120,7 @@ SEGMENTS        Name                           Load    Length   Top    Selector 
                 cstackCOMRAM                   000001  000010  000011         1       1  COMRAM  
                 intcode                        000008  000052  00005A         4       0  CODE    
                 smallconst                     000800  00000C  00080C       400       0  SMALLCON
-                text0                          00080C  0000C8  0008D4       406       0  CODE    
+                text0                          00080C  0000CA  0008D6       406       0  CODE    
 
 
 UNUSED ADDRESS RANGES
@@ -137,16 +137,16 @@ UNUSED ADDRESS RANGES
         BIGRAM           000011-0007FF              7EF
         CODE             000004-000007                4
                          00005A-0007FF              7A6
-                         0008D4-007FFF             772C
+                         0008D6-007FFF             772A
         COMRAM           000011-00005F               4F
         CONST            000004-000007                4
                          00005A-0007FF              7A6
-                         0008D4-007FFF             772C
+                         0008D6-007FFF             772A
         EEDATA           F00000-F000FF              100
-        MEDIUMCONST      0008D4-007FFF             772C
+        MEDIUMCONST      0008D6-007FFF             772A
         RAM              000060-0007FF              100
         SFR              000F53-000FFF                D
-        SMALLCONST       0008D4-007FFF              100
+        SMALLCONST       0008D6-007FFF              100
         STACK            000060-0007FF              7A0
 
                                   Symbol Table
@@ -161,12 +161,13 @@ _EEADR                   (abs)        000FA9
 _EECON1bits              (abs)        000FA6
 _EECON2                  (abs)        000FA7
 _EEDATA                  (abs)        000FA8
-_EscribeEEprom           text4        000880
+_EscribeEEprom           text4        000882
 _INTCON                  (abs)        000FF2
 _INTCONbits              (abs)        000FF2
+_IPR2bits                (abs)        000FA2
 _LATA                    (abs)        000F89
 _LATD                    (abs)        000F8C
-_LeeEEprom               text1        0008A8
+_LeeEEprom               text1        0008AA
 _PIE2bits                (abs)        000FA0
 _PIR2bits                (abs)        000FA1
 _PORTD                   (abs)        000F83
@@ -227,7 +228,7 @@ __Hreset_vec             reset_vec    000004
 __Hrparam                rparam       000000
 __Hsfr                   sfr          000000
 __Hsmallconst            smallconst   00080C
-__Hspace_0               (abs)        0008D4
+__Hspace_0               (abs)        0008D6
 __Hspace_1               (abs)        000011
 __Hspace_2               (abs)        000000
 __Hspace_4               (abs)        60000E
@@ -303,7 +304,7 @@ __Ltext0                 text0        000000
 __Ltext1                 text1        000000
 __Ltext2                 text2        000000
 __Ltext4                 text4        000000
-__S0                     (abs)        0008D4
+__S0                     (abs)        0008D6
 __S1                     (abs)        000011
 __S2                     (abs)        000000
 __S4                     (abs)        000000
@@ -315,24 +316,24 @@ ___rparam_used           (abs)        000001
 ___sp                    stack        000000
 __accesstop              (abs)        000060
 __activetblptr           (abs)        000001
-__end_of_Configuracion   text2        000880
-__end_of_EscribeEEprom   text4        0008A8
-__end_of_LeeEEprom       text1        0008C2
-__end_of__initialization cinit        0008C2
+__end_of_Configuracion   text2        000882
+__end_of_EscribeEEprom   text4        0008AA
+__end_of_LeeEEprom       text1        0008C4
+__end_of__initialization cinit        0008C4
 __end_of_main            text0        000854
 __end_of_myHiIsr         intcode      000056
 __end_ofmain@F4822       smallconst   00080B
-__initialization         cinit        0008C2
+__initialization         cinit        0008C4
 __mediumconst            mediumconst  000000
-__pcinit                 cinit        0008C2
+__pcinit                 cinit        0008C4
 __pcstackCOMRAM          cstackCOMRAM 000001
 __pintcode               intcode      000008
 __pnvCOMRAM              nvCOMRAM     00000F
 __psmallconst            smallconst   000800
 __ptext0                 text0        00080C
-__ptext1                 text1        0008A8
+__ptext1                 text1        0008AA
 __ptext2                 text2        000854
-__ptext4                 text4        000880
+__ptext4                 text4        000882
 __ramtop                 ramtop       000800
 __size_of_Configuracion  (abs)        000000
 __size_of_EscribeEEprom  (abs)        000000
@@ -343,7 +344,7 @@ __smallconst             smallconst   000800
 _main                    text0        00080C
 _myHiIsr                 intcode      000008
 btemp                    temp         000010
-end_of_initialization    cinit        0008C2
+end_of_initialization    cinit        0008C4
 int$flags                temp         000010
 intlevel0                text         000000
 intlevel1                text         000000
@@ -356,7 +357,7 @@ main@F4822               smallconst   000801
 stackhi                  (abs)        0007FF
 stacklo                  (abs)        000060
 start                    init         000056
-start_initialization     cinit        0008C2
+start_initialization     cinit        0008C4
 ttemp5                   temp         000011
 ttemp6                   temp         000014
 ttemp7                   temp         000018
@@ -368,16 +369,16 @@ MODULE INFORMATION
 Module		Function		Class		Link	Load	Size
 shared
 		main@F4822     		SMALLCONST     	0801	0000	10
-		__initialization		CODE           	08C2	0000	1
+		__initialization		CODE           	08C4	0000	1
 
 shared estimated size: 11
 
 main.c
-		_LeeEEprom     		CODE           	08A8	0000	26
+		_LeeEEprom     		CODE           	08AA	0000	26
 		_main          		CODE           	080C	0000	72
 		_myHiIsr       		CODE           	0008	0000	78
-		_EscribeEEprom 		CODE           	0880	0000	40
-		_Configuracion 		CODE           	0854	0000	44
+		_EscribeEEprom 		CODE           	0882	0000	40
+		_Configuracion 		CODE           	0854	0000	46
 
-main.c estimated size: 260
+main.c estimated size: 262
 

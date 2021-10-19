@@ -49,7 +49,7 @@ void configuracion(void) {
     T2CON = 0x06; //Postscaler 1:1, prescaler 1:16
     CCP1CON = 0x0C; // Selecciona modo PWM 
     CCPR1L = 0x0B; // Carga CCPR1L con un valor arbitrario
-    PR2 = 0xA0; // Configuramos PR2 para tener un periodo de 20ms
+    PR2 = 0x9D; // Configuramos PR2 para tener un periodo de 20ms
 }
 
 int conversion(void) {

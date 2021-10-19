@@ -91,6 +91,25 @@ Version 4.0 HI-TECH Software Intermediate Code
 "6516
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 6516: extern volatile PIE2bits_t PIE2bits __attribute__((address(0xFA0)));
 [v _PIE2bits `VS262 ~T0 @X0 0 e@4000 ]
+"6691
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 6691:     struct {
+[s S271 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S271 . CCP2IP TMR3IP HLVDIP BCLIP EEIP C2IP C1IP OSCFIP ]
+"6701
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 6701:     struct {
+[s S272 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S272 . . LVDIP BCL1IP . CM2IP CM1IP ]
+"6709
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 6709:     struct {
+[s S273 :6 `uc 1 :1 `uc 1 ]
+[n S273 . . CMIP ]
+"6690
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 6690: typedef union {
+[u S270 `S271 1 `S272 1 `S273 1 ]
+[n S270 . . . . ]
+"6714
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 6714: extern volatile IPR2bits_t IPR2bits __attribute__((address(0xFA2)));
+[v _IPR2bits `VS270 ~T0 @X0 0 e@4002 ]
 "6957
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 6957:     struct {
 [s S285 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -883,137 +902,140 @@ Version 4.0 HI-TECH Software Intermediate Code
 "49
 [; ;main.c: 49:     T0CON = 0x83;
 [e = _T0CON -> -> 131 `i `uc ]
-"50
-[; ;main.c: 50:     PIE2bits.EEIE = 1;
+"51
+[; ;main.c: 51:     PIE2bits.EEIE = 1;
 [e = . . _PIE2bits 0 4 -> -> 1 `i `uc ]
 "52
-[; ;main.c: 52:     EECON1bits.EEPGD = 0;
-[e = . . _EECON1bits 0 7 -> -> 0 `i `uc ]
-"53
-[; ;main.c: 53:     EECON1bits.CFGS = 0;
-[e = . . _EECON1bits 0 6 -> -> 0 `i `uc ]
+[; ;main.c: 52:     IPR2bits.EEIP = 1;
+[e = . . _IPR2bits 0 4 -> -> 1 `i `uc ]
 "54
-[; ;main.c: 54: }
+[; ;main.c: 54:     EECON1bits.EEPGD = 0;
+[e = . . _EECON1bits 0 7 -> -> 0 `i `uc ]
+"55
+[; ;main.c: 55:     EECON1bits.CFGS = 0;
+[e = . . _EECON1bits 0 6 -> -> 0 `i `uc ]
+"56
+[; ;main.c: 56: }
 [e :UE 640 ]
 }
 [v $root$_myHiIsr `(v ~T0 @X0 0 e ]
-"56
-[; ;main.c: 56: void __attribute__((picinterrupt(("high_priority")))) myHiIsr(void) {
+"58
+[; ;main.c: 58: void __attribute__((picinterrupt(("high_priority")))) myHiIsr(void) {
 [v _myHiIsr `(v ~T2 @X0 1 ef ]
 {
 [e :U _myHiIsr ]
 [f ]
-"57
-[; ;main.c: 57:     if (INTCONbits.TMR0IF) {
+"59
+[; ;main.c: 59:     if (INTCONbits.TMR0IF) {
 [e $ ! != -> . . _INTCONbits 0 2 `i -> 0 `i 642  ]
 {
-"58
-[; ;main.c: 58:         Value += 1;
-[e =+ _Value -> -> 1 `i `uc ]
 "60
-[; ;main.c: 60:         if (Value > 9) {
+[; ;main.c: 60:         Value += 1;
+[e =+ _Value -> -> 1 `i `uc ]
+"62
+[; ;main.c: 62:         if (Value > 9) {
 [e $ ! > -> _Value `i -> 9 `i 643  ]
 {
-"61
-[; ;main.c: 61:             Value = 0;
+"63
+[; ;main.c: 63:             Value = 0;
 [e = _Value -> -> 0 `i `uc ]
-"62
-[; ;main.c: 62:         }
+"64
+[; ;main.c: 64:         }
 }
 [e :U 643 ]
-"63
-[; ;main.c: 63:         EscribeEEprom(0, Value);
-[e ( _EscribeEEprom (2 , -> -> 0 `i `uc _Value ]
-"64
-[; ;main.c: 64:         INTCONbits.TMR0IF = 0;
-[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
 "65
-[; ;main.c: 65:     } else if (PIR2bits.EEIF) {
+[; ;main.c: 65:         EscribeEEprom(0, Value);
+[e ( _EscribeEEprom (2 , -> -> 0 `i `uc _Value ]
+"66
+[; ;main.c: 66:         INTCONbits.TMR0IF = 0;
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+"67
+[; ;main.c: 67:     } else if (PIR2bits.EEIF) {
 }
 [e $U 644  ]
 [e :U 642 ]
 [e $ ! != -> . . _PIR2bits 0 4 `i -> 0 `i 645  ]
 {
-"66
-[; ;main.c: 66:         LATA ^= 1;
-[e =^ _LATA -> -> 1 `i `Vuc ]
-"67
-[; ;main.c: 67:         PIR2bits.EEIF = 0;
-[e = . . _PIR2bits 0 4 -> -> 0 `i `uc ]
 "68
-[; ;main.c: 68:     }
+[; ;main.c: 68:         LATA ^= 1;
+[e =^ _LATA -> -> 1 `i `Vuc ]
+"69
+[; ;main.c: 69:         PIR2bits.EEIF = 0;
+[e = . . _PIR2bits 0 4 -> -> 0 `i `uc ]
+"70
+[; ;main.c: 70:     }
 }
 [e :U 645 ]
 [e :U 644 ]
-"69
-[; ;main.c: 69: }
+"71
+[; ;main.c: 71: }
 [e :UE 641 ]
 }
-"71
-[; ;main.c: 71: char LeeEEprom(char Direccion) {
+"73
+[; ;main.c: 73: char LeeEEprom(char Direccion) {
 [v _LeeEEprom `(uc ~T0 @X0 1 ef1`uc ]
 {
 [e :U _LeeEEprom ]
 [v _Direccion `uc ~T0 @X0 1 r1 ]
 [f ]
-"72
-[; ;main.c: 72:     EEADR = Direccion;
-[e = _EEADR -> _Direccion `uc ]
-"73
-[; ;main.c: 73:     EECON1bits.RD = 1;
-[e = . . _EECON1bits 0 0 -> -> 1 `i `uc ]
 "74
-[; ;main.c: 74:     while (EECON1bits.RD);
+[; ;main.c: 74:     EEADR = Direccion;
+[e = _EEADR -> _Direccion `uc ]
+"75
+[; ;main.c: 75:     EECON1bits.RD = 1;
+[e = . . _EECON1bits 0 0 -> -> 1 `i `uc ]
+"76
+[; ;main.c: 76:     while (EECON1bits.RD);
 [e $U 647  ]
 [e :U 648 ]
 [e :U 647 ]
 [e $ != -> . . _EECON1bits 0 0 `i -> 0 `i 648  ]
 [e :U 649 ]
-"75
-[; ;main.c: 75:     return EEDATA;
+"77
+[; ;main.c: 77:     return EEDATA;
 [e ) -> _EEDATA `uc ]
 [e $UE 646  ]
-"76
-[; ;main.c: 76: }
+"78
+[; ;main.c: 78: }
 [e :UE 646 ]
 }
-"78
-[; ;main.c: 78: void EscribeEEprom(char Direccion, char Valor) {
+"80
+[; ;main.c: 80: void EscribeEEprom(char Direccion, char Valor) {
 [v _EscribeEEprom `(v ~T0 @X0 1 ef2`uc`uc ]
 {
 [e :U _EscribeEEprom ]
 [v _Direccion `uc ~T0 @X0 1 r1 ]
 [v _Valor `uc ~T0 @X0 1 r2 ]
 [f ]
-"79
-[; ;main.c: 79:     EEADR = Direccion;
+"81
+[; ;main.c: 81:     EEADR = Direccion;
 [e = _EEADR -> _Direccion `uc ]
-"80
-[; ;main.c: 80:     EEDATA = Valor;
-[e = _EEDATA -> _Valor `uc ]
 "82
-[; ;main.c: 82:     EECON1bits.WREN = 1;
-[e = . . _EECON1bits 0 2 -> -> 1 `i `uc ]
-"83
-[; ;main.c: 83:     EECON2 = 0x55;
-[e = _EECON2 -> -> 85 `i `uc ]
+[; ;main.c: 82:     EEDATA = Valor;
+[e = _EEDATA -> _Valor `uc ]
 "84
-[; ;main.c: 84:     EECON2 = 0xAA;
-[e = _EECON2 -> -> 170 `i `uc ]
+[; ;main.c: 84:     EECON1bits.WREN = 1;
+[e = . . _EECON1bits 0 2 -> -> 1 `i `uc ]
 "85
-[; ;main.c: 85:     EECON1bits.WR = 1;
-[e = . . _EECON1bits 0 1 -> -> 1 `i `uc ]
+[; ;main.c: 85:     EECON2 = 0x55;
+[e = _EECON2 -> -> 85 `i `uc ]
 "86
-[; ;main.c: 86:     while (EECON1bits.WR);
+[; ;main.c: 86:     EECON2 = 0xAA;
+[e = _EECON2 -> -> 170 `i `uc ]
+"87
+[; ;main.c: 87:     EECON1bits.WR = 1;
+[e = . . _EECON1bits 0 1 -> -> 1 `i `uc ]
+"88
+[; ;main.c: 88:     while (EECON1bits.WR);
 [e $U 651  ]
 [e :U 652 ]
 [e :U 651 ]
 [e $ != -> . . _EECON1bits 0 1 `i -> 0 `i 652  ]
 [e :U 653 ]
-"88
-[; ;main.c: 88:     EECON1bits.WREN = 0;
+"90
+[; ;main.c: 90:     EECON1bits.WREN = 0;
 [e = . . _EECON1bits 0 2 -> -> 0 `i `uc ]
-"89
-[; ;main.c: 89: }
+"91
+[; ;main.c: 91: }
 [e :UE 650 ]
 }

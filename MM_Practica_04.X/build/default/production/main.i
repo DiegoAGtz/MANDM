@@ -8025,7 +8025,6 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 
 
 char Value;
-
 void __attribute__((picinterrupt(("high_priority")))) myHiIsr(void);
 void configuracion(void);
 
@@ -8045,9 +8044,7 @@ void __attribute__((picinterrupt(("high_priority")))) myHiIsr(void) {
     if (Value > 9) {
         Value = 0;
     }
-    TMR0H = 3037 >> 8;
-    TMR0L = 62499;
-    PIR1bits.TMR1IF = 0;
+    INTCONbits.TMR0IF = 0;
 }
 
 void configuracion(void) {
@@ -8056,11 +8053,8 @@ void configuracion(void) {
     ANSELA = 0;
     ANSELD = 0;
     LATA = 0;
-    INTCON = 0x80;
-    RCONbits.IPEN = 1;
-    T1CON = 0x21;
 
-    PIE1 = 0x01;
-    TMR0H = 3037 >> 8;
-    TMR0L = 62499;
+    INTCON = 0xA0;
+    RCONbits.IPEN = 1;
+    T0CON = 0xE0;
 }
