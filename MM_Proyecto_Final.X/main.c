@@ -2,10 +2,7 @@
  * File:   main.c
  * Author: diego
  *
- * Created on 18 de octubre de 2021, 10:03 PM
- * 
- * Programa que controla el movimiento de un motor mediante PWM a través de la
- * entrada de datos por el puerto serial mediante el módulo Bluetooth.
+ * Created on 23 de septiembre de 2021, 12:24 PM
  */
 
 #pragma config FOSC = INTOSCIO
@@ -15,46 +12,84 @@
 #pragma config ICPRT = OFF
 
 #include <xc.h>
+#include <stdio.h>
+#define _XTAL_FREQ 1000000
 
-#define _XTAL_FREQ 1000000 // Frecuencia por default 
-
-void configuracion(void);
-int conversion(void);
-int mapeo(int valor, float minEntrada, float maxEntrada, float minSalida, float maxSalida);
+void InicializaLCD(void);
+void Configuracion(void);
+void putch(char data);
+void putcm(char data);
 
 void main(void) {
-    char Datos = 0;
-    configuracion();
-    while (1) {
-        CCPR1L = conversion() / 4; // Despliega los 8 bits más significativos 
-        Datos = ADRESL << 4;
-        Datos = Datos & 0x30; //Enmascara todos los bits menos 5:4 
-        CCP1CON = CCP1CON | Datos;
-        __delay_ms(100);
+    int Dato = 2021;
+    Configuracion();
+    InicializaLCD();
+    
+    printf(" Curso de M&M ");
+    putcm(0xC2);
+    printf(" Year: %d ", Dato);
+    while(1) {
+        LATAbits.LA1 ^= 1;
+        __delay_ms(500);
     }
     return;
 }
 
-void configuracion(void) {
-    // OSCCON = 0x23;
-    OSCCON = 0x20; // Selecciona reloj determinado por la configuración FOSC
-    TRISC = 0;
-    ANSELC = 0;
-    ADCON0 = 0x01;
-    ADCON1 = 0x00;
-    ADCON2 = 0x90;
-    T2CON = 0x06; //Postscaler 1:1, prescaler 1:16 
-    CCP1CON = 0x0C; // Selecciona modo PWM 
-    CCPR1L = 0x0B; // Carga CCPR1L con un valor arbitrario 
-    PR2 = 0xFF;
+void Configuracion(void) {
+    TRISA = 0;  // Salidas digitales
+    TRISD = 0;  // Salidas digitales
+    ANSELD = 0;
+    ANSELA = 0;
+    LATA = 0;
 }
 
-int conversion(void) {
-    ADCON0bits.GO = 1;
-    while (ADCON0bits.GO);
-    return ADRESL + ADRESH * 256; // Retorna los 10 bits como int 
+void InicializaLCD(void) {
+    __delay_ms(30);
+    putcm(0x02);    // Inicializa en modo 4 bits
+    __delay_ms(1);
+    
+    putcm(0x28);     // Inicializa en 2 lineas 5x7
+    __delay_ms(1);
+    
+    putcm(0x2C);
+    __delay_ms(1);
+    
+    putcm(0x0C);    
+    __delay_ms(1);
+    
+    putcm(0x06);
+    __delay_ms(1);    
+    
+    putcm(0x80);    // Posiciona el cursor en 1,1
+    __delay_ms(1);
 }
 
-int mapeo(int valor, float minEntrada, float maxEntrada, float minSalida, float maxSalida) {
-    return (int)(valor - minEntrada)*(maxSalida - minSalida) / (maxEntrada - minEntrada) + minSalida;
+void putch(char data) {
+    char Activa;
+    Activa = data & 0xF0;
+    LATD = Activa | 0x05;   // 0bxxxx0101
+    __delay_us(10);
+    
+    LATD = Activa | 0x01;   // 0bxxxx0001
+    __delay_ms(1);
+    
+    Activa = data << 4;
+    LATD = Activa | 0x05;
+    __delay_us(10);
+    LATD = Activa | 0x01;
+}
+
+void putcm(char data) {
+    char Activa;
+    Activa = data & 0xF0;
+    LATD = Activa | 0x04;
+    __delay_us(10);
+    
+    LATD = Activa;
+    __delay_ms(1);
+    Activa = data << 4;
+    
+    LATD = Activa | 0x04;
+    __delay_us(10);
+    LATD = Activa;
 }
