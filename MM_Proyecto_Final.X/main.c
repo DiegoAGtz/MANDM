@@ -1,95 +1,47 @@
 /*
- * File:   main.c
- * Author: diego
+ * File:   tx1.c
+ * Author: Administrator1
  *
- * Created on 23 de septiembre de 2021, 12:24 PM
+ * Created on 27 de septiembre de 2021, 08:57 AM
  */
-
-#pragma config FOSC = INTOSCIO
-#pragma config WDTEN = OFF
-#pragma config MCLRE = ON
-#pragma config LVP = OFF
-#pragma config ICPRT = OFF
+#pragma config FOSC = INTOSCIO  // Oscillator Selection (Internal oscillator)
+#pragma config WDTEN = OFF      // Watchdog Timer Enable bits (WDT disabled in hardware (SWDTEN ignored))
+#pragma config MCLRE = ON       // Master Clear Reset Pin Enable (MCLR pin enabled; RE3 input disabled)
+#pragma config LVP = OFF        // Single-Supply ICSP Enable bit (Single-Supply ICSP disabled)
+#pragma config ICPRT = OFF      // Dedicated In-Circuit Debug/Programming Port Enable (ICPORT disabled)
 
 #include <xc.h>
-#include <stdio.h>
-#define _XTAL_FREQ 1000000
 
-void InicializaLCD(void);
+#define _XTAL_FREQ 4000000      // Frecuencia del micro
+
 void Configuracion(void);
-void putch(char data);
-void putcm(char data);
 
 void main(void) {
-    int Dato = 2021;
+    char A = 65;
     Configuracion();
-    InicializaLCD();
-    
-    printf(" Curso de M&M ");
-    putcm(0xC2);
-    printf(" Year: %d ", Dato);
-    while(1) {
-        LATAbits.LA1 ^= 1;
+    __delay_ms(10); // Tiempo de asentamiento para el módulo    
+
+    while (1) {
+        PORTA = A;
+        TXREG1 = A;
         __delay_ms(500);
+        A += 1;
+        if (A > 90) A = 65;
     }
+
     return;
 }
 
 void Configuracion(void) {
-    TRISA = 0;  // Salidas digitales
-    TRISD = 0;  // Salidas digitales
-    ANSELD = 0;
+    TRISA = 0;
+    TRISC = 0xC0; // b?11000000?
     ANSELA = 0;
-    LATA = 0;
-}
+    ANSELC = 0;
 
-void InicializaLCD(void) {
-    __delay_ms(30);
-    putcm(0x02);    // Inicializa en modo 4 bits
-    __delay_ms(1);
-    
-    putcm(0x28);     // Inicializa en 2 lineas 5x7
-    __delay_ms(1);
-    
-    putcm(0x2C);
-    __delay_ms(1);
-    
-    putcm(0x0C);    
-    __delay_ms(1);
-    
-    putcm(0x06);
-    __delay_ms(1);    
-    
-    putcm(0x80);    // Posiciona el cursor en 1,1
-    __delay_ms(1);
-}
+    OSCCON = 0x53; //4MHz
 
-void putch(char data) {
-    char Activa;
-    Activa = data & 0xF0;
-    LATD = Activa | 0x05;   // 0bxxxx0101
-    __delay_us(10);
-    
-    LATD = Activa | 0x01;   // 0bxxxx0001
-    __delay_ms(1);
-    
-    Activa = data << 4;
-    LATD = Activa | 0x05;
-    __delay_us(10);
-    LATD = Activa | 0x01;
-}
-
-void putcm(char data) {
-    char Activa;
-    Activa = data & 0xF0;
-    LATD = Activa | 0x04;
-    __delay_us(10);
-    
-    LATD = Activa;
-    __delay_ms(1);
-    Activa = data << 4;
-    
-    LATD = Activa | 0x04;
-    __delay_us(10);
-    LATD = Activa;
+    SPBRG1 = 25;
+    TXSTA1 = 0x24;
+    SPBRGH1 = 0x00;
+    RCSTA1 = 0x90;
 }
