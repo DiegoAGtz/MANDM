@@ -1,8 +1,8 @@
 /*
- * File:   tx1.c
- * Author: Administrator1
+ * File:   main.c
+ * Author: Diego Armando Gutiérrez Ayala
  *
- * Created on 27 de septiembre de 2021, 08:57 AM
+ * Created on 25 de octubre de 2021, 05:25 PM
  */
 #pragma config FOSC = INTOSCIO  // Oscillator Selection (Internal oscillator)
 #pragma config WDTEN = OFF      // Watchdog Timer Enable bits (WDT disabled in hardware (SWDTEN ignored))
@@ -16,13 +16,14 @@
 
 #define _XTAL_FREQ 4000000      // Frecuencia del micro
 
+char Letra[3];
 char Bandera = 0;
 char Indice = 0;
 int Valor = 0;
 
 void configuracion(void);
 void __interrupt(high_priority) IAP(void);
-void InicializaLCD(void);
+void inicializaLCD(void);
 void putch(char data);
 void putcm(char data);
 void limpiaLCD(void);
@@ -30,7 +31,7 @@ int mapeo(int valor, int minEntrada, int maxEntrada, int minSalida, int maxSalid
 
 void main(void) {
     configuracion();
-    InicializaLCD();
+    inicializaLCD();
     __delay_ms(10); // Tiempo de asentamiento para el módulo    
 
     printf(" Curso de M&M ");
@@ -72,30 +73,50 @@ void configuracion(void) {
 }
 
 void __interrupt(high_priority) IAP(void) {
-    char Letra[3];
     Letra[Indice] = RCREG1;
-    if (Letra[Indice] == '\r' || Indice == 2) {
-        Indice = 0;
-        LATB = atoi(Letra);
-        Valor = mapeo(atoi(Letra), 0, 100, 0, 149);
-        CCPR1L = Valor;
-        limpiaLCD();
-        putcm(0xC2);
-        printf("%d%% - %d", atoi(Letra), Valor);
+
+    if ((Indice == 2 && Letra[Indice] >= 48 && Letra[Indice] <= 57) || (Letra[Indice] == '\r' && Indice > 0) || Bandera) {
+        // Máximo permitido o salto de linea
+        if (!Bandera) {
+            Bandera = 1;
+            int tmp = atoi(Letra);
+            if (tmp > 100) {
+                tmp = 100;
+            }
+            Valor = mapeo(tmp, 0, 100, 0, 155);
+            CCPR1L = Valor;
+            limpiaLCD();
+            putcm(0xC2);
+            printf("%d%% - %d", tmp, Valor);
+        }
+        if (Letra[Indice] == '\r' && Bandera) {
+            Indice = 0;
+            Bandera = 0;
+        }
     } else if (Letra[Indice] < 48 || Letra[Indice] > 57) {
-        // Código incorrecto
+        // Error
+        Indice = 0;
+        Bandera = 0;
         limpiaLCD();
         putcm(0xC2);
         printf("Error.");
-        Indice = 0;
-        LATB = 255;
     } else {
         Indice++;
     }
-    // PIR1bits.RCIF = 0;   // No es necesaria. Se limpia al leer RCREG1
+
+    /*
+     Valor = mapeo(atoi(Letra), 0, 100, 0, 155);
+            CCPR1L = Valor;
+            limpiaLCD();
+            putcm(0xC2);
+            printf("%d%% - %d", atoi(Letra), Valor);
+     
+     */
+
+
 }
 
-void InicializaLCD(void) {
+void inicializaLCD(void) {
     __delay_ms(30);
     putcm(0x02); // Inicializa en modo 4 bits
     __delay_ms(1);
