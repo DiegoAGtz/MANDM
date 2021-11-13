@@ -38,7 +38,7 @@ void main(void) {
     putcm(0xC2);
     printf(" Year: %d ", 2021);
     while (1) {
-        LATAbits.LA7 ^= 1;
+        LATCbits.LC0 ^= 1;
         __delay_ms(500);
     }
 
@@ -46,12 +46,8 @@ void main(void) {
 }
 
 void configuracion(void) {
-    TRISA = 0;
-    TRISB = 0;
-    TRISC = 0xC0; // b?11000000?
+    TRISC = 0xC0; // b?11000001?
     TRISD = 0;
-    ANSELA = 0;
-    ANSELB = 0;
     ANSELC = 0;
     ANSELD = 0;
 
@@ -74,15 +70,12 @@ void configuracion(void) {
 
 void __interrupt(high_priority) IAP(void) {
     Letra[Indice] = RCREG1;
-
+    
     if ((Indice == 2 && Letra[Indice] >= 48 && Letra[Indice] <= 57) || (Letra[Indice] == '\r' && Indice > 0) || Bandera) {
         // Máximo permitido o salto de linea
         if (!Bandera) {
             Bandera = 1;
             int tmp = atoi(Letra);
-            if (tmp > 100) {
-                tmp = 100;
-            }
             Valor = mapeo(tmp, 0, 100, 0, 155);
             CCPR1L = Valor;
             limpiaLCD();
@@ -103,17 +96,6 @@ void __interrupt(high_priority) IAP(void) {
     } else {
         Indice++;
     }
-
-    /*
-     Valor = mapeo(atoi(Letra), 0, 100, 0, 155);
-            CCPR1L = Valor;
-            limpiaLCD();
-            putcm(0xC2);
-            printf("%d%% - %d", atoi(Letra), Valor);
-     
-     */
-
-
 }
 
 void inicializaLCD(void) {
@@ -174,5 +156,7 @@ void limpiaLCD(void) {
 }
 
 int mapeo(int valor, int minEntrada, int maxEntrada, int minSalida, int maxSalida) {
+    if (valor > maxEntrada) valor = maxEntrada;
+    else if (valor < minEntrada) valor = minEntrada;
     return (int) ((valor - minEntrada)*(maxSalida - minSalida) / (maxEntrada - minEntrada) + minSalida);
 }
