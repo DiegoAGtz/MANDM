@@ -31,15 +31,21 @@ int mapeo(int valor, int minEntrada, int maxEntrada, int minSalida, int maxSalid
 void ejecutarComando();
 char isNumber(char v);
 void modificarPotencia();
+void guardarEEPROM(char dir, char val);
+char leerEEPROM(char dir);
 
 void main(void) {
     configuracion();
     inicializaLCD();
     __delay_ms(10); // Tiempo de asentamiento para el módulo    
 
+    Valor = leerEEPROM(1);
+
     printf(" Curso de M&M ");
     putcm(0xC2);
-    printf(" Year: %d ", 2021);
+    printf("%d%% - %d", leerEEPROM(0), Valor);
+    CCPR1L = Valor;
+
     LATCbits.LATC1 = 1;
     while (1) {
         LATCbits.LC0 ^= 1;
@@ -70,6 +76,8 @@ void configuracion(void) {
     T2CON = 0x07;
     PR2 = 155;
     CCPR1L = 0;
+
+    EEADR = 0;
 }
 
 void __interrupt(high_priority) IAP(void) {
@@ -161,11 +169,13 @@ void ejecutarComando() {
         limpiaLCD();
         putcm(0xC2);
         printf("Encendido.");
+        CCPR1L = Valor;
     } else if((Letra[0] == 'O' || Letra[0] == 'o') && (Letra[1] == 'F' || Letra[1] == 'f') && (Letra[2] == 'F' || Letra[2] == 'f')) {
         // Apaga motor
         limpiaLCD();
         putcm(0xC2);
         printf("Apagado.");
+        CCPR1L = 0;
     } else {
         // Comando erroneo
         // Error
@@ -201,10 +211,36 @@ void modificarPotencia() {
     } else {
         // Modifica la potencia
         int tmp = atoi(Letra);
+
+        if (tmp > 100) tmp = 100;
+        else if (tmp < 0) tmp = 0;
+
         Valor = mapeo(tmp, 0, 100, 0, 155);
         CCPR1L = Valor;
+        guardarEEPROM(0, tmp);
+        guardarEEPROM(1, Valor);
         limpiaLCD();
         putcm(0xC2);
         printf("%d%% - %d", tmp, Valor);
     }
+}
+
+void guardarEEPROM(char dir, char val) {
+    EEADR = dir;
+    EEDATA = val;
+    EECON1bits.WREN = 1;    // Habilitar escritura
+    EECON2 = 0x55;  // Antes de mandar escribir hay que mandar estas instrucciones
+    EECON2 = 0xAA;  // Ordenes del fabricante. Salto de fe.
+    EECON1bits.WR = 1;  // Escribir
+    __delay_ms(50);
+    EECON1bits.WREN = 0;    // Desactivar escritura
+}
+
+char leerEEPROM(char dir) {
+    char value = 0;
+    EEADR = dir;
+    EECON1 = 0b00000001;
+    __delay_us(10);
+    value = EEDATA;
+    return value;
 }
