@@ -28,6 +28,9 @@ void putch(char data);
 void putcm(char data);
 void limpiaLCD(void);
 int mapeo(int valor, int minEntrada, int maxEntrada, int minSalida, int maxSalida);
+void ejecutarComando();
+char isNumber(char v);
+void modificarPotencia();
 
 void main(void) {
     configuracion();
@@ -37,6 +40,7 @@ void main(void) {
     printf(" Curso de M&M ");
     putcm(0xC2);
     printf(" Year: %d ", 2021);
+    LATCbits.LATC1 = 1;
     while (1) {
         LATCbits.LC0 ^= 1;
         __delay_ms(500);
@@ -70,31 +74,20 @@ void configuracion(void) {
 
 void __interrupt(high_priority) IAP(void) {
     Letra[Indice] = RCREG1;
-    
-    if ((Indice == 2 && Letra[Indice] >= 48 && Letra[Indice] <= 57) || (Letra[Indice] == '\r' && Indice > 0) || Bandera) {
-        // Máximo permitido o salto de linea
-        if (!Bandera) {
-            Bandera = 1;
-            int tmp = atoi(Letra);
-            Valor = mapeo(tmp, 0, 100, 0, 155);
-            CCPR1L = Valor;
-            limpiaLCD();
-            putcm(0xC2);
-            printf("%d%% - %d", tmp, Valor);
+
+    if(!Bandera) {
+        if((!isNumber(Letra[0]) && Indice == 2) || (!isNumber(Letra[0]) && Letra[Indice] == '\r')) {
+            ejecutarComando();
+        } else if ((isNumber(Letra[0]) && Indice == 2) || (isNumber(Letra[0]) && Letra[Indice] == '\r')) {
+            modificarPotencia();
+        } else {
+            Indice++;
         }
-        if (Letra[Indice] == '\r' && Bandera) {
-            Indice = 0;
-            Bandera = 0;
-        }
-    } else if (Letra[Indice] < 48 || Letra[Indice] > 57) {
-        // Error
+    } 
+
+    if (Letra[Indice] == '\r' && Bandera) {
         Indice = 0;
         Bandera = 0;
-        limpiaLCD();
-        putcm(0xC2);
-        printf("Error.");
-    } else {
-        Indice++;
     }
 }
 
@@ -159,4 +152,59 @@ int mapeo(int valor, int minEntrada, int maxEntrada, int minSalida, int maxSalid
     if (valor > maxEntrada) valor = maxEntrada;
     else if (valor < minEntrada) valor = minEntrada;
     return (int) ((valor - minEntrada)*(maxSalida - minSalida) / (maxEntrada - minEntrada) + minSalida);
+}
+
+void ejecutarComando() {
+    Bandera = 1;
+    if((Letra[0] == 'O' || Letra[0] == 'o') && (Letra[1] == 'N' || Letra[1] == 'n') && Letra[2] == '\r') {
+        // Enciende motor
+        limpiaLCD();
+        putcm(0xC2);
+        printf("Encendido.");
+    } else if((Letra[0] == 'O' || Letra[0] == 'o') && (Letra[1] == 'F' || Letra[1] == 'f') && (Letra[2] == 'F' || Letra[2] == 'f')) {
+        // Apaga motor
+        limpiaLCD();
+        putcm(0xC2);
+        printf("Apagado.");
+    } else {
+        // Comando erroneo
+        // Error
+        limpiaLCD();
+        putcm(0xC2);
+        printf("Cmd. Erroneo.");
+    }
+}
+
+char isNumber(char v) {
+    if (v >= 48 && v <= 57) return 1;
+    return 0;
+}
+
+void modificarPotencia() {
+    // Máximo permitido o salto de linea
+    Bandera = 1;
+    char i=0;
+    char error = 0;
+    while(i<=2 && Letra[i] != '\r') {
+        if(!isNumber(Letra[i])) {
+            error = 1;
+            break;
+        }
+        i++;
+    }
+
+    if(error) {
+        // Potencia incorrecta
+        limpiaLCD();
+        putcm(0xC2);
+        printf("Cant. Erronea.");
+    } else {
+        // Modifica la potencia
+        int tmp = atoi(Letra);
+        Valor = mapeo(tmp, 0, 100, 0, 155);
+        CCPR1L = Valor;
+        limpiaLCD();
+        putcm(0xC2);
+        printf("%d%% - %d", tmp, Valor);
+    }
 }
