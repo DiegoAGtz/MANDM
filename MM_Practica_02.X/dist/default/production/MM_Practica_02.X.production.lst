@@ -1,7 +1,11 @@
 
 
 Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
+<<<<<<< HEAD
+                                                                                               Fri Oct 15 14:13:49 2021
+=======
                                                                                                Thu Oct 14 19:51:27 2021
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 
 Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1 
      1                           	processor	18F45K50
@@ -356,7 +360,11 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
    342                           
    343 ;; *************** function ___awdiv *****************
    344 ;; Defined at:
+<<<<<<< HEAD
+   345 ;;		line 7 in file "/opt/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c"
+=======
    345 ;;		line 7 in file "C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\awdiv.c"
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
    346 ;; Parameters:    Size  Location     Type
    347 ;;  dividend        2    0[COMRAM] int 
    348 ;;  divisor         2    2[COMRAM] int 
@@ -844,7 +852,11 @@ SFR                  0      0       0     200        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
+<<<<<<< HEAD
+Symbol Table                                                                                   Fri Oct 15 14:13:49 2021
+=======
 Symbol Table                                                                                   Thu Oct 14 19:51:27 2021
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 
                      l41 7EBE                       l35 7E9A                       l38 7E9E  
                      u80 7EAC                       u81 7EA8                       u90 7F4E  

@@ -2,11 +2,18 @@ Microchip MPLAB XC8 Compiler V2.32
 
 Linker command line:
 
+<<<<<<< HEAD
+-W-3 --edf=/opt/microchip/xc8/v2.32/pic/dat/en_msgs.txt -cn \
+  -h+dist/default/production/MM_Practica_05.X.production.sym \
+  --cmf=dist/default/production/MM_Practica_05.X.production.cmf -z \
+  -Q18F45K50 -o/tmp/xcXNJPAoh --defsym=__MPLAB_BUILD=1 \
+=======
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.32\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\MM_Practica_05.X.production.sym \
   --cmf=dist/default/production\MM_Practica_05.X.production.cmf -z \
   -Q18F45K50 -oC:\Users\diego\AppData\Local\Temp\xcAs1r4.4 \
   --defsym=__MPLAB_BUILD=1 \
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
   -Mdist/default/production/MM_Practica_05.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=060h-07FFh -pstack=STACK \
   -ACODE=00h-07FFFh -ACONST=00h-07FFFh -ASMALLCONST=0800h-08FFhx120 \
@@ -24,8 +31,12 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
+<<<<<<< HEAD
+  /tmp/xcXHeaJhM.o dist/default/production/MM_Practica_05.X.production.o 
+=======
   C:\Users\diego\AppData\Local\Temp\xcAs1r4.o \
   dist/default/production\MM_Practica_05.X.production.o 
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 
 Object code version is 3.11
 
@@ -34,12 +45,16 @@ Machine type is 18F45K50
 
 
                 Name                               Link     Load   Length Selector   Space Scale
+<<<<<<< HEAD
+/tmp/xcXHeaJhM.o
+=======
 C:\Users\diego\AppData\Local\Temp\xcAs1r4.o
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
                 idloc                            200000   200000        8        0       5
                 config                           300000   300000        E        0       4
                 init                                 56       56        4        4       0
                 reset_vec                             0        0        4        0       0
-dist/default/production\MM_Practica_05.X.production.o
+dist/default/production/MM_Practica_05.X.production.o
                 intcode                               8        8       4E        4       0
                 idloc                            200000   200000        8        0       5
                 config                           300000   300000        E        0       4
@@ -118,9 +133,13 @@ SEGMENTS        Name                           Load    Length   Top    Selector 
 
                 reset_vec                      000000  000004  000004         0       0  CODE    
                 cstackCOMRAM                   000001  000010  000011         1       1  COMRAM  
+                text0                          00080C  0000CA  0008D6       406       0  CODE    
                 intcode                        000008  000052  00005A         4       0  CODE    
                 smallconst                     000800  00000C  00080C       400       0  SMALLCON
+<<<<<<< HEAD
+=======
                 text0                          00080C  0000CA  0008D6       406       0  CODE    
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 
 
 UNUSED ADDRESS RANGES

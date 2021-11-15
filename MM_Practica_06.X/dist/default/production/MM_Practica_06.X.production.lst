@@ -1,7 +1,11 @@
 
 
 Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
+<<<<<<< HEAD
+                                                                                               Fri Oct 15 16:01:28 2021
+=======
                                                                                                Fri Oct 15 12:54:57 2021
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 
 Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1 
      1                           	processor	18F45K50
@@ -621,7 +625,11 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
    605                           
    606 ;; *************** function ___xxtofl *****************
    607 ;; Defined at:
+<<<<<<< HEAD
+   608 ;;		line 10 in file "/opt/microchip/xc8/v2.32/pic/sources/c99/common/xxtofl.c"
+=======
    608 ;;		line 10 in file "C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\xxtofl.c"
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
    609 ;; Parameters:    Size  Location     Type
    610 ;;  sign            1    wreg     unsigned char 
    611 ;;  val             4    0[COMRAM] long 
@@ -862,7 +870,11 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
    846                           
    847 ;; *************** function ___flsub *****************
    848 ;; Defined at:
+<<<<<<< HEAD
+   849 ;;		line 245 in file "/opt/microchip/xc8/v2.32/pic/sources/c99/common/sprcadd.c"
+=======
    849 ;;		line 245 in file "C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\sprcadd.c"
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
    850 ;; Parameters:    Size  Location     Type
    851 ;;  b               4   30[COMRAM] unsigned char 
    852 ;;  a               4   34[COMRAM] unsigned char 
@@ -923,7 +935,11 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
    907                           
    908 ;; *************** function ___fladd *****************
    909 ;; Defined at:
+<<<<<<< HEAD
+   910 ;;		line 10 in file "/opt/microchip/xc8/v2.32/pic/sources/c99/common/sprcadd.c"
+=======
    910 ;;		line 10 in file "C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\sprcadd.c"
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
    911 ;; Parameters:    Size  Location     Type
    912 ;;  b               4   14[COMRAM] unsigned char 
    913 ;;  a               4   18[COMRAM] unsigned char 
@@ -1532,7 +1548,11 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
   1516                           
   1517 ;; *************** function ___flmul *****************
   1518 ;; Defined at:
+<<<<<<< HEAD
+  1519 ;;		line 8 in file "/opt/microchip/xc8/v2.32/pic/sources/c99/common/sprcmul.c"
+=======
   1519 ;;		line 8 in file "C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\sprcmul.c"
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
   1520 ;; Parameters:    Size  Location     Type
   1521 ;;  b               4   38[COMRAM] unsigned char 
   1522 ;;  a               4   42[COMRAM] unsigned char 
@@ -2054,7 +2074,11 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
   2038                           
   2039 ;; *************** function ___fldiv *****************
   2040 ;; Defined at:
+<<<<<<< HEAD
+  2041 ;;		line 11 in file "/opt/microchip/xc8/v2.32/pic/sources/c99/common/sprcdiv.c"
+=======
   2041 ;;		line 11 in file "C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\sprcdiv.c"
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
   2042 ;; Parameters:    Size  Location     Type
   2043 ;;  b               4   63[COMRAM] unsigned char 
   2044 ;;  a               4   67[COMRAM] unsigned char 
@@ -2673,7 +2697,11 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
   2657                           
   2658 ;; *************** function ___fltol *****************
   2659 ;; Defined at:
+<<<<<<< HEAD
+  2660 ;;		line 43 in file "/opt/microchip/xc8/v2.32/pic/sources/c99/common/fltol.c"
+=======
   2660 ;;		line 43 in file "C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\fltol.c"
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
   2661 ;; Parameters:    Size  Location     Type
   2662 ;;  f1              4    0[COMRAM] void 
   2663 ;; Auto vars:     Size  Location     Type
@@ -2832,7 +2860,11 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
   2816                           
   2817 ;; *************** function ___awdiv *****************
   2818 ;; Defined at:
+<<<<<<< HEAD
+  2819 ;;		line 7 in file "/opt/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c"
+=======
   2819 ;;		line 7 in file "C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\awdiv.c"
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
   2820 ;; Parameters:    Size  Location     Type
   2821 ;;  dividend        2   10[COMRAM] int 
   2822 ;;  divisor         2   12[COMRAM] int 
@@ -3387,7 +3419,11 @@ SFR                  0      0       0     200        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
+<<<<<<< HEAD
+Symbol Table                                                                                   Fri Oct 15 16:01:28 2021
+=======
 Symbol Table                                                                                   Fri Oct 15 12:54:57 2021
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 
            ___fldiv@aexp 0058             ___fldiv@bexp 0057             ___fldiv@sign 0050  
                      l51 6DBA                       l45 6DE6                       l54 71C6  

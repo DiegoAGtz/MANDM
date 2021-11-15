@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/production\MM_Practica_03.X.production.hex">
+  <executable name="dist/default/production/MM_Practica_03.X.production.hex">
     <memory name="program">
       <units>bytes</units>
       <length>32768</length>
+<<<<<<< HEAD
+      <used>250</used>
+      <free>32518</free>
+=======
       <used>246</used>
       <free>32522</free>
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
     </memory>
     <memory name="data">
       <units>bytes</units>

@@ -2,11 +2,18 @@ Microchip MPLAB XC8 Compiler V2.32
 
 Linker command line:
 
+<<<<<<< HEAD
+-W-3 --edf=/opt/microchip/xc8/v2.32/pic/dat/en_msgs.txt -cn \
+  -h+dist/default/production/MM_Practica_02.X.production.sym \
+  --cmf=dist/default/production/MM_Practica_02.X.production.cmf -z \
+  -Q18F45K50 -o/tmp/xcXPJPjCG --defsym=__MPLAB_BUILD=1 \
+=======
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.32\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\MM_Practica_02.X.production.sym \
   --cmf=dist/default/production\MM_Practica_02.X.production.cmf -z \
   -Q18F45K50 -oC:\Users\diego\AppData\Local\Temp\xcAs1r8.4 \
   --defsym=__MPLAB_BUILD=1 \
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
   -Mdist/default/production/MM_Practica_02.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=060h-07FFh -pstack=STACK \
   -ACODE=00h-07FFFh -ACONST=00h-07FFFh -ASMALLCONST=0800h-08FFhx120 \
@@ -24,8 +31,12 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
+<<<<<<< HEAD
+  /tmp/xcXkiflGO.o dist/default/production/MM_Practica_02.X.production.o 
+=======
   C:\Users\diego\AppData\Local\Temp\xcAs1r8.o \
   dist/default/production\MM_Practica_02.X.production.o 
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 
 Object code version is 3.11
 
@@ -34,11 +45,15 @@ Machine type is 18F45K50
 
 
                 Name                               Link     Load   Length Selector   Space Scale
+<<<<<<< HEAD
+/tmp/xcXkiflGO.o
+=======
 C:\Users\diego\AppData\Local\Temp\xcAs1r8.o
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
                 idloc                            200000   200000        8        0       5
                 config                           300000   300000        E        0       4
                 init                                  0        0        4        0       0
-dist/default/production\MM_Practica_02.X.production.o
+dist/default/production/MM_Practica_02.X.production.o
                 idloc                            200000   200000        8        0       5
                 config                           300000   300000        E        0       4
                 text3                              7F3C     7F3C       C4     3F9E       0
@@ -106,13 +121,21 @@ TOTAL           Name                               Link     Load   Length     Sp
 
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class
 
+                text1                          007E9C  000024  007EC0      3F4E       0  CODE    
+                text2                          007E84  000018  007E9C      3F42       0  CODE    
+                cinit                          007E7E  000006  007E84      3F3F       0  CODE    
+                text0                          007EC0  00007C  007F3C      3F60       0  CODE    
+                text3                          007F3C  0000C4  008000      3F9E       0  CODE    
                 reset_vec                      000000  000004  000004         0       0  CODE    
                 cstackCOMRAM                   000001  00000E  00000F         1       1  COMRAM  
+<<<<<<< HEAD
+=======
                 cinit                          007E7E  000006  007E84      3F3F       0  CODE    
                 text2                          007E84  000018  007E9C      3F42       0  CODE    
                 text1                          007E9C  000024  007EC0      3F4E       0  CODE    
                 text0                          007EC0  00007C  007F3C      3F60       0  CODE    
                 text3                          007F3C  0000C4  008000      3F9E       0  CODE    
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 
 
 UNUSED ADDRESS RANGES
@@ -334,10 +357,10 @@ start_initialization     cinit        007E7E
 MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
-C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\awdiv.c
+/opt/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
 		___awdiv       		CODE           	7F3C	0000	196
 
-C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\awdiv.c estimated size: 196
+/opt/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c estimated size: 196
 
 shared
 		__initialization		CODE           	7E7E	0000	1

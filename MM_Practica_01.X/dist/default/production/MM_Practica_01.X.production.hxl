@@ -1,14 +1,22 @@
 ### HEXMate logfile and output summary ###
 ### Memory Usage ###
  Unused memory ranges:
+<<<<<<< HEAD
+  4h - 7FBBh
+=======
   4h - 7FBFh
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
   8000h - 1FFFFFh
   200008h - 2FFFFFh
   30000Eh - 30003Fh
   
- dist/default/production\MM_Practica_01.X.production.hex ranges:
+ dist/default/production/MM_Practica_01.X.production.hex ranges:
   0h - 3h
+<<<<<<< HEAD
+  7FBCh - 7FFFh
+=======
   7FC0h - 7FFFh
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
   200000h - 200007h
   300000h - 30000Dh
   
@@ -23,8 +31,12 @@
   T = Trailing code
   & = Find & replace opcode
   X = Find & delete opcode
-  1 = dist/default/production\MM_Practica_01.X.production.hex
+  1 = dist/default/production/MM_Practica_01.X.production.hex
 00000000: 1111------------------------------------------------------------
+<<<<<<< HEAD
+00007F80: ------------------------------------------------------------1111
+=======
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 00007FC0: 1111111111111111111111111111111111111111111111111111111111111111
 00200000: 11111111--------------------------------------------------------
 00300000: 11111111111111--------------------------------------------------

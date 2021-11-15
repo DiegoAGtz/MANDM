@@ -1,7 +1,11 @@
 
 
 Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
+<<<<<<< HEAD
+                                                                                               Fri Oct 15 14:51:49 2021
+=======
                                                                                                Thu Oct 14 23:10:12 2021
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 
 Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1 
      1                           	processor	18F45K50
@@ -75,13 +79,34 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
     61  0000                     _TRISB	set	3987
     62  0000                     _TRISA	set	3986
     63  0000                     _INTCON3bits	set	4080
+<<<<<<< HEAD
+    64  0000                     _PORTD	set	3971
+    65  0000                     _INTCONbits	set	4082
+=======
     64  0000                     _INTCONbits	set	4082
     65  0000                     _PORTD	set	3971
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
     66  0000                     _PORTA	set	3968
     67                           
     68                           ; #config settings
     69                           
     70                           	psect	cinit
+<<<<<<< HEAD
+    71  0000FE                     __pcinit:
+    72                           	callstack 0
+    73  0000FE                     start_initialization:
+    74                           	callstack 0
+    75  0000FE                     __initialization:
+    76                           	callstack 0
+    77  0000FE                     end_of_initialization:
+    78                           	callstack 0
+    79  0000FE                     __end_of__initialization:
+    80                           	callstack 0
+    81  0000FE  9009               	bcf	int$flags,0,c	;clear compiler interrupt flag (level 1)
+    82  000100  9209               	bcf	int$flags,1,c	;clear compiler interrupt flag (level 2)
+    83  000102  0100               	movlb	0
+    84  000104  EF6F  F000         	goto	_main	;jump to C main() function
+=======
     71  0000FA                     __pcinit:
     72                           	callstack 0
     73  0000FA                     start_initialization:
@@ -96,6 +121,7 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
     82  0000FC  9209               	bcf	int$flags,1,c	;clear compiler interrupt flag (level 2)
     83  0000FE  0100               	movlb	0
     84  000100  EF6D  F000         	goto	_main	;jump to C main() function
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
     85                           
     86                           	psect	cstackCOMRAM
     87  000001                     __pcstackCOMRAM:
@@ -156,6 +182,34 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
    142 ;;
    143                           
    144                           	psect	text0
+<<<<<<< HEAD
+   145  0000DE                     __ptext0:
+   146                           	callstack 0
+   147  0000DE                     _main:
+   148                           	callstack 28
+   149  0000DE                     
+   150                           ;main.c: 22:     configuracion();
+   151  0000DE  EC59  F000         	call	_configuracion	;wreg free
+   152  0000E2                     l745:
+   153                           
+   154                           ;main.c: 24:         PORTA ^= 1;
+   155  0000E2  0E01               	movlw	1
+   156  0000E4  1A80               	xorwf	128,f,c	;volatile
+   157  0000E6                     
+   158                           ;main.c: 25:         _delay((unsigned long)((500)*(1000000/4000.0)));
+   159  0000E6  0EA3               	movlw	163
+   160  0000E8  6E08               	movwf	??_main^0,c
+   161  0000EA  0E55               	movlw	85
+   162  0000EC                     u37:
+   163  0000EC  2EE8               	decfsz	wreg,f,c
+   164  0000EE  D7FE               	bra	u37
+   165  0000F0  2E08               	decfsz	??_main^0,f,c
+   166  0000F2  D7FC               	bra	u37
+   167  0000F4  F000               	nop	
+   168  0000F6  EF71  F000         	goto	l745
+   169  0000FA  EF33  F000         	goto	start
+   170  0000FE                     __end_of_main:
+=======
    145  0000DA                     __ptext0:
    146                           	callstack 0
    147  0000DA                     _main:
@@ -182,6 +236,7 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
    168  0000F2  EF6F  F000         	goto	l745
    169  0000F6  EF33  F000         	goto	start
    170  0000FA                     __end_of_main:
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
    171                           	callstack 0
    172                           
    173 ;; *************** function _configuracion *****************
@@ -215,6 +270,60 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
    201 ;;
    202                           
    203                           	psect	text1
+<<<<<<< HEAD
+   204  0000B2                     __ptext1:
+   205                           	callstack 0
+   206  0000B2                     _configuracion:
+   207                           	callstack 28
+   208  0000B2                     
+   209                           ;main.c: 56:     TRISA = 0;
+   210  0000B2  0E00               	movlw	0
+   211  0000B4  6E92               	movwf	146,c	;volatile
+   212  0000B6                     
+   213                           ;main.c: 57:     TRISB = 0xFF;
+   214  0000B6  6893               	setf	147,c	;volatile
+   215                           
+   216                           ;main.c: 58:     TRISD = 0;
+   217  0000B8  0E00               	movlw	0
+   218  0000BA  6E95               	movwf	149,c	;volatile
+   219                           
+   220                           ;main.c: 59:     ANSELA = 0;
+   221  0000BC  0E00               	movlw	0
+   222  0000BE  010F               	movlb	15	; () banked
+   223  0000C0  6F5B               	movwf	91,b	;volatile
+   224                           
+   225                           ;main.c: 60:     ANSELB = 0;
+   226  0000C2  0E00               	movlw	0
+   227  0000C4  6F5C               	movwf	92,b	;volatile
+   228                           
+   229                           ;main.c: 61:     ANSELD = 0;
+   230  0000C6  0E00               	movlw	0
+   231  0000C8  6F5E               	movwf	94,b	;volatile
+   232                           
+   233                           ;main.c: 62:     LATA = 0;
+   234  0000CA  0E00               	movlw	0
+   235  0000CC  6E89               	movwf	137,c	;volatile
+   236                           
+   237                           ;main.c: 63:     LATD = 0;
+   238  0000CE  0E00               	movlw	0
+   239  0000D0  6E8C               	movwf	140,c	;volatile
+   240                           
+   241                           ;main.c: 64:     INTCON = 0xD0;
+   242  0000D2  0ED0               	movlw	208
+   243  0000D4  6EF2               	movwf	242,c	;volatile
+   244                           
+   245                           ;main.c: 65:     INTCON3 = 0x08;
+   246  0000D6  0E08               	movlw	8
+   247  0000D8  6EF0               	movwf	240,c	;volatile
+   248  0000DA                     
+   249                           ; BSR set to: 15
+   250                           ;main.c: 66:     RCONbits.IPEN = 1;
+   251  0000DA  8ED0               	bsf	208,7,c	;volatile
+   252  0000DC                     
+   253                           ; BSR set to: 15
+   254  0000DC  0012               	return		;funcret
+   255  0000DE                     __end_of_configuracion:
+=======
    204  0000AE                     __ptext1:
    205                           	callstack 0
    206  0000AE                     _configuracion:
@@ -267,6 +376,7 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
    253                           ; BSR set to: 15
    254  0000D8  0012               	return		;funcret
    255  0000DA                     __end_of_configuracion:
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
    256                           	callstack 0
    257                           
    258 ;; *************** function _myLoIsr *****************
@@ -317,7 +427,11 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
    303  000028  6E07               	movwf	myLoIsr@A^0,c
    304                           
    305                           ;main.c: 46:     while (A) {
+<<<<<<< HEAD
+   306  00002A  EF22  F000         	goto	i1l771
+=======
    306  00002A  EF22  F000         	goto	i1l767
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
    307  00002E                     i1l56:
    308                           
    309                           ;main.c: 47:         PORTD = A;
@@ -336,7 +450,11 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
    322  000042                     
    323                           ;main.c: 50:         A -= 1;
    324  000042  0607               	decf	myLoIsr@A^0,f,c
+<<<<<<< HEAD
+   325  000044                     i1l771:
+=======
    325  000044                     i1l767:
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
    326                           
    327                           ;main.c: 46:     while (A) {
    328  000044  5007               	movf	myLoIsr@A^0,w,c
@@ -410,9 +528,15 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
    396  00006E  EF4C  F000         	goto	i2l759
    397  000072                     i2l751:
    398                           
+<<<<<<< HEAD
+   399                           ;main.c: 33:         PORTA = 0x55;
+   400  000072  0E55               	movlw	85
+   401  000074  6E80               	movwf	128,c	;volatile
+=======
    399                           ;main.c: 33:         PORTD = 0x55;
    400  000072  0E55               	movlw	85
    401  000074  6E83               	movwf	131,c	;volatile
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
    402  000076                     
    403                           ;main.c: 34:         _delay((unsigned long)((400)*(1000000/4000.0)));
    404  000076  0E82               	movlw	130
@@ -424,9 +548,15 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
    410  000080  2E01               	decfsz	??_myHiIsr^0,f,c
    411  000082  D7FC               	bra	i2u5_47
    412  000084                     
+<<<<<<< HEAD
+   413                           ;main.c: 36:         PORTA = 0xAA;
+   414  000084  0EAA               	movlw	170
+   415  000086  6E80               	movwf	128,c	;volatile
+=======
    413                           ;main.c: 36:         PORTD = 0xAA;
    414  000084  0EAA               	movlw	170
    415  000086  6E83               	movwf	131,c	;volatile
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
    416                           
    417                           ;main.c: 37:         _delay((unsigned long)((400)*(1000000/4000.0)));
    418  000088  0E82               	movlw	130
@@ -451,6 +581,259 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
    437  0000A4  EF39  F000         	goto	i2l751
    438  0000A8                     i2u1_40:
    439  0000A8                     
+<<<<<<< HEAD
+   440                           ;main.c: 40:     PORTA = 0;
+   441  0000A8  0E00               	movlw	0
+   442  0000AA  6E80               	movwf	128,c	;volatile
+   443  0000AC                     
+   444                           ;main.c: 41:     INTCONbits.INT0IF = 0;
+   445  0000AC  92F2               	bcf	242,1,c	;volatile
+   446  0000AE  9209               	bcf	int$flags,1,c	;clear compiler interrupt flag (level 2)
+   447  0000B0  0011               	retfie		f
+   448  0000B2                     __end_of_myHiIsr:
+   449                           	callstack 0
+   450  0000                     
+   451                           	psect	rparam
+   452  0000                     
+   453                           	psect	temp
+   454  000009                     btemp:
+   455                           	callstack 0
+   456  000009                     	ds	1
+   457  0000                     int$flags	set	btemp
+   458  0000                     wtemp8	set	btemp+1
+   459  0000                     ttemp5	set	btemp+1
+   460  0000                     ttemp6	set	btemp+4
+   461  0000                     ttemp7	set	btemp+8
+   462                           
+   463                           	psect	idloc
+   464                           
+   465                           ;Config register IDLOC0 @ 0x200000
+   466                           ;	unspecified, using default values
+   467  200000                     	org	2097152
+   468  200000  FF                 	db	255
+   469                           
+   470                           ;Config register IDLOC1 @ 0x200001
+   471                           ;	unspecified, using default values
+   472  200001                     	org	2097153
+   473  200001  FF                 	db	255
+   474                           
+   475                           ;Config register IDLOC2 @ 0x200002
+   476                           ;	unspecified, using default values
+   477  200002                     	org	2097154
+   478  200002  FF                 	db	255
+   479                           
+   480                           ;Config register IDLOC3 @ 0x200003
+   481                           ;	unspecified, using default values
+   482  200003                     	org	2097155
+   483  200003  FF                 	db	255
+   484                           
+   485                           ;Config register IDLOC4 @ 0x200004
+   486                           ;	unspecified, using default values
+   487  200004                     	org	2097156
+   488  200004  FF                 	db	255
+   489                           
+   490                           ;Config register IDLOC5 @ 0x200005
+   491                           ;	unspecified, using default values
+   492  200005                     	org	2097157
+   493  200005  FF                 	db	255
+   494                           
+   495                           ;Config register IDLOC6 @ 0x200006
+   496                           ;	unspecified, using default values
+   497  200006                     	org	2097158
+   498  200006  FF                 	db	255
+   499                           
+   500                           ;Config register IDLOC7 @ 0x200007
+   501                           ;	unspecified, using default values
+   502  200007                     	org	2097159
+   503  200007  FF                 	db	255
+   504                           
+   505                           	psect	config
+   506                           
+   507                           ;Config register CONFIG1L @ 0x300000
+   508                           ;	unspecified, using default values
+   509                           ;	PLL Selection
+   510                           ;	PLLSEL = 0x0, unprogrammed default
+   511                           ;	PLL Enable Configuration bit
+   512                           ;	CFGPLLEN = 0x0, unprogrammed default
+   513                           ;	CPU System Clock Postscaler
+   514                           ;	CPUDIV = 0x0, unprogrammed default
+   515                           ;	Low Speed USB mode with 48 MHz system clock
+   516                           ;	LS48MHZ = 0x0, unprogrammed default
+   517  300000                     	org	3145728
+   518  300000  00                 	db	0
+   519                           
+   520                           ;Config register CONFIG1H @ 0x300001
+   521                           ;	Oscillator Selection
+   522                           ;	FOSC = INTOSCIO, Internal oscillator
+   523                           ;	Primary Oscillator Shutdown
+   524                           ;	PCLKEN = 0x1, unprogrammed default
+   525                           ;	Fail-Safe Clock Monitor
+   526                           ;	FCMEN = 0x0, unprogrammed default
+   527                           ;	Internal/External Oscillator Switchover
+   528                           ;	IESO = 0x0, unprogrammed default
+   529  300001                     	org	3145729
+   530  300001  28                 	db	40
+   531                           
+   532                           ;Config register CONFIG2L @ 0x300002
+   533                           ;	unspecified, using default values
+   534                           ;	Power-up Timer Enable
+   535                           ;	nPWRTEN = 0x1, unprogrammed default
+   536                           ;	Brown-out Reset Enable
+   537                           ;	BOREN = 0x3, unprogrammed default
+   538                           ;	Brown-out Reset Voltage
+   539                           ;	BORV = 0x3, unprogrammed default
+   540                           ;	Low-Power Brown-out Reset
+   541                           ;	nLPBOR = 0x1, unprogrammed default
+   542  300002                     	org	3145730
+   543  300002  5F                 	db	95
+   544                           
+   545                           ;Config register CONFIG2H @ 0x300003
+   546                           ;	Watchdog Timer Enable bits
+   547                           ;	WDTEN = OFF, WDT disabled in hardware (SWDTEN ignored)
+   548                           ;	Watchdog Timer Postscaler
+   549                           ;	WDTPS = 0xF, unprogrammed default
+   550  300003                     	org	3145731
+   551  300003  3C                 	db	60
+   552                           
+   553                           ; Padding undefined space
+   554  300004                     	org	3145732
+   555  300004  FF                 	db	255
+   556                           
+   557                           ;Config register CONFIG3H @ 0x300005
+   558                           ;	CCP2 MUX bit
+   559                           ;	CCP2MX = 0x1, unprogrammed default
+   560                           ;	PORTB A/D Enable bit
+   561                           ;	PBADEN = 0x1, unprogrammed default
+   562                           ;	Timer3 Clock Input MUX bit
+   563                           ;	T3CMX = 0x1, unprogrammed default
+   564                           ;	SDO Output MUX bit
+   565                           ;	SDOMX = 0x1, unprogrammed default
+   566                           ;	Master Clear Reset Pin Enable
+   567                           ;	MCLRE = ON, MCLR pin enabled; RE3 input disabled
+   568  300005                     	org	3145733
+   569  300005  D3                 	db	211
+   570                           
+   571                           ;Config register CONFIG4L @ 0x300006
+   572                           ;	Stack Full/Underflow Reset
+   573                           ;	STVREN = 0x1, unprogrammed default
+   574                           ;	Single-Supply ICSP Enable bit
+   575                           ;	LVP = OFF, Single-Supply ICSP disabled
+   576                           ;	Dedicated In-Circuit Debug/Programming Port Enable
+   577                           ;	ICPRT = OFF, ICPORT disabled
+   578                           ;	Extended Instruction Set Enable bit
+   579                           ;	XINST = 0x0, unprogrammed default
+   580                           ;	Background Debugger Enable bit
+   581                           ;	DEBUG = 0x1, unprogrammed default
+   582  300006                     	org	3145734
+   583  300006  81                 	db	129
+   584                           
+   585                           ; Padding undefined space
+   586  300007                     	org	3145735
+   587  300007  FF                 	db	255
+   588                           
+   589                           ;Config register CONFIG5L @ 0x300008
+   590                           ;	unspecified, using default values
+   591                           ;	Block 0 Code Protect
+   592                           ;	CP0 = 0x1, unprogrammed default
+   593                           ;	Block 1 Code Protect
+   594                           ;	CP1 = 0x1, unprogrammed default
+   595                           ;	Block 2 Code Protect
+   596                           ;	CP2 = 0x1, unprogrammed default
+   597                           ;	Block 3 Code Protect
+   598                           ;	CP3 = 0x1, unprogrammed default
+   599  300008                     	org	3145736
+   600  300008  0F                 	db	15
+   601                           
+   602                           ;Config register CONFIG5H @ 0x300009
+   603                           ;	unspecified, using default values
+   604                           ;	Boot Block Code Protect
+   605                           ;	CPB = 0x1, unprogrammed default
+   606                           ;	Data EEPROM Code Protect
+   607                           ;	CPD = 0x1, unprogrammed default
+   608  300009                     	org	3145737
+   609  300009  C0                 	db	192
+   610                           
+   611                           ;Config register CONFIG6L @ 0x30000A
+   612                           ;	unspecified, using default values
+   613                           ;	Block 0 Write Protect
+   614                           ;	WRT0 = 0x1, unprogrammed default
+   615                           ;	Block 1 Write Protect
+   616                           ;	WRT1 = 0x1, unprogrammed default
+   617                           ;	Block 2 Write Protect
+   618                           ;	WRT2 = 0x1, unprogrammed default
+   619                           ;	Block 3 Write Protect
+   620                           ;	WRT3 = 0x1, unprogrammed default
+   621  30000A                     	org	3145738
+   622  30000A  0F                 	db	15
+   623                           
+   624                           ;Config register CONFIG6H @ 0x30000B
+   625                           ;	unspecified, using default values
+   626                           ;	Configuration Registers Write Protect
+   627                           ;	WRTC = 0x1, unprogrammed default
+   628                           ;	Boot Block Write Protect
+   629                           ;	WRTB = 0x1, unprogrammed default
+   630                           ;	Data EEPROM Write Protect
+   631                           ;	WRTD = 0x1, unprogrammed default
+   632  30000B                     	org	3145739
+   633  30000B  E0                 	db	224
+   634                           
+   635                           ;Config register CONFIG7L @ 0x30000C
+   636                           ;	unspecified, using default values
+   637                           ;	Block 0 Table Read Protect
+   638                           ;	EBTR0 = 0x1, unprogrammed default
+   639                           ;	Block 1 Table Read Protect
+   640                           ;	EBTR1 = 0x1, unprogrammed default
+   641                           ;	Block 2 Table Read Protect
+   642                           ;	EBTR2 = 0x1, unprogrammed default
+   643                           ;	Block 3 Table Read Protect
+   644                           ;	EBTR3 = 0x1, unprogrammed default
+   645  30000C                     	org	3145740
+   646  30000C  0F                 	db	15
+   647                           
+   648                           ;Config register CONFIG7H @ 0x30000D
+   649                           ;	unspecified, using default values
+   650                           ;	Boot Block Table Read Protect
+   651                           ;	EBTRB = 0x1, unprogrammed default
+   652  30000D                     	org	3145741
+   653  30000D  40                 	db	64
+   654                           tosu	equ	0xFFF
+   655                           tosh	equ	0xFFE
+   656                           tosl	equ	0xFFD
+   657                           stkptr	equ	0xFFC
+   658                           pclatu	equ	0xFFB
+   659                           pclath	equ	0xFFA
+   660                           pcl	equ	0xFF9
+   661                           tblptru	equ	0xFF8
+   662                           tblptrh	equ	0xFF7
+   663                           tblptrl	equ	0xFF6
+   664                           tablat	equ	0xFF5
+   665                           prodh	equ	0xFF4
+   666                           prodl	equ	0xFF3
+   667                           indf0	equ	0xFEF
+   668                           postinc0	equ	0xFEE
+   669                           postdec0	equ	0xFED
+   670                           preinc0	equ	0xFEC
+   671                           plusw0	equ	0xFEB
+   672                           fsr0h	equ	0xFEA
+   673                           fsr0l	equ	0xFE9
+   674                           wreg	equ	0xFE8
+   675                           indf1	equ	0xFE7
+   676                           postinc1	equ	0xFE6
+   677                           postdec1	equ	0xFE5
+   678                           preinc1	equ	0xFE4
+   679                           plusw1	equ	0xFE3
+   680                           fsr1h	equ	0xFE2
+   681                           fsr1l	equ	0xFE1
+   682                           bsr	equ	0xFE0
+   683                           indf2	equ	0xFDF
+   684                           postinc2	equ	0xFDE
+   685                           postdec2	equ	0xFDD
+   686                           preinc2	equ	0xFDC
+   687                           plusw2	equ	0xFDB
+   688                           fsr2h	equ	0xFDA
+   689                           fsr2l	equ	0xFD9
+   690                           status	equ	0xFD8
+=======
    440                           ;main.c: 41:     INTCONbits.INT0IF = 0;
    441  0000A8  92F2               	bcf	242,1,c	;volatile
    442  0000AA  9209               	bcf	int$flags,1,c	;clear compiler interrupt flag (level 2)
@@ -698,6 +1081,7 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
    684                           fsr2h	equ	0xFDA
    685                           fsr2l	equ	0xFD9
    686                           status	equ	0xFD8
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 
 Data Sizes:
     Strings     0
@@ -902,6 +1286,45 @@ SFR                  0      0       0     200        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
+<<<<<<< HEAD
+Symbol Table                                                                                   Fri Oct 15 14:51:49 2021
+
+                     l61 00DC                       u37 00EC           ?_configuracion 0001  
+                     bsr 000FE0                      l741 00DA                      l743 00DE  
+                    l737 00B2                      l745 00E2                      l739 00B6  
+                    l747 00E6                      wreg 000FE8                     _LATA 000F89  
+                   _LATD 000F8C                     i1l56 002E                     i1l57 0054  
+                   i2l50 00AE                     i1l58 0056                     _main 00DE  
+                   btemp 0009                     start 0066             ___param_bank 000000  
+                  ?_main 0001                    i1l771 0044                    i1l765 0026  
+                  i1l767 0032                    i1l769 0042                    i2l751 0072  
+                  i2l761 00A8                    i2l753 0076                    i2l763 00AC  
+                  i2l755 0084                    i2l757 0096                    i2l749 006A  
+                  i2l759 0098                    _PORTA 000F80                    _PORTD 000F83  
+                  _TRISA 000F92                    _TRISB 000F93                    _TRISD 000F95  
+        __end_of_myHiIsr 00B2          __end_of_myLoIsr 0066                    ttemp5 000A  
+                  ttemp6 000D                    ttemp7 0011                    status 000FD8  
+                  wtemp8 000A          __initialization 00FE             __end_of_main 00FE  
+        ??_configuracion 0008                   ??_main 0008            __activetblptr 000000  
+                 _ANSELA 000F5B                   _ANSELB 000F5C                   _ANSELD 000F5E  
+                 _INTCON 000FF2                   i1u2_20 0054                   i1u2_21 0050  
+                 i1u4_27 0038                   i2u1_40 00A8                   i2u1_41 00A4  
+                 i2u5_47 007C                   i2u6_47 008E                   isa$std 000001  
+              ??_myHiIsr 0001                ??_myLoIsr 0003               __accesstop 0060  
+__end_of__initialization 00FE            ___rparam_used 000001           __pcstackCOMRAM 0001  
+                _INTCON3 000FF0                  __Hparam 0000                  __Lparam 0000  
+                __pcinit 00FE                  __ramtop 0800                  __ptext0 00DE  
+                __ptext1 00B2                  _myHiIsr 0008                  _myLoIsr 0018  
+         __pintcode_body 006A     end_of_initialization 00FE                  int_func 006A  
+  __end_of_configuracion 00DE      start_initialization 00FE                __pintcode 0008  
+            __pintcodelo 0018                 ?_myHiIsr 0001                 ?_myLoIsr 0001  
+               _RCONbits 000FD0              _INTCON3bits 000FF0                 __Hrparam 0000  
+               __Lrparam 0000         __size_of_myHiIsr 00AA         __size_of_myLoIsr 004E  
+ __size_of_configuracion 002C            __size_of_main 0020                 isa$xinst 000000  
+               int$flags 0009               _INTCONbits 000FF2                 myHiIsr@A 0002  
+               myLoIsr@A 0007                 intlevel1 0000                 intlevel2 0000  
+          _configuracion 00B2  
+=======
 Symbol Table                                                                                   Thu Oct 14 23:10:12 2021
 
                      l61 00D8                       u37 00E8           ?_configuracion 0001  
@@ -938,3 +1361,4 @@ Symbol Table                                                                    
           __size_of_main 0020                 isa$xinst 000000                 int$flags 0009  
              _INTCONbits 000FF2                 myHiIsr@A 0002                 myLoIsr@A 0007  
                intlevel1 0000                 intlevel2 0000            _configuracion 00AE  
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772

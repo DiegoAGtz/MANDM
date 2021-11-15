@@ -1,6 +1,10 @@
 
 Memory Summary:
+<<<<<<< HEAD
+    Program space        used    48h (    72) of  8000h bytes   (  0.2%)
+=======
     Program space        used    44h (    68) of  8000h bytes   (  0.2%)
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
     Data space           used     2h (     2) of   800h bytes   (  0.1%)
     Configuration bits   used     7h (     7) of     7h words   (100.0%)
     EEPROM space         used     0h (     0) of   100h bytes   (  0.0%)

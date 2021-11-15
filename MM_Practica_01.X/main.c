@@ -17,6 +17,10 @@
 void main(void) {
     TRISA = 0;
     ANSELA = 0;
+<<<<<<< HEAD
+    LATA = 0;
+=======
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 
     char contador = 0xFF; // Variable que usaremos para el contador
     while (1) {
