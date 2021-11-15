@@ -9,11 +9,19 @@ Version 4.0 HI-TECH Software Intermediate Code
 "22
 [; ;main.c: 22: int conversion(void);
 [v _conversion `(i ~T0 @X0 0 ef ]
+<<<<<<< HEAD
 "9596 /opt/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f45k50.h
 [; ;/opt/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f45k50.h: 9596: extern volatile unsigned char CCPR1L __attribute__((address(0xFBE)));
 [v _CCPR1L `Vuc ~T0 @X0 0 e@4030 ]
 "9870
 [; ;/opt/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f45k50.h: 9870: extern volatile unsigned char ADRESL __attribute__((address(0xFC3)));
+=======
+"9596 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 9596: extern volatile unsigned char CCPR1L __attribute__((address(0xFBE)));
+[v _CCPR1L `Vuc ~T0 @X0 0 e@4030 ]
+"9870
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 9870: extern volatile unsigned char ADRESL __attribute__((address(0xFC3)));
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 [v _ADRESL `Vuc ~T0 @X0 0 e@4035 ]
 "9397
 [; ;/opt/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f45k50.h: 9397: extern volatile unsigned char CCP1CON __attribute__((address(0xFBD)));

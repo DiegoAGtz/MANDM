@@ -2,10 +2,18 @@ Microchip MPLAB XC8 Compiler V2.32
 
 Linker command line:
 
+<<<<<<< HEAD
 -W-3 --edf=/opt/microchip/xc8/v2.32/pic/dat/en_msgs.txt -cn \
   -h+dist/default/production/MM_Practica_06.X.production.sym \
   --cmf=dist/default/production/MM_Practica_06.X.production.cmf -z \
   -Q18F45K50 -o/tmp/xcXGdjhNn --defsym=__MPLAB_BUILD=1 \
+=======
+-W-3 --edf=C:\Program Files\Microchip\xc8\v2.32\pic\dat\en_msgs.txt -cn \
+  -h+dist/default/production\MM_Practica_06.X.production.sym \
+  --cmf=dist/default/production\MM_Practica_06.X.production.cmf -z \
+  -Q18F45K50 -oC:\Users\diego\AppData\Local\Temp\xcAsbr8.4 \
+  --defsym=__MPLAB_BUILD=1 \
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
   -Mdist/default/production/MM_Practica_06.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=077h-07FFh -pstack=STACK \
   -ACODE=00h-07FFFh -ACONST=00h-07FFFh -ASMALLCONST=0800h-08FFhx120 \
@@ -23,7 +31,12 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
+<<<<<<< HEAD
   /tmp/xcXAaNONN.o dist/default/production/MM_Practica_06.X.production.o 
+=======
+  C:\Users\diego\AppData\Local\Temp\xcAsbr8.o \
+  dist/default/production\MM_Practica_06.X.production.o 
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 
 Object code version is 3.11
 
@@ -32,7 +45,11 @@ Machine type is 18F45K50
 
 
                 Name                               Link     Load   Length Selector   Space Scale
+<<<<<<< HEAD
 /tmp/xcXAaNONN.o
+=======
+C:\Users\diego\AppData\Local\Temp\xcAsbr8.o
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
                 idloc                            200000   200000        8        0       5
                 config                           300000   300000        E        0       4
                 init                                  0        0        4        0       0
@@ -125,6 +142,7 @@ SEGMENTS        Name                           Load    Length   Top    Selector 
                 text9                          006FB0  000106  0070B6      37D8       0  CODE    
                 text2                          0071C8  0001B4  00737C      38E4       0  CODE    
                 reset_vec                      000000  000004  000004         0       0  CODE    
+<<<<<<< HEAD
                 text0                          006E2E  0000BE  006EEC      3717       0  CODE    
                 text6                          00737C  00039A  007716      39BE       0  CODE    
                 text5                          007716  00042A  007B40      3B8B       0  CODE    
@@ -135,6 +153,22 @@ SEGMENTS        Name                           Load    Length   Top    Selector 
                 text4                          007B40  0004C0  008000      3DA0       0  CODE    
                 cstackBANK0                    000060  000017  000077        60       1  BANK0   
                 cstackCOMRAM                   000001  00005D  00005E         1       1  COMRAM  
+=======
+                cstackCOMRAM                   000001  00005D  00005E         1       1  COMRAM  
+                cstackBANK0                    000060  000017  000077        60       1  BANK0   
+                cinit                          006D92  000006  006D98      36C9       0  CODE    
+                text7                          006D98  000024  006DBC      36CC       0  CODE    
+                text8                          006DBC  00002C  006DE8      36DE       0  CODE    
+                text3                          006DE8  000046  006E2E      36F4       0  CODE    
+                text0                          006E2E  0000BE  006EEC      3717       0  CODE    
+                text10                         006EEC  0000C4  006FB0      3776       0  CODE    
+                text9                          006FB0  000106  0070B6      37D8       0  CODE    
+                text1                          0070B6  000112  0071C8      385B       0  CODE    
+                text2                          0071C8  0001B4  00737C      38E4       0  CODE    
+                text6                          00737C  00039A  007716      39BE       0  CODE    
+                text5                          007716  00042A  007B40      3B8B       0  CODE    
+                text4                          007B40  0004C0  008000      3DA0       0  CODE    
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 
 
 UNUSED ADDRESS RANGES
@@ -450,7 +484,11 @@ start_initialization     cinit        006D92
 MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
+<<<<<<< HEAD
 /opt/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+=======
+C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\awdiv.c
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 		___awdiv       		CODE           	6EEC	0000	196
 
 /opt/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c estimated size: 196
@@ -466,21 +504,50 @@ Module		Function		Class		Link	Load	Size
 
 /opt/microchip/xc8/v2.32/pic/sources/c99/common/xxtofl.c estimated size: 436
 
+C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\sprcadd.c
+		___flsub       		CODE           	6DE8	0000	70
+		___fladd       		CODE           	7B40	0000	1216
+
+C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\sprcadd.c estimated size: 1286
+
 shared
 		__initialization		CODE           	6D92	0000	1
 
 shared estimated size: 1
 
+<<<<<<< HEAD
 /opt/microchip/xc8/v2.32/pic/sources/c99/common/sprcmul.c
 		___flmul       		CODE           	7716	0000	1066
 
 /opt/microchip/xc8/v2.32/pic/sources/c99/common/sprcmul.c estimated size: 1066
+=======
+C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\sprcmul.c
+		___flmul       		CODE           	7716	0000	1066
+
+C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\sprcmul.c estimated size: 1066
+
+C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\sprcdiv.c
+		___fldiv       		CODE           	737C	0000	922
+
+C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\sprcdiv.c estimated size: 922
+
+C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\fltol.c
+		___fltol       		CODE           	6FB0	0000	262
+
+C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\fltol.c estimated size: 262
+
+C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\xxtofl.c
+		___xxtofl      		CODE           	71C8	0000	436
+
+C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\xxtofl.c estimated size: 436
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 
 main.c
 		_conversion    		CODE           	6D98	0000	36
 		_configuracion 		CODE           	6DBC	0000	44
 		_main          		CODE           	6E2E	0000	190
 		_mapeo         		CODE           	70B6	0000	274
+<<<<<<< HEAD
 
 main.c estimated size: 544
 
@@ -493,4 +560,8 @@ main.c estimated size: 544
 		___fltol       		CODE           	6FB0	0000	262
 
 /opt/microchip/xc8/v2.32/pic/sources/c99/common/fltol.c estimated size: 262
+=======
+
+main.c estimated size: 544
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 

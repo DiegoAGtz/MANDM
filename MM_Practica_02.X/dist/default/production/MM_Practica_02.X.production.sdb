@@ -29,13 +29,21 @@
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "91 /opt/microchip/xc8/v2.32/pic/sources/c99/common/Umul64.c
 [v ___omul __omul `(uo  1 e 8 0 ]
+<<<<<<< HEAD
 "20 /home/diego/MPLABXProjects/MANDM/MM_Practica_02.X/main.c
+=======
+"20 C:\Users\diego\MPLABXProjects\MM_Practica_02.X\main.c
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 [v _main main `(v  1 e 1 0 ]
 "43
 [v _configuracion configuracion `(v  1 e 1 0 ]
 "52
 [v _conversion conversion `(i  1 e 2 0 ]
+<<<<<<< HEAD
 "277 /opt/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f45k50.h
+=======
+"277 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 [v _ANSELB ANSELB `VEuc  1 e 1 @3932 ]
 "3053
 [v _PORTB PORTB `VEuc  1 e 1 @3969 ]
@@ -79,7 +87,11 @@
 [v _ADRESL ADRESL `VEuc  1 e 1 @4035 ]
 "9877
 [v _ADRESH ADRESH `VEuc  1 e 1 @4036 ]
+<<<<<<< HEAD
 "20 /home/diego/MPLABXProjects/MANDM/MM_Practica_02.X/main.c
+=======
+"20 C:\Users\diego\MPLABXProjects\MM_Practica_02.X\main.c
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 [v _main main `(v  1 e 1 0 ]
 {
 "22

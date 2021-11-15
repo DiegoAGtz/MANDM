@@ -30,6 +30,7 @@ void main(void) {
 void __interrupt(high_priority) myHiIsr(void) {
     char A = 10;
     while (A) {
+<<<<<<< HEAD
         PORTA = 0x55; // Encienden los pares
         __delay_ms(400);
 
@@ -38,6 +39,16 @@ void __interrupt(high_priority) myHiIsr(void) {
         A -= 1;
     }
     PORTA = 0;
+=======
+        PORTD = 0x55; // Encienden los pares
+        __delay_ms(400);
+
+        PORTD = 0xAA; // Encienden los impares
+        __delay_ms(400);
+        A -= 1;
+    }
+
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
     INTCONbits.INT0IF = 0;
 }
 

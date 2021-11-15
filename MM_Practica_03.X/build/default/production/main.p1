@@ -3,8 +3,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "19 main.c
 [; ;main.c: 19: void configuracion(void);
 [v _configuracion `(v ~T0 @X0 0 ef ]
+<<<<<<< HEAD
 "2901 /opt/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f45k50.h
 [; ;/opt/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f45k50.h: 2901: extern volatile unsigned char PORTA __attribute__((address(0xF80)));
+=======
+"2901 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 2901: extern volatile unsigned char PORTA __attribute__((address(0xF80)));
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 [v _PORTA `Vuc ~T0 @X0 0 e@3968 ]
 [v F4805 `(v ~T0 @X0 1 tf1`ul ]
 "203 /opt/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/pic18.h
@@ -12,8 +17,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p i __delay ]
 [t ~ __interrupt . k ]
 [t T3 __interrupt high_priority ]
+<<<<<<< HEAD
 "13231 /opt/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f45k50.h
 [; ;/opt/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f45k50.h: 13231:     struct {
+=======
+"3305 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 3305: extern volatile unsigned char PORTD __attribute__((address(0xF83)));
+[v _PORTD `Vuc ~T0 @X0 0 e@3971 ]
+"13231
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 13231:     struct {
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 [s S612 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S612 . IOCIF INT0IF TMR0IF IOCIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
 "13241
@@ -32,9 +45,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;/opt/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f45k50.h: 13257: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
 [v _INTCONbits `VS611 ~T0 @X0 0 e@4082 ]
 [t T4 __interrupt low_priority ]
+<<<<<<< HEAD
 "3305
 [; ;/opt/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f45k50.h: 3305: extern volatile unsigned char PORTD __attribute__((address(0xF83)));
 [v _PORTD `Vuc ~T0 @X0 0 e@3971 ]
+=======
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 "13062
 [; ;/opt/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f45k50.h: 13062:     struct {
 [s S605 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -799,14 +815,24 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 642 ]
 {
 "33
+<<<<<<< HEAD
 [; ;main.c: 33:         PORTA = 0x55;
 [e = _PORTA -> -> 85 `i `uc ]
+=======
+[; ;main.c: 33:         PORTD = 0x55;
+[e = _PORTD -> -> 85 `i `uc ]
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 "34
 [; ;main.c: 34:         _delay((unsigned long)((400)*(1000000/4000.0)));
 [e ( __delay (1 -> * -> -> 400 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
 "36
+<<<<<<< HEAD
 [; ;main.c: 36:         PORTA = 0xAA;
 [e = _PORTA -> -> 170 `i `uc ]
+=======
+[; ;main.c: 36:         PORTD = 0xAA;
+[e = _PORTD -> -> 170 `i `uc ]
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 "37
 [; ;main.c: 37:         _delay((unsigned long)((400)*(1000000/4000.0)));
 [e ( __delay (1 -> * -> -> 400 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
@@ -821,9 +847,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 32:     while (A) {
 [e $ != -> _A `i -> 0 `i 642  ]
 [e :U 643 ]
+<<<<<<< HEAD
 "40
 [; ;main.c: 40:     PORTA = 0;
 [e = _PORTA -> -> 0 `i `uc ]
+=======
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 "41
 [; ;main.c: 41:     INTCONbits.INT0IF = 0;
 [e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]

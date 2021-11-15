@@ -197,9 +197,15 @@ text1 7E9C 7EBF CODE 7E9C 0
 text2 7E84 7E9B CODE 7E84 0
 cinit 7E7E 7E83 CODE 7E7E 0
 %locals
+<<<<<<< HEAD
 dist/default/production/MM_Practica_02.X.production.o
 /opt/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f45k50.h
 /tmp/xcXgDhMmI.s
+=======
+dist/default/production\MM_Practica_02.X.production.o
+C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h
+C:\Users\diego\AppData\Local\Temp\xcAs1r8.s
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 562 7E7E 0 CODE 0
 564 7E7E 0 CODE 0
 567 7E7E 0 CODE 0
@@ -226,7 +232,11 @@ main.c
 48 7E92 0 CODE 0
 49 7E96 0 CODE 0
 50 7E9A 0 CODE 0
+<<<<<<< HEAD
 /opt/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+=======
+C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\awdiv.c
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 7 7F3C 0 CODE 0
 13 7F3C 0 CODE 0
 14 7F40 0 CODE 0

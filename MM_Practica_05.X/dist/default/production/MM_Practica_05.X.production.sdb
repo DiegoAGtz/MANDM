@@ -199,7 +199,11 @@
 ]
 [u S251 . 1 `S229 1 . 1 0 `S238 1 . 1 0 `S247 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES251  1 e 1 @4082 ]
+<<<<<<< HEAD
 "19 /home/diego/MPLABXProjects/MANDM/MM_Practica_05.X/main.c
+=======
+"19 C:\Users\diego\MPLABXProjects\MM_Practica_05.X\main.c
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 [v _Value Value `uc  1 e 1 0 ]
 "26
 [v _main main `(v  1 e 1 0 ]

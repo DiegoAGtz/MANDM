@@ -8012,10 +8012,18 @@ extern __attribute__((nonreentrant)) void _delay(unsigned long);
 extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
+<<<<<<< HEAD
 # 33 "/opt/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/xc.h" 2 3
 # 14 "main.c" 2
 
 
+=======
+# 33 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 2 3
+# 13 "main.c" 2
+
+
+
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 
 void main(void) {
     TRISA = 0;

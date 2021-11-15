@@ -8013,10 +8013,18 @@ extern __attribute__((nonreentrant)) void _delay(unsigned long);
 extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
+<<<<<<< HEAD
 # 33 "/opt/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/xc.h" 2 3
 # 15 "main.c" 2
 
 
+=======
+# 33 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 2 3
+# 14 "main.c" 2
+
+
+
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 void __attribute__((picinterrupt(("high_priority")))) myHiIsr(void);
 void __attribute__((picinterrupt(("low_priority")))) myLoIsr(void);
 void configuracion(void);
@@ -8033,6 +8041,7 @@ void main(void) {
 void __attribute__((picinterrupt(("high_priority")))) myHiIsr(void) {
     char A = 10;
     while (A) {
+<<<<<<< HEAD
         PORTA = 0x55;
         _delay((unsigned long)((400)*(1000000/4000.0)));
 
@@ -8044,6 +8053,19 @@ void __attribute__((picinterrupt(("high_priority")))) myHiIsr(void) {
     INTCONbits.INT0IF = 0;
 }
 
+=======
+        PORTD = 0x55;
+        _delay((unsigned long)((400)*(1000000/4000.0)));
+
+        PORTD = 0xAA;
+        _delay((unsigned long)((400)*(1000000/4000.0)));
+        A -= 1;
+    }
+
+    INTCONbits.INT0IF = 0;
+}
+
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 void __attribute__((picinterrupt(("low_priority")))) myLoIsr(void) {
     char A = 10;
     while (A) {

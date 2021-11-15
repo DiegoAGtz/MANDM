@@ -8021,6 +8021,11 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 void configuracion(void);
 int conversion(void);
 float mapeo(int valor, float minEntrada, float maxEntrada, float minSalida, float maxSalida);

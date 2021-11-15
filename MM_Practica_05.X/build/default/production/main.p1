@@ -92,6 +92,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;/opt/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f45k50.h: 6516: extern volatile PIE2bits_t PIE2bits __attribute__((address(0xFA0)));
 [v _PIE2bits `VS262 ~T0 @X0 0 e@4000 ]
 "6691
+<<<<<<< HEAD
 [; ;/opt/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f45k50.h: 6691:     struct {
 [s S271 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S271 . CCP2IP TMR3IP HLVDIP BCLIP EEIP C2IP C1IP OSCFIP ]
@@ -109,6 +110,25 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S270 . . . . ]
 "6714
 [; ;/opt/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f45k50.h: 6714: extern volatile IPR2bits_t IPR2bits __attribute__((address(0xFA2)));
+=======
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 6691:     struct {
+[s S271 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S271 . CCP2IP TMR3IP HLVDIP BCLIP EEIP C2IP C1IP OSCFIP ]
+"6701
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 6701:     struct {
+[s S272 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S272 . . LVDIP BCL1IP . CM2IP CM1IP ]
+"6709
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 6709:     struct {
+[s S273 :6 `uc 1 :1 `uc 1 ]
+[n S273 . . CMIP ]
+"6690
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 6690: typedef union {
+[u S270 `S271 1 `S272 1 `S273 1 ]
+[n S270 . . . . ]
+"6714
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f45k50.h: 6714: extern volatile IPR2bits_t IPR2bits __attribute__((address(0xFA2)));
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 [v _IPR2bits `VS270 ~T0 @X0 0 e@4002 ]
 "6957
 [; ;/opt/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f45k50.h: 6957:     struct {

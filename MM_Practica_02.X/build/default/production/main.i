@@ -8020,6 +8020,12 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 void configuracion(void);
 int conversion(void);
 
+<<<<<<< HEAD
+=======
+void configuracion(void);
+int conversion(void);
+
+>>>>>>> cd28643c24261472ab76b5bd65873cef17a92772
 void main(void) {
     configuracion();
     int conv;
