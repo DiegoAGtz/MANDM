@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define _XTAL_FREQ 4000000      // Frecuencia del micro
+#define _XTAL_FREQ 4000000      // Frecuencia del microcontrolador
 
 char Letra[3];
 char Bandera = 0;
