@@ -1,5 +1,4 @@
-/*
- * File:   main.c
+/* File:   main.c
  * Author: diego
  *
  * Created on 25 de septiembre de 2021, 09:48 PM
@@ -12,25 +11,22 @@
 #pragma config ICPRT = OFF // Dedicated In-Circuit Debug/Programming Port Enable (ICPORT disabled)
 
 #include <xc.h> 
-#define _XTAL_FREQ 1000000 // Frecuencia por default 
-void main(void) { 
-    
-    // TRISD=0;     // Original
-    //NSELD=0;    // Original
-    TRISA = 0;   // Ejercicio 1 y 2
-    ANSELA = 0;  // Ejercicio 1 y 2
 
-    char contador = 0xFF;
-    while(1) 
-    { 
-        //LATDbits.LD1 ^= 1;   // Original
-        LATAbits.LA1 ^= 1;   // Ejercicio 1
-        //LATA = contador;
-        if(--contador < 0) {
-            contador = 0xFF;
+#define _XTAL_FREQ 1000000 // Frecuencia por default 
+
+void main(void) {
+    TRISA = 0;
+    ANSELA = 0;
+    LATA = 0;
+
+    char contador = 0xFF; // Variable que usaremos para el contador
+    while (1) {
+        LATA = contador; // Asignamos contador a LATA
+        if (--contador < 0) { // Disminuimos y comprobamos
+            contador = 0xFF; // Regresamos a su valor inicial
         }
         __delay_ms(500);
-        //__delay_ms(500);    // Ejercicio 3
-    } 
-    return; 
+        __delay_ms(500);    // Añadimos un delay extra
+    }
+    return;
 }

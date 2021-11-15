@@ -14,16 +14,23 @@
 #include <xc.h> 
 #include <pic18f45k50.h> 
 
-#define _XTAL_FREQ 1000000 // Frecuencia por default 
+// Cambiamos la frecuencia para alcanzar un periodo de 20ms. Seguro que ha y mejores
+// formas de lograrlo, postscaler tal vez. Esta fue la forma que yo encontre.
+#define _XTAL_FREQ 500000
 
-void Configuracion(void);
-int Conversion(void);
+void configuracion(void);
+int conversion(void);
+float mapeo(int valor, float minEntrada, float maxEntrada, float minSalida, float maxSalida);
 
 void main(void) {
     char Datos = 0;
-    Configuracion();
+    float valor;
+    configuracion();
     while (1) {
-        CCPR1L = Conversion() / 4; // Despliega los 8 bits más significativos 
+        // Mapeamos los valores en el rango que el servo se mueve, 1ms - 2ms
+        valor = mapeo(conversion(), 0, 1023, 31.25, 62.5);
+        // Convertimos a int el valor mapeado para que pueda ser desplegado
+        CCPR1L = (int) valor / 4; // Despliega los 8 bits más significativos 
         Datos = ADRESL << 4;
         Datos = Datos & 0x30; //Enmascara todos los bits menos 5:4 
         CCP1CON = CCP1CON | Datos;
@@ -32,21 +39,25 @@ void main(void) {
     return;
 }
 
-void Configuracion(void) {
+void configuracion(void) {
     OSCCON = 0x23;
     TRISC = 0;
     ANSELC = 0;
     ADCON0 = 0x01;
     ADCON1 = 0x00;
     ADCON2 = 0x90;
-    T2CON = 0x06; //Postscaler 1:1, prescaler 1:16 
+    T2CON = 0x06; //Postscaler 1:1, prescaler 1:16
     CCP1CON = 0x0C; // Selecciona modo PWM 
-    CCPR1L = 0x0B; // Carga CCPR1L con un valor arbitrario 
-    PR2 = 0xFF;
+    CCPR1L = 0x0B; // Carga CCPR1L con un valor arbitrario
+    PR2 = 0x9D; // Configuramos PR2 para tener un periodo de 20ms
 }
 
-int Conversion(void) {
+int conversion(void) {
     ADCON0bits.GO = 1;
     while (ADCON0bits.GO);
     return ADRESL + ADRESH * 256; // Retorna los 10 bits como int 
+}
+
+float mapeo(int valor, float minEntrada, float maxEntrada, float minSalida, float maxSalida) {
+    return (valor - minEntrada)*(maxSalida - minSalida) / (maxEntrada - minEntrada) + minSalida;
 }

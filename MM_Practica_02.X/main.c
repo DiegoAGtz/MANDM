@@ -14,41 +14,43 @@
 #include <xc.h> 
 #define _XTAL_FREQ 1000000 // Frecuencia por default 
 
-void Configuracion(void) 
-{ 
-    TRISD=0; 
-    ANSELD=0; 
+void configuracion(void);
+int conversion(void);
 
-    TRISA = 0;  // Ejercicio 1
-    ANSELA = 0; // Ejercicio 1
-    
-    TRISB = 0x02;   // Ejercicio 2
-    ANSELB = 0x02;  // Ejercicio 2
-    
-    // ADCON0=0x39; // Original
-    ADCON0 = 0x29;  // Ejercicio 2
-    ADCON1=0x00; 
-    // ADCON2=0x90;    // Original
-    ADCON2 = 0x97;  // Ejercicio 1
-} 
+void main(void) {
+    configuracion();
+    int conv;
+    while (1) {
+        conv = conversion();
+        PORTB = (conv / 8 * 2) | ((conv / 4 & 0b00000010) / 2); 
+        /*
+            conv / 8 -> Obtenemos los 7 bits más significativos.
+            * 2 -> Ahora tenemos 8 bits.
+            (conv/4) -> Obtenemos los 8 bits más significativos.
+            & 0b00000010 -> obtenemos si el segundo bit es 1 o 0
+            / 2 -> Obtenemos 7 bits
+            | -> Comparamos con OR, si el primer bit de la segunda parte es 1, se 
+                 asignara al primer bit de la primera parte, en caso de ser cero,
+                 el primer bit continuará igual.
+            Lo asignamos al puerto B. Como el bit 2 estará ocupado en el puerto B
+            no importa que valor sea pues ese pin esta configurado como entrada.
+        */
+        __delay_ms(100);
+    }
+    return;
+}
 
-int Conversion(void) 
-{ 
-    ADCON0bits.GO = 1; 
-    while (ADCON0bits.GO); 
-    return ADRESL + ADRESH*256; // Retorna los 10 bits como int 
-} 
+void configuracion(void) {
+    TRISB = 0x02; // Asignamos a todo el puerto B, excepto el bit 2, como salida
+    ANSELB = 0x02; // Asignamos a todo el puerto B, excepto el bit 2, como digital
 
-void main(void) { 
-    Configuracion(); 
-    int conv; 
-    while(1) 
-    { 
-        conv = Conversion();
-        PORTD = conv/4;    // Despliega los 8 bits más significativos 
-        PORTA = conv;      // Ejercicio 1
-        PORTB = conv/8*2 | (conv/4 & 0b00000010) / 2;    // Ejercicio 2
-        __delay_ms(100); 
-    } 
-    return; 
+    ADCON0 = 0x29; // Asignamos el canal análogico AN10
+    ADCON1 = 0x00;
+    ADCON2 = 0x97; // Oscilador de 600kHz como fuente de reloj
+}
+
+int conversion(void) {
+    ADCON0bits.GO = 1;
+    while (ADCON0bits.GO);
+    return ADRESL + ADRESH * 256; // Retorna los 10 bits como int 
 } 
