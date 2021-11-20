@@ -20,6 +20,7 @@ char Letra[3];
 char Bandera = 0;
 char Indice = 0;
 int Valor = 0;
+char Encendido = 0;
 
 void configuracion(void);
 void __interrupt(high_priority) IAP(void);
@@ -31,20 +32,22 @@ int mapeo(int valor, int minEntrada, int maxEntrada, int minSalida, int maxSalid
 void ejecutarComando();
 char isNumber(char v);
 void modificarPotencia();
-void guardarEEPROM(char dir, char val);
-char leerEEPROM(char dir);
+void guardarEEPROM(char val);
+char leerEEPROM();
+void enviarPWM(int val);
 
 void main(void) {
     configuracion();
     inicializaLCD();
     __delay_ms(10); // Tiempo de asentamiento para el módulo    
 
-    Valor = leerEEPROM(1);
+    char tmp = leerEEPROM();
+    Valor = mapeo((int)tmp, 0, 100, 0, 1023);
 
     printf(" Curso de M&M ");
     putcm(0xC2);
-    printf("%d%% - %d", leerEEPROM(0), Valor);
-    CCPR1L = Valor;
+    printf("%d%% - %d", tmp, mapeo((int)tmp, 0, 100, 0, 1023));
+    // printf("%d%% - %d", tmp, Valor);
 
     LATCbits.LATC1 = 1;
     while (1) {
@@ -151,15 +154,15 @@ void putcm(char data) {
 }
 
 void limpiaLCD(void) {
-    putcm(0x01); //Limpiamos LCD
-    putcm(0x84); //Ponemos el cursor en la posici?n inicial 0,0 del LCD
+    putcm(0x80); //Ponemos el cursor en la posici?n inicial 0,0 del LCD
     printf("Proyecto Final");
 }
 
 int mapeo(int valor, int minEntrada, int maxEntrada, int minSalida, int maxSalida) {
-    if (valor > maxEntrada) valor = maxEntrada;
-    else if (valor < minEntrada) valor = minEntrada;
-    return (int) ((valor - minEntrada)*(maxSalida - minSalida) / (maxEntrada - minEntrada) + minSalida);
+    // if (valor > maxEntrada) valor = maxEntrada;
+    // else if (valor < minEntrada) valor = minEntrada;
+    // return (int) ((valor - minEntrada)*(maxSalida - minSalida) / (maxEntrada - minEntrada) + minSalida);
+    return (valor - minEntrada)*(maxSalida - minSalida) / (maxEntrada - minEntrada) + minSalida;
 }
 
 void ejecutarComando() {
@@ -169,13 +172,15 @@ void ejecutarComando() {
         limpiaLCD();
         putcm(0xC2);
         printf("Encendido.");
-        CCPR1L = Valor;
+        enviarPWM(Valor);
+        Encendido = 1;
     } else if((Letra[0] == 'O' || Letra[0] == 'o') && (Letra[1] == 'F' || Letra[1] == 'f') && (Letra[2] == 'F' || Letra[2] == 'f')) {
         // Apaga motor
         limpiaLCD();
         putcm(0xC2);
         printf("Apagado.");
-        CCPR1L = 0;
+        enviarPWM(0);
+        Encendido = 0;
     } else {
         // Comando erroneo
         // Error
@@ -215,18 +220,19 @@ void modificarPotencia() {
         if (tmp > 100) tmp = 100;
         else if (tmp < 0) tmp = 0;
 
-        Valor = mapeo(tmp, 0, 100, 0, 155);
-        CCPR1L = Valor;
-        guardarEEPROM(0, tmp);
-        guardarEEPROM(1, Valor);
+        Valor = mapeo(tmp, 0, 100, 0, 1023);
+        if (Encendido) {
+            enviarPWM(Valor);
+        }
+        guardarEEPROM(tmp);
         limpiaLCD();
         putcm(0xC2);
         printf("%d%% - %d", tmp, Valor);
     }
 }
 
-void guardarEEPROM(char dir, char val) {
-    EEADR = dir;
+void guardarEEPROM(char val) {
+    PIE1bits.RCIE = 0;
     EEDATA = val;
     EECON1bits.WREN = 1;    // Habilitar escritura
     EECON2 = 0x55;  // Antes de mandar escribir hay que mandar estas instrucciones
@@ -234,13 +240,21 @@ void guardarEEPROM(char dir, char val) {
     EECON1bits.WR = 1;  // Escribir
     __delay_ms(50);
     EECON1bits.WREN = 0;    // Desactivar escritura
+    PIE1bits.RCIE = 1;
 }
 
-char leerEEPROM(char dir) {
+char leerEEPROM() {
     char value = 0;
-    EEADR = dir;
     EECON1 = 0b00000001;
     __delay_us(10);
     value = EEDATA;
     return value;
+}
+
+void enviarPWM(int val) {
+    int Datos;
+    CCPR1L = val / 4; // Despliega los 8 bits más significativos 
+    Datos = val << 4;
+    Datos = Datos & 0x30; //Enmascara todos los bits menos 5:4 
+    CCP1CON = CCP1CON | Datos;
 }
