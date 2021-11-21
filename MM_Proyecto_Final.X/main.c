@@ -42,11 +42,12 @@ void main(void) {
     __delay_ms(10); // Tiempo de asentamiento para el módulo    
 
     char tmp = leerEEPROM();
-    Valor = mapeo((int)tmp, 0, 100, 0, 1023);
+    Valor = mapeo(tmp, 0, 100, 0, 255)*4 + mapeo(tmp, 0, 100, 0, 3);
 
-    printf(" Curso de M&M ");
-    putcm(0xC2);
-    printf("%d%% - %d", tmp, mapeo((int)tmp, 0, 100, 0, 1023));
+    printf("Motor: OFF      ");
+    putcm(0xC0);
+    __delay_us(10);
+    printf("Potencia: %d%%  ", tmp);
     // printf("%d%% - %d", tmp, Valor);
 
     LATCbits.LATC1 = 1;
@@ -155,38 +156,39 @@ void putcm(char data) {
 
 void limpiaLCD(void) {
     putcm(0x80); //Ponemos el cursor en la posici?n inicial 0,0 del LCD
-    printf("Proyecto Final");
+    if(Encendido) {
+        printf("Motor: ON       ");
+    } else {
+        printf("Motor: OFF      ");
+    }
+    putcm(0xC0);
 }
 
 int mapeo(int valor, int minEntrada, int maxEntrada, int minSalida, int maxSalida) {
     // if (valor > maxEntrada) valor = maxEntrada;
     // else if (valor < minEntrada) valor = minEntrada;
     // return (int) ((valor - minEntrada)*(maxSalida - minSalida) / (maxEntrada - minEntrada) + minSalida);
-    return (valor - minEntrada)*(maxSalida - minSalida) / (maxEntrada - minEntrada) + minSalida;
+    int multi = valor*maxSalida/maxEntrada;
+    return (int) multi;
 }
 
 void ejecutarComando() {
     Bandera = 1;
     if((Letra[0] == 'O' || Letra[0] == 'o') && (Letra[1] == 'N' || Letra[1] == 'n') && Letra[2] == '\r') {
         // Enciende motor
-        limpiaLCD();
-        putcm(0xC2);
-        printf("Encendido.");
-        enviarPWM(Valor);
         Encendido = 1;
+        limpiaLCD();
+        enviarPWM(Valor);
     } else if((Letra[0] == 'O' || Letra[0] == 'o') && (Letra[1] == 'F' || Letra[1] == 'f') && (Letra[2] == 'F' || Letra[2] == 'f')) {
         // Apaga motor
-        limpiaLCD();
-        putcm(0xC2);
-        printf("Apagado.");
-        enviarPWM(0);
         Encendido = 0;
+        limpiaLCD();
+        enviarPWM(0);
     } else {
         // Comando erroneo
         // Error
         limpiaLCD();
-        putcm(0xC2);
-        printf("Cmd. Erroneo.");
+        printf("Cmd. Erroneo.   ");
     }
 }
 
@@ -211,8 +213,7 @@ void modificarPotencia() {
     if(error) {
         // Potencia incorrecta
         limpiaLCD();
-        putcm(0xC2);
-        printf("Cant. Erronea.");
+        printf("Cant. Erronea.  ");
     } else {
         // Modifica la potencia
         int tmp = atoi(Letra);
@@ -220,14 +221,14 @@ void modificarPotencia() {
         if (tmp > 100) tmp = 100;
         else if (tmp < 0) tmp = 0;
 
-        Valor = mapeo(tmp, 0, 100, 0, 1023);
+        Valor = mapeo(tmp, 0, 100, 0, 255)*4 + mapeo(tmp, 0, 100, 0, 3);
         if (Encendido) {
             enviarPWM(Valor);
         }
         guardarEEPROM(tmp);
         limpiaLCD();
-        putcm(0xC2);
-        printf("%d%% - %d", tmp, Valor);
+        __delay_us(10);
+        printf("Potencia: %d%%  ", tmp);
     }
 }
 
@@ -248,6 +249,7 @@ char leerEEPROM() {
     EECON1 = 0b00000001;
     __delay_us(10);
     value = EEDATA;
+    __delay_us(50);
     return value;
 }
 
