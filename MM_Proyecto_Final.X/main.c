@@ -81,7 +81,7 @@ void configuracion(void) {
 
     CCP1CON = 0x0F;
     T2CON = 0x07;
-    PR2 = 155;
+    PR2 = 0xFF;
     CCPR1L = 0;
 
     EEADR = 0;
