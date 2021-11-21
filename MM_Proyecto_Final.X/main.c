@@ -35,6 +35,8 @@ void modificarPotencia();
 void guardarEEPROM(char val);
 char leerEEPROM();
 void enviarPWM(int val);
+void enviarPSerial(char val);
+void enviarMSerial(char *err);
 
 void main(void) {
     configuracion();
@@ -48,6 +50,7 @@ void main(void) {
     putcm(0xC0);
     __delay_us(10);
     printf("Potencia: %d%%  ", tmp);
+    enviarPSerial(tmp);
     // printf("%d%% - %d", tmp, Valor);
 
     LATCbits.LATC1 = 1;
@@ -179,16 +182,19 @@ void ejecutarComando() {
         Encendido = 1;
         limpiaLCD();
         enviarPWM(Valor);
+        enviarMSerial("Motor Encendido.");
     } else if((Letra[0] == 'O' || Letra[0] == 'o') && (Letra[1] == 'F' || Letra[1] == 'f') && (Letra[2] == 'F' || Letra[2] == 'f')) {
         // Apaga motor
         Encendido = 0;
         limpiaLCD();
         enviarPWM(0);
+        enviarMSerial("Motor Apagado.");
     } else {
         // Comando erroneo
         // Error
         limpiaLCD();
         printf("Cmd. Erroneo.   ");
+        enviarMSerial("Comando Erroneo.");
     }
 }
 
@@ -214,6 +220,7 @@ void modificarPotencia() {
         // Potencia incorrecta
         limpiaLCD();
         printf("Cant. Erronea.  ");
+        enviarMSerial("Cantidad Erronea.");
     } else {
         // Modifica la potencia
         int tmp = atoi(Letra);
@@ -225,10 +232,12 @@ void modificarPotencia() {
         if (Encendido) {
             enviarPWM(Valor);
         }
+
         guardarEEPROM(tmp);
         limpiaLCD();
         __delay_us(10);
         printf("Potencia: %d%%  ", tmp);
+        enviarPSerial(tmp);
     }
 }
 
@@ -259,4 +268,26 @@ void enviarPWM(int val) {
     Datos = val << 4;
     Datos = Datos & 0x30; //Enmascara todos los bits menos 5:4 
     CCP1CON = CCP1CON | Datos;
+}
+
+void enviarPSerial(char val) {
+    char s[256];
+    sprintf(s, "Potencia actual del motor: %d%% - equivale a %d\r", val, Valor);
+    int i=0;
+    while(s[i] != '\0') {
+        TXREG1 = s[i];
+        __delay_ms(10);
+        i++;
+    }
+}
+
+void enviarMSerial(char *err) {
+    char s[256];
+    sprintf(s, "%s\r", err);
+    int i=0;
+    while(s[i] != '\0') {
+        TXREG1 = s[i];
+        __delay_ms(10);
+        i++;
+    }
 }
