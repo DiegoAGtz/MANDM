@@ -68,7 +68,7 @@ void configuracion(void) {
     ANSELC = 0;
     ANSELD = 0;
 
-    INTCON = 0b10000000; // Activa interrupciones de alta prioridad
+    INTCON = 0x80; // Activa interrupciones de alta prioridad
     RCONbits.IPEN = 1; // Activa alta y baja prioridad
     PIE1bits.RCIE = 1;
 
@@ -242,7 +242,7 @@ void modificarPotencia() {
 }
 
 void guardarEEPROM(char val) {
-    PIE1bits.RCIE = 0;
+    INTCONbits.GIE = 0; // Desactiva interrupciones
     EEDATA = val;
     EECON1bits.WREN = 1;    // Habilitar escritura
     EECON2 = 0x55;  // Antes de mandar escribir hay que mandar estas instrucciones
@@ -250,7 +250,7 @@ void guardarEEPROM(char val) {
     EECON1bits.WR = 1;  // Escribir
     __delay_ms(50);
     EECON1bits.WREN = 0;    // Desactivar escritura
-    PIE1bits.RCIE = 1;
+    INTCONbits.GIE = 1; // Habilita interrupciones
 }
 
 char leerEEPROM() {
