@@ -31,6 +31,8 @@ void inicializa_lcd(void);
 void putch(char data);
 void putcm(char data);
 void limpia_lcd(void);
+void escribe_potencia_lcd(char potencia);
+void escribe_error_lcd(char *error);
 
 // Convierte el valor recibido a otro en un rango distinto.
 int mapeo(int valor, int min_entrada, int max_entrada, int min_salida, int max_salida);
@@ -62,8 +64,7 @@ void main(void) {
     char tmp = leer_eeprom();
     potencia_pwm = mapeo(tmp, 0, 100, 0, 255)*4 + mapeo(tmp, 0, 100, 0, 3);
 
-    limpia_lcd();
-    printf("Motor: OFF      ");
+    escribe_error_lcd("Motor: OFF");
     enviar_potencia_serial(tmp);
 
     while (1) {
@@ -174,6 +175,20 @@ void limpia_lcd(void) {
     putcm(0xC0);
 }
 
+void escribe_potencia_lcd(char potencia) {
+    putcm(0x80); //Ponemos el cursor en la posici?n inicial 0,0 del LCD
+    __delay_us(10);
+    printf("Potencia: %d%%  ", potencia);
+}
+
+void escribe_error_lcd(char *error) {
+    putcm(0x80);
+    __delay_us(10);
+    putcm(0xC0);
+    __delay_us(10);
+    printf("%s              ", error);
+}
+
 int mapeo(int valor, int min_entrada, int max_entrada, int min_salida, int max_salida) {
     if (valor > max_entrada) valor = max_entrada;
     else if (valor < min_entrada) valor = min_entrada;
@@ -186,20 +201,17 @@ void ejecutar_comando() {
         // Enciende motor
         motor_encendido = 1;
         enviar_pwm(potencia_pwm);
-        limpia_lcd();
-        printf("Motor: ON       ");
+        escribe_error_lcd("Motor: ON");
         enviar_mensaje_serial("Motor motor_encendido.");
     } else if((entrada_serial[0] == 'O' || entrada_serial[0] == 'o') && (entrada_serial[1] == 'F' || entrada_serial[1] == 'f') && (entrada_serial[2] == 'F' || entrada_serial[2] == 'f')) {
         // Apaga motor
         motor_encendido = 0;
         enviar_pwm(0);
-        limpia_lcd();
-        printf("Motor: OFF      ");
+        escribe_error_lcd("Motor: OFF");
         enviar_mensaje_serial("Motor Apagado.");
     } else {
         // Comando erroneo
-        limpia_lcd();
-        printf("Cmd. Erroneo.   ");
+        escribe_error_lcd("Cmd. Erroneo.");
         enviar_mensaje_serial("Comando Erroneo.");
     }
 }
@@ -224,8 +236,7 @@ void modificar_potencia() {
 
     if(error) {
         // Potencia incorrecta
-        limpia_lcd();
-        printf("Cant. Erronea.  ");
+        escribe_error_lcd("Cant. Erronea.");
         enviar_mensaje_serial("Cantidad Erronea.");
     } else {
         // Modifica la potencia
@@ -240,9 +251,7 @@ void modificar_potencia() {
         }
 
         guardar_eeprom(tmp);
-        limpia_lcd();
-        __delay_us(10);
-        printf("Potencia: %d%%  ", tmp);
+        escribe_potencia_lcd(tmp);
         enviar_potencia_serial(tmp);
     }
 }
