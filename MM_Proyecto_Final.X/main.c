@@ -45,10 +45,10 @@ void modificar_potencia();
 // Cambia los valores de CCPR1L:CCP1CON<5:4> con el valor recibido.
 void enviar_pwm(int val);
 
-// Obtiene el valor de la memoria EEPROM, posición 0.
-char leer_eeprom();
-// Guarda el dato en la memoria EEPROM, posición 0.
-void guardar_eeprom(char val);
+// Obtiene el valor de la memoria EEPROM en la dirección indicada
+char leer_eeprom(char direccion);
+// Guarda el dato en la memoria EEPROM en la dirección indicada
+void guardar_eeprom(char direccion, char val);
 
 // Envia por el puerto serial un mensaje con la potencia a la cual esta trabajando el motor.
 void enviar_potencia_serial(char val);
@@ -60,7 +60,8 @@ void main(void) {
     inicializa_lcd();
     __delay_ms(10); // Tiempo de asentamiento para el módulo    
 
-    char tmp = leer_eeprom();
+    char tmp = leer_eeprom(0);
+    __delay_us(10);
     potencia_pwm = mapeo(tmp, 0, 100, 0, 255)*4 + mapeo(tmp, 0, 100, 0, 3);
 
     LATCbits.LC0 = 0;
@@ -93,8 +94,9 @@ void configuracion(void) {
     T2CON = 0x07;
     PR2 = 0xFF;
     CCPR1L = 0;
-
-    EEADR = 0;
+    
+    EECON1bits.EEPGD = 0; //Selecciona memoria de datos 
+    EECON1bits.CFGS = 0; // Selecciona memoria EEPROM 
 }
 
 void __interrupt(high_priority) iap(void) {
@@ -110,7 +112,7 @@ void __interrupt(high_priority) iap(void) {
         }
     } 
 
-    if (entrada_serial[indice_es] == '\r' && bandera) {
+    if (entrada_serial[indice_es] == '\n' && bandera) {
         indice_es = 0;
         bandera = 0;
     }
@@ -171,6 +173,7 @@ void escribe_potencia_lcd(char potencia) {
     putcm(0x80); //Ponemos el cursor en la posici?n inicial 0,0 del LCD
     __delay_us(10);
     printf("Potencia: %d%%  ", potencia);
+    __delay_us(10);
 }
 
 void escribe_mensaje_lcd(char *mensaje) {
@@ -179,6 +182,7 @@ void escribe_mensaje_lcd(char *mensaje) {
     putcm(0xC0);
     __delay_us(10);
     printf("%s      ", mensaje);
+    __delay_us(10);
 }
 
 int mapeo(int valor, int min_entrada, int max_entrada, int min_salida, int max_salida) {
@@ -256,7 +260,7 @@ void modificar_potencia() {
             enviar_pwm(potencia_pwm);
         }
 
-        guardar_eeprom(tmp);
+        guardar_eeprom(0, tmp);
         escribe_potencia_lcd(tmp);
         enviar_potencia_serial(tmp);
     }
@@ -270,23 +274,24 @@ void enviar_pwm(int val) {
     CCP1CON = CCP1CON | Datos;
 }
 
-char leer_eeprom() {
-    char value = 0;
-    EECON1 = 0b00000001;
-    __delay_us(10);
-    value = EEDATA;
-    __delay_us(50);
-    return value;
+char leer_eeprom(char direccion) {
+    EEADR = direccion;
+    EECON1bits.RD = 1;
+    while (EECON1bits.RD); //Espera a que termine de escibir 
+    return EEDATA;
 }
 
-void guardar_eeprom(char val) {
+void guardar_eeprom(char direccion, char val) {
     INTCONbits.GIE = 0; // Desactiva interrupciones
+    EEADR = direccion;
     EEDATA = val;
+    
     EECON1bits.WREN = 1;    // Habilitar escritura
     EECON2 = 0x55;  // Antes de mandar escribir hay que mandar estas instrucciones
     EECON2 = 0xAA;  // Ordenes del fabricante. Salto de fe.
     EECON1bits.WR = 1;  // Escribir
-    __delay_ms(50);
+    while(EECON1bits.WR);
+    
     EECON1bits.WREN = 0;    // Desactivar escritura
     INTCONbits.GIE = 1; // Habilita interrupciones
 }
@@ -299,7 +304,7 @@ void enviar_potencia_serial(char val) {
 
 void enviar_mensaje_serial(char *err) {
     char s[256];
-    sprintf(s, "%s\r", err);
+    sprintf(s, "%s\r\n", err);
     int i=0;
     while(s[i] != '\0') {
         TXREG1 = s[i];
