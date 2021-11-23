@@ -11,55 +11,65 @@
 #pragma config ICPRT = OFF      // Dedicated In-Circuit Debug/Programming Port Enable (ICPORT disabled)
 
 #include <xc.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h>      // Funciones necesarias para mostrar mensajes en la LCD.
+#include <stdlib.h>     // Función necesaria para convertir de cadena a entero.
 
 #define _XTAL_FREQ 4000000      // Frecuencia del microcontrolador
 
-char Letra[3];
-char Bandera = 0;
-char Indice = 0;
-int Valor = 0;
-char Encendido = 0;
+char entrada_serial[3];
+char indice_es = 0;
+char bandera = 0;
+char motor_encendido = 0;
+char es_erronea = 0;
+int potencia_pwm = 0;
 
 void configuracion(void);
 void __interrupt(high_priority) IAP(void);
-void inicializaLCD(void);
+
+// Funciones encargadas de la pantalla LCD.
+void inicializa_lcd(void);
 void putch(char data);
 void putcm(char data);
-void limpiaLCD(void);
-int mapeo(int valor, int minEntrada, int maxEntrada, int minSalida, int maxSalida);
-void ejecutarComando();
-char isNumber(char v);
-void modificarPotencia();
-void guardarEEPROM(char val);
-char leerEEPROM();
-void enviarPWM(int val);
-void enviarPSerial(char val);
-void enviarMSerial(char *err);
+void limpia_lcd(void);
+
+// Convierte el valor recibido a otro en un rango distinto.
+int mapeo(int valor, int min_entrada, int max_entrada, int min_salida, int max_salida);
+// Verifica si el caracter recibido es un dígito.
+char es_digito(char v);
+
+// Ejecuta el comando recibido desde el puerto serial.
+void ejecutar_comando();
+// Modifica la potencia con la que esta trabajando el motor.
+void modificar_potencia();
+// Cambia los valores de CCPR1L:CCP1CON<5:4> con el valor recibido.
+void enviar_pwm(int val);
+
+// Obtiene el valor de la memoria EEPROM, posición 0.
+char leer_eeprom();
+// Guarda el dato en la memoria EEPROM, posición 0.
+void guardar_eeprom(char val);
+
+// Envia por el puerto serial un mensaje con la potencia a la cual esta trabajando el motor.
+void enviar_potencia_serial(char val);
+// Envia por el puerto serial un mensaje.
+void enviar_mensaje_serial(char *err);
 
 void main(void) {
     configuracion();
-    inicializaLCD();
+    inicializa_lcd();
     __delay_ms(10); // Tiempo de asentamiento para el módulo    
 
-    enviarPWM(0);
-    char tmp = leerEEPROM();
-    Valor = mapeo(tmp, 0, 100, 0, 255)*4 + mapeo(tmp, 0, 100, 0, 3);
+    char tmp = leer_eeprom();
+    potencia_pwm = mapeo(tmp, 0, 100, 0, 255)*4 + mapeo(tmp, 0, 100, 0, 3);
 
+    limpia_lcd();
     printf("Motor: OFF      ");
-    putcm(0xC0);
-    __delay_us(10);
-    printf("Potencia: %d%%  ", tmp);
-    enviarPSerial(tmp);
-    // printf("%d%% - %d", tmp, Valor);
+    enviar_potencia_serial(tmp);
 
-    LATCbits.LATC1 = 1;
     while (1) {
         LATCbits.LC0 ^= 1;
         __delay_ms(500);
     }
-
     return;
 }
 
@@ -89,25 +99,25 @@ void configuracion(void) {
 }
 
 void __interrupt(high_priority) IAP(void) {
-    Letra[Indice] = RCREG1;
+    entrada_serial[indice_es] = RCREG1;
 
-    if(!Bandera) {
-        if((!isNumber(Letra[0]) && Indice == 2) || (!isNumber(Letra[0]) && Letra[Indice] == '\r')) {
-            ejecutarComando();
-        } else if ((isNumber(Letra[0]) && Indice == 2) || (isNumber(Letra[0]) && Letra[Indice] == '\r')) {
-            modificarPotencia();
+    if(!bandera) {
+        if((!es_digito(entrada_serial[0]) && indice_es == 2) || (!es_digito(entrada_serial[0]) && entrada_serial[indice_es] == '\r')) {
+            ejecutar_comando();
+        } else if ((es_digito(entrada_serial[0]) && indice_es == 2) || (es_digito(entrada_serial[0]) && entrada_serial[indice_es] == '\r')) {
+            modificar_potencia();
         } else {
-            Indice++;
+            indice_es++;
         }
     } 
 
-    if (Letra[Indice] == '\r' && Bandera) {
-        Indice = 0;
-        Bandera = 0;
+    if (entrada_serial[indice_es] == '\r' && bandera) {
+        indice_es = 0;
+        bandera = 0;
     }
 }
 
-void inicializaLCD(void) {
+void inicializa_lcd(void) {
     __delay_ms(30);
     putcm(0x02); // Inicializa en modo 4 bits
     __delay_ms(1);
@@ -158,59 +168,54 @@ void putcm(char data) {
     LATD = Activa;
 }
 
-void limpiaLCD(void) {
+void limpia_lcd(void) {
     putcm(0x80); //Ponemos el cursor en la posici?n inicial 0,0 del LCD
-    if(Encendido) {
-        printf("Motor: ON       ");
-    } else {
-        printf("Motor: OFF      ");
-    }
+    printf("Potencia: %d%%  ", tmp);
     putcm(0xC0);
 }
 
-int mapeo(int valor, int minEntrada, int maxEntrada, int minSalida, int maxSalida) {
-    // if (valor > maxEntrada) valor = maxEntrada;
-    // else if (valor < minEntrada) valor = minEntrada;
-    // return (int) ((valor - minEntrada)*(maxSalida - minSalida) / (maxEntrada - minEntrada) + minSalida);
-    int multi = valor*maxSalida/maxEntrada;
-    return (int) multi;
+int mapeo(int valor, int min_entrada, int max_entrada, int min_salida, int max_salida) {
+    if (valor > max_entrada) valor = max_entrada;
+    else if (valor < min_entrada) valor = min_entrada;
+    return (int) ((valor - min_entrada)*(max_salida - min_salida) / (max_entrada - min_entrada) + min_salida);
 }
 
-void ejecutarComando() {
-    Bandera = 1;
-    if((Letra[0] == 'O' || Letra[0] == 'o') && (Letra[1] == 'N' || Letra[1] == 'n') && Letra[2] == '\r') {
+void ejecutar_comando() {
+    bandera = 1;
+    if((entrada_serial[0] == 'O' || entrada_serial[0] == 'o') && (entrada_serial[1] == 'N' || entrada_serial[1] == 'n') && entrada_serial[2] == '\r') {
         // Enciende motor
-        Encendido = 1;
-        limpiaLCD();
-        enviarPWM(Valor);
-        enviarMSerial("Motor Encendido.");
-    } else if((Letra[0] == 'O' || Letra[0] == 'o') && (Letra[1] == 'F' || Letra[1] == 'f') && (Letra[2] == 'F' || Letra[2] == 'f')) {
+        motor_encendido = 1;
+        enviar_pwm(potencia_pwm);
+        limpia_lcd();
+        printf("Motor: ON       ");
+        enviar_mensaje_serial("Motor motor_encendido.");
+    } else if((entrada_serial[0] == 'O' || entrada_serial[0] == 'o') && (entrada_serial[1] == 'F' || entrada_serial[1] == 'f') && (entrada_serial[2] == 'F' || entrada_serial[2] == 'f')) {
         // Apaga motor
-        Encendido = 0;
-        limpiaLCD();
-        enviarPWM(0);
-        enviarMSerial("Motor Apagado.");
+        motor_encendido = 0;
+        enviar_pwm(0);
+        limpia_lcd();
+        printf("Motor: OFF      ");
+        enviar_mensaje_serial("Motor Apagado.");
     } else {
         // Comando erroneo
-        // Error
-        limpiaLCD();
+        limpia_lcd();
         printf("Cmd. Erroneo.   ");
-        enviarMSerial("Comando Erroneo.");
+        enviar_mensaje_serial("Comando Erroneo.");
     }
 }
 
-char isNumber(char v) {
+char es_digito(char v) {
     if (v >= 48 && v <= 57) return 1;
     return 0;
 }
 
-void modificarPotencia() {
+void modificar_potencia() {
     // Máximo permitido o salto de linea
-    Bandera = 1;
+    bandera = 1;
     char i=0;
     char error = 0;
-    while(i<=2 && Letra[i] != '\r') {
-        if(!isNumber(Letra[i])) {
+    while(i<=2 && entrada_serial[i] != '\r') {
+        if(!es_digito(entrada_serial[i])) {
             error = 1;
             break;
         }
@@ -219,30 +224,30 @@ void modificarPotencia() {
 
     if(error) {
         // Potencia incorrecta
-        limpiaLCD();
+        limpia_lcd();
         printf("Cant. Erronea.  ");
-        enviarMSerial("Cantidad Erronea.");
+        enviar_mensaje_serial("Cantidad Erronea.");
     } else {
         // Modifica la potencia
-        int tmp = atoi(Letra);
+        int tmp = atoi(entrada_serial);
 
         if (tmp > 100) tmp = 100;
         else if (tmp < 0) tmp = 0;
 
-        Valor = mapeo(tmp, 0, 100, 0, 255)*4 + mapeo(tmp, 0, 100, 0, 3);
-        if (Encendido) {
-            enviarPWM(Valor);
+        potencia_pwm = mapeo(tmp, 0, 100, 0, 255)*4 + mapeo(tmp, 0, 100, 0, 3);
+        if (motor_encendido) {
+            enviar_pwm(potencia_pwm);
         }
 
-        guardarEEPROM(tmp);
-        limpiaLCD();
+        guardar_eeprom(tmp);
+        limpia_lcd();
         __delay_us(10);
         printf("Potencia: %d%%  ", tmp);
-        enviarPSerial(tmp);
+        enviar_potencia_serial(tmp);
     }
 }
 
-void guardarEEPROM(char val) {
+void guardar_eeprom(char val) {
     INTCONbits.GIE = 0; // Desactiva interrupciones
     EEDATA = val;
     EECON1bits.WREN = 1;    // Habilitar escritura
@@ -254,7 +259,7 @@ void guardarEEPROM(char val) {
     INTCONbits.GIE = 1; // Habilita interrupciones
 }
 
-char leerEEPROM() {
+char leer_eeprom() {
     char value = 0;
     EECON1 = 0b00000001;
     __delay_us(10);
@@ -263,7 +268,7 @@ char leerEEPROM() {
     return value;
 }
 
-void enviarPWM(int val) {
+void enviar_pwm(int val) {
     int Datos;
     CCPR1L = val / 4; // Despliega los 8 bits más significativos 
     Datos = val << 4;
@@ -271,18 +276,13 @@ void enviarPWM(int val) {
     CCP1CON = CCP1CON | Datos;
 }
 
-void enviarPSerial(char val) {
+void enviar_potencia_serial(char val) {
     char s[256];
-    sprintf(s, "Potencia actual del motor: %d%% - equivale a %d\r", val, Valor);
-    int i=0;
-    while(s[i] != '\0') {
-        TXREG1 = s[i];
-        __delay_ms(10);
-        i++;
-    }
+    sprintf(s, "Potencia actual del motor: %d%% - equivale a %d.", val, potencia_pwm);
+    enviar_mensaje_serial(s);
 }
 
-void enviarMSerial(char *err) {
+void enviar_mensaje_serial(char *err) {
     char s[256];
     sprintf(s, "%s\r", err);
     int i=0;
