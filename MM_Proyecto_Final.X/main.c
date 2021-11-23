@@ -64,6 +64,7 @@ void main(void) {
     char tmp = leer_eeprom();
     potencia_pwm = mapeo(tmp, 0, 100, 0, 255)*4 + mapeo(tmp, 0, 100, 0, 3);
 
+    escribe_potencia_lcd(tmp);
     escribe_error_lcd("Motor: OFF");
     enviar_potencia_serial(tmp);
 
@@ -171,7 +172,7 @@ void putcm(char data) {
 
 void limpia_lcd(void) {
     putcm(0x80); //Ponemos el cursor en la posici?n inicial 0,0 del LCD
-    printf("Potencia: %d%%  ", tmp);
+    //printf("Potencia: %d%%  ", tmp);
     putcm(0xC0);
 }
 
@@ -213,6 +214,12 @@ void ejecutar_comando() {
         // Comando erroneo
         escribe_error_lcd("Cmd. Erroneo.");
         enviar_mensaje_serial("Comando Erroneo.");
+        __delay_ms(1000);
+        if(motor_encendido) {
+            escribe_error_lcd("Motor: ON");
+        } else {
+            escribe_error_lcd("Motor: OFF");
+        }
     }
 }
 
@@ -238,6 +245,12 @@ void modificar_potencia() {
         // Potencia incorrecta
         escribe_error_lcd("Cant. Erronea.");
         enviar_mensaje_serial("Cantidad Erronea.");
+        __delay_ms(1000);
+        if(motor_encendido) {
+            escribe_error_lcd("Motor: ON");
+        } else {
+            escribe_error_lcd("Motor: OFF");
+        }
     } else {
         // Modifica la potencia
         int tmp = atoi(entrada_serial);
