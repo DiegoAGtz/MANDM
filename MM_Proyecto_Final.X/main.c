@@ -63,14 +63,12 @@ void main(void) {
     char tmp = leer_eeprom();
     potencia_pwm = mapeo(tmp, 0, 100, 0, 255)*4 + mapeo(tmp, 0, 100, 0, 3);
 
+    LATCbits.LC0 = 0;
     escribe_potencia_lcd(tmp);
     escribe_mensaje_lcd("Motor: OFF");
     enviar_potencia_serial(tmp);
 
-    while (1) {
-        LATCbits.LC0 ^= 1;
-        __delay_ms(500);
-    }
+    while (1);
     return;
 }
 
@@ -200,12 +198,14 @@ void ejecutar_comando() {
         // Enciende motor
         motor_encendido = 1;
         enviar_pwm(potencia_pwm);
+        LATCbits.LC0 = 1;
         escribe_mensaje_lcd("Motor: ON");
         enviar_mensaje_serial("Motor motor_encendido.");
     } else if((entrada_serial[0] == 'O' || entrada_serial[0] == 'o') && (entrada_serial[1] == 'F' || entrada_serial[1] == 'f') && (entrada_serial[2] == 'F' || entrada_serial[2] == 'f')) {
         // Apaga motor
         motor_encendido = 0;
         enviar_pwm(0);
+        LATCbits.LC0 = 0;
         escribe_mensaje_lcd("Motor: OFF");
         enviar_mensaje_serial("Motor Apagado.");
     } else {
