@@ -43,6 +43,7 @@ void main(void) {
     inicializaLCD();
     __delay_ms(10); // Tiempo de asentamiento para el módulo    
 
+    enviarPWM(0);
     char tmp = leerEEPROM();
     Valor = mapeo(tmp, 0, 100, 0, 255)*4 + mapeo(tmp, 0, 100, 0, 3);
 
@@ -79,7 +80,7 @@ void configuracion(void) {
     SPBRGH1 = 0x00;
     RCSTA1 = 0x90;
 
-    CCP1CON = 0x0F;
+    CCP1CON = 0x0C;
     T2CON = 0x07;
     PR2 = 0xFF;
     CCPR1L = 0;
