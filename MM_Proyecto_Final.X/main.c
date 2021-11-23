@@ -24,15 +24,14 @@ char es_erronea = 0;
 int potencia_pwm = 0;
 
 void configuracion(void);
-void __interrupt(high_priority) IAP(void);
+void __interrupt(high_priority) iap(void);
 
 // Funciones encargadas de la pantalla LCD.
 void inicializa_lcd(void);
 void putch(char data);
 void putcm(char data);
-void limpia_lcd(void);
 void escribe_potencia_lcd(char potencia);
-void escribe_error_lcd(char *error);
+void escribe_mensaje_lcd(char *mensaje);
 
 // Convierte el valor recibido a otro en un rango distinto.
 int mapeo(int valor, int min_entrada, int max_entrada, int min_salida, int max_salida);
@@ -65,7 +64,7 @@ void main(void) {
     potencia_pwm = mapeo(tmp, 0, 100, 0, 255)*4 + mapeo(tmp, 0, 100, 0, 3);
 
     escribe_potencia_lcd(tmp);
-    escribe_error_lcd("Motor: OFF");
+    escribe_mensaje_lcd("Motor: OFF");
     enviar_potencia_serial(tmp);
 
     while (1) {
@@ -100,7 +99,7 @@ void configuracion(void) {
     EEADR = 0;
 }
 
-void __interrupt(high_priority) IAP(void) {
+void __interrupt(high_priority) iap(void) {
     entrada_serial[indice_es] = RCREG1;
 
     if(!bandera) {
@@ -170,24 +169,18 @@ void putcm(char data) {
     LATD = Activa;
 }
 
-void limpia_lcd(void) {
-    putcm(0x80); //Ponemos el cursor en la posici?n inicial 0,0 del LCD
-    //printf("Potencia: %d%%  ", tmp);
-    putcm(0xC0);
-}
-
 void escribe_potencia_lcd(char potencia) {
     putcm(0x80); //Ponemos el cursor en la posici?n inicial 0,0 del LCD
     __delay_us(10);
     printf("Potencia: %d%%  ", potencia);
 }
 
-void escribe_error_lcd(char *error) {
+void escribe_mensaje_lcd(char *mensaje) {
     putcm(0x80);
     __delay_us(10);
     putcm(0xC0);
     __delay_us(10);
-    printf("%s              ", error);
+    printf("%s      ", mensaje);
 }
 
 int mapeo(int valor, int min_entrada, int max_entrada, int min_salida, int max_salida) {
@@ -196,36 +189,36 @@ int mapeo(int valor, int min_entrada, int max_entrada, int min_salida, int max_s
     return (int) ((valor - min_entrada)*(max_salida - min_salida) / (max_entrada - min_entrada) + min_salida);
 }
 
+char es_digito(char v) {
+    if (v >= 48 && v <= 57) return 1;
+    return 0;
+}
+
 void ejecutar_comando() {
     bandera = 1;
     if((entrada_serial[0] == 'O' || entrada_serial[0] == 'o') && (entrada_serial[1] == 'N' || entrada_serial[1] == 'n') && entrada_serial[2] == '\r') {
         // Enciende motor
         motor_encendido = 1;
         enviar_pwm(potencia_pwm);
-        escribe_error_lcd("Motor: ON");
+        escribe_mensaje_lcd("Motor: ON");
         enviar_mensaje_serial("Motor motor_encendido.");
     } else if((entrada_serial[0] == 'O' || entrada_serial[0] == 'o') && (entrada_serial[1] == 'F' || entrada_serial[1] == 'f') && (entrada_serial[2] == 'F' || entrada_serial[2] == 'f')) {
         // Apaga motor
         motor_encendido = 0;
         enviar_pwm(0);
-        escribe_error_lcd("Motor: OFF");
+        escribe_mensaje_lcd("Motor: OFF");
         enviar_mensaje_serial("Motor Apagado.");
     } else {
         // Comando erroneo
-        escribe_error_lcd("Cmd. Erroneo.");
+        escribe_mensaje_lcd("Cmd. Erroneo.");
         enviar_mensaje_serial("Comando Erroneo.");
         __delay_ms(1000);
         if(motor_encendido) {
-            escribe_error_lcd("Motor: ON");
+            escribe_mensaje_lcd("Motor: ON");
         } else {
-            escribe_error_lcd("Motor: OFF");
+            escribe_mensaje_lcd("Motor: OFF");
         }
     }
-}
-
-char es_digito(char v) {
-    if (v >= 48 && v <= 57) return 1;
-    return 0;
 }
 
 void modificar_potencia() {
@@ -243,13 +236,13 @@ void modificar_potencia() {
 
     if(error) {
         // Potencia incorrecta
-        escribe_error_lcd("Cant. Erronea.");
+        escribe_mensaje_lcd("Cant. Erronea.");
         enviar_mensaje_serial("Cantidad Erronea.");
         __delay_ms(1000);
         if(motor_encendido) {
-            escribe_error_lcd("Motor: ON");
+            escribe_mensaje_lcd("Motor: ON");
         } else {
-            escribe_error_lcd("Motor: OFF");
+            escribe_mensaje_lcd("Motor: OFF");
         }
     } else {
         // Modifica la potencia
@@ -269,16 +262,12 @@ void modificar_potencia() {
     }
 }
 
-void guardar_eeprom(char val) {
-    INTCONbits.GIE = 0; // Desactiva interrupciones
-    EEDATA = val;
-    EECON1bits.WREN = 1;    // Habilitar escritura
-    EECON2 = 0x55;  // Antes de mandar escribir hay que mandar estas instrucciones
-    EECON2 = 0xAA;  // Ordenes del fabricante. Salto de fe.
-    EECON1bits.WR = 1;  // Escribir
-    __delay_ms(50);
-    EECON1bits.WREN = 0;    // Desactivar escritura
-    INTCONbits.GIE = 1; // Habilita interrupciones
+void enviar_pwm(int val) {
+    int Datos;
+    CCPR1L = val / 4; // Despliega los 8 bits más significativos 
+    Datos = val << 4;
+    Datos = Datos & 0x30; //Enmascara todos los bits menos 5:4 
+    CCP1CON = CCP1CON | Datos;
 }
 
 char leer_eeprom() {
@@ -290,12 +279,16 @@ char leer_eeprom() {
     return value;
 }
 
-void enviar_pwm(int val) {
-    int Datos;
-    CCPR1L = val / 4; // Despliega los 8 bits más significativos 
-    Datos = val << 4;
-    Datos = Datos & 0x30; //Enmascara todos los bits menos 5:4 
-    CCP1CON = CCP1CON | Datos;
+void guardar_eeprom(char val) {
+    INTCONbits.GIE = 0; // Desactiva interrupciones
+    EEDATA = val;
+    EECON1bits.WREN = 1;    // Habilitar escritura
+    EECON2 = 0x55;  // Antes de mandar escribir hay que mandar estas instrucciones
+    EECON2 = 0xAA;  // Ordenes del fabricante. Salto de fe.
+    EECON1bits.WR = 1;  // Escribir
+    __delay_ms(50);
+    EECON1bits.WREN = 0;    // Desactivar escritura
+    INTCONbits.GIE = 1; // Habilita interrupciones
 }
 
 void enviar_potencia_serial(char val) {
