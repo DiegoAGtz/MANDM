@@ -12,7 +12,7 @@
 
 #include <xc.h>
 #include <stdio.h>      // Funciones necesarias para mostrar mensajes en la LCD.
-#include <stdlib.h>     // Función necesaria para convertir de cadena a entero.
+// #include <stdlib.h>     // Función necesaria para convertir de cadena a entero.
 
 #define _XTAL_FREQ 4000000      // Frecuencia del microcontrolador
 
@@ -35,6 +35,8 @@ void muestra_lcd(char error);
 
 // Convierte el valor recibido a otro en un rango distinto.
 int mapeo(int valor, int min_entrada, int max_entrada, int min_salida, int max_salida);
+// Convierte la cadena a entero
+int cadena_entero(char *str);
 // Verifica si el caracter recibido es un dígito.
 char es_digito(char v);
 
@@ -49,7 +51,6 @@ void enviar_pwm(int val);
 char leer_eeprom(char direccion);
 // Guarda el dato en la memoria EEPROM en la dirección indicada
 void guardar_eeprom(char direccion, char val);
-
 // Envia por el puerto serial un mensaje con la potencia a la cual esta trabajando el motor.
 void enviar_potencia_serial(char val);
 // Envia por el puerto serial un mensaje.
@@ -61,7 +62,6 @@ void main(void) {
     __delay_ms(10); // Tiempo de asentamiento para el módulo    
 
     conversion_es = leer_eeprom(0);
-    __delay_us(10);
     potencia_pwm = mapeo(conversion_es, 0, 100, 0, 255)*4 + mapeo(conversion_es, 0, 100, 0, 3);
 
     LATCbits.LC0 = 0;
@@ -169,7 +169,7 @@ void putcm(char data) {
 }
 
 void muestra_lcd(char error) {
-    putcm(0x80); //Ponemos el cursor en la posici?n inicial 0,0 del LCD
+    putcm(0x80); //Ponemos el cursor en la posición inicial 0,0 del LCD
     __delay_us(10);
     printf("Potencia: %d%%  ", conversion_es);
     __delay_us(10);
@@ -191,6 +191,17 @@ int mapeo(int valor, int min_entrada, int max_entrada, int min_salida, int max_s
     if (valor > max_entrada) valor = max_entrada;
     else if (valor < min_entrada) valor = min_entrada;
     return (int) ((valor - min_entrada)*(max_salida - min_salida) / (max_entrada - min_entrada) + min_salida);
+}
+
+int cadena_entero(char *str) {
+    int i = 0;
+    int res = 0;
+    while(i <= 2 && str[i] != '\r') {
+        res *= 10;
+        res += str[i] - 48;
+        i++;
+    }
+    return res;
 }
 
 char es_digito(char v) {
@@ -244,7 +255,8 @@ void modificar_potencia(void) {
         muestra_lcd(0);
     } else {
         // Modifica la potencia
-        conversion_es = atoi(entrada_serial);
+        // conversion_es = atoi(entrada_serial);
+        conversion_es = cadena_entero(entrada_serial);
 
         if (conversion_es > 100) conversion_es = 100;
         else if (conversion_es < 0) conversion_es = 0;
