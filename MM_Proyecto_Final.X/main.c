@@ -12,14 +12,12 @@
 
 #include <xc.h>
 #include <stdio.h>      // Funciones necesarias para mostrar mensajes en la LCD.
-#include <stdlib.h>
 
 #define _XTAL_FREQ 4000000      // Frecuencia del microcontrolador
 
 char entrada_serial[3];
 int conversion_es = 0;
 char indice_es = 0;
-char bandera_es = 0;
 char motor_encendido = 0;
 int potencia_pwm = 0;
 
@@ -51,7 +49,7 @@ char leer_eeprom(char direccion);
 // Guarda el dato en la memoria EEPROM en la dirección indicada
 void guardar_eeprom(char direccion, char valor);
 // Envia por el puerto serial un mensaje con la potencia a la cual esta trabajando el motor.
-void enviar_potencia_serial(char valor);
+void enviar_potencia_serial();
 // Envia por el puerto serial un mensaje.
 void enviar_mensaje_serial(char *error);
 
@@ -61,11 +59,15 @@ void main(void) {
     __delay_ms(10); // Tiempo de asentamiento para el módulo    
 
     conversion_es = leer_eeprom(0);
+    if (conversion_es > 100) conversion_es = 100;
+    else if (conversion_es < 0) conversion_es = 0;
+
     potencia_pwm = mapeo(conversion_es, 0, 100, 0, 255)*4 + mapeo(conversion_es, 0, 100, 0, 3);
 
     LATCbits.LC0 = 0;
+    enviar_pwm(0);
     muestra_lcd(0);
-    enviar_potencia_serial(conversion_es);
+    enviar_potencia_serial();
 
     while (1);
     return;
@@ -98,21 +100,19 @@ void configuracion(void) {
 }
 
 void __interrupt(high_priority) iap(void) {
-    entrada_serial[indice_es] = RCREG1;
-
-    if(!bandera_es) {
-        if((!es_digito(entrada_serial[0]) && indice_es == 2) || (!es_digito(entrada_serial[0]) && entrada_serial[indice_es] == '\r')) {
-            ejecutar_comando();
-        } else if ((es_digito(entrada_serial[0]) && indice_es == 2) || (es_digito(entrada_serial[0]) && entrada_serial[indice_es] == '\r')) {
-            modificar_potencia();
-        } else {
+    char caracter_serial = RCREG1;
+    if (caracter_serial != '\n') {
+        if (indice_es <= 2) {
+            entrada_serial[indice_es] = caracter_serial;
             indice_es++;
         }
-    } 
-
-    if (entrada_serial[indice_es] == '\n' && bandera_es) {
+    } else {
+        if ((!es_digito(entrada_serial[0]))) {
+            ejecutar_comando();
+        } else if ((es_digito(entrada_serial[0]))) {
+            modificar_potencia();
+        }
         indice_es = 0;
-        bandera_es = 0;
     }
 }
 
@@ -187,8 +187,6 @@ void muestra_lcd(char error) {
 }
 
 int mapeo(int valor, int min_entrada, int max_entrada, int min_salida, int max_salida) {
-    if (valor > max_entrada) valor = max_entrada;
-    else if (valor < min_entrada) valor = min_entrada;
     return (int) ((valor - min_entrada)*(max_salida - min_salida) / (max_entrada - min_entrada) + min_salida);
 }
 
@@ -209,16 +207,13 @@ char es_digito(char c) {
 }
 
 void ejecutar_comando(void) {
-    bandera_es = 1;
     if ((entrada_serial[0] == 'O' || entrada_serial[0] == 'o') && (entrada_serial[1] == 'N' || entrada_serial[1] == 'n') && entrada_serial[2] == '\r') {
-        // Enciende motor
         motor_encendido = 1;
         enviar_pwm(potencia_pwm);
         LATCbits.LC0 = 1;
         muestra_lcd(0);
         enviar_mensaje_serial("Motor Encendido.");
     } else if ((entrada_serial[0] == 'O' || entrada_serial[0] == 'o') && (entrada_serial[1] == 'F' || entrada_serial[1] == 'f') && (entrada_serial[2] == 'F' || entrada_serial[2] == 'f')) {
-        // Apaga motor
         motor_encendido = 0;
         enviar_pwm(0);
         LATCbits.LC0 = 0;
@@ -234,8 +229,6 @@ void ejecutar_comando(void) {
 }
 
 void modificar_potencia(void) {
-    // Máximo permitido o salto de linea
-    bandera_es = 1;
     char i = 0;
     char error = 0;
     while (i <= 2 && entrada_serial[i] != '\r') {
@@ -247,15 +240,12 @@ void modificar_potencia(void) {
     }
 
     if (error) {
-        // Potencia incorrecta
         muestra_lcd(1);
         enviar_mensaje_serial("Cantidad Erronea.");
         __delay_ms(1000);
         muestra_lcd(0);
     } else {
-        // Modifica la potencia
-        conversion_es = atoi(entrada_serial);
-        // conversion_es = cadena_entero(entrada_serial);
+        conversion_es = cadena_entero(entrada_serial);
 
         if (conversion_es > 100) conversion_es = 100;
         else if (conversion_es < 0) conversion_es = 0;
@@ -267,7 +257,7 @@ void modificar_potencia(void) {
 
         guardar_eeprom(0, conversion_es);
         muestra_lcd(0);
-        enviar_potencia_serial(conversion_es);
+        enviar_potencia_serial();
     }
 }
 
@@ -301,14 +291,14 @@ void guardar_eeprom(char direccion, char valor) {
     INTCONbits.GIE = 1; // Habilita interrupciones
 }
 
-void enviar_potencia_serial(char valor) {
-    char s[256];
-    sprintf(s, "Potencia de trabajo actualizada.\nPotencia actual del motor: %d%%.\nValor cargado en PWM (10 bits): %d.", valor, potencia_pwm);
+void enviar_potencia_serial() {
+    char s[100];
+    sprintf(s, "Potencia actual del motor: %d%%\nValor cargado en PWM (10b): %d", conversion_es, potencia_pwm);
     enviar_mensaje_serial(s);
 }
 
 void enviar_mensaje_serial(char *error) {
-    char s[256];
+    char s[100];
     sprintf(s, "%s\r\n", error);
     int i = 0;
     while (s[i] != '\0') {
